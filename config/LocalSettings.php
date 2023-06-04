@@ -819,8 +819,14 @@ $wgFooterIcons = [
             "alt" => "Powered by MediaWiki",
             "height" => "42",
             "width" => "127",
-        ]
-    ],
+        ],
+	"semanticmediawiki" => [
+            'src' => "$wgResourceBasePath/resources/assets/badge-semanticmediawiki.svg",
+            'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
+            'alt' => 'Powered by Semantic MediaWiki',
+            "height" => "42",
+            "width" => "131",
+	],
 /*
     "monitoredby" => [
           "wikiapiary" => [
