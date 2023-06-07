@@ -153,6 +153,9 @@ $wgSearchMatchRedirectPreference = true;
 # Disable the real name field
 $wgHiddenPrefs[] = 'realname';
 
+# Use argon2 to hash user password (MW default: 'pbkdf2')
+$wgPasswordDefault = 'argon2';
+
 # MySQL table options to use during installation or update
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
 
