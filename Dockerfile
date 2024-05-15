@@ -1,8 +1,8 @@
-FROM nginx:1.23.3
+FROM nginx:1.25.5
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION 1.39
-ENV MEDIAWIKI_VERSION 1.39.3
+ENV MEDIAWIKI_VERSION 1.39.7
 
 # MediaWiki setup
 RUN set -eux; \
@@ -10,6 +10,7 @@ RUN set -eux; \
         gnupg \
         dirmngr \
         unzip \
+		netcat \
     "; \
     apt-get update; \
     apt-get install -y --no-install-recommends $fetchDeps; \
