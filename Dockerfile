@@ -4,13 +4,21 @@ FROM nginx:1.25.5
 ENV MEDIAWIKI_MAJOR_VERSION 1.39
 ENV MEDIAWIKI_VERSION 1.39.7
 
+# System dependencies
+RUN set -eux; \
+	\
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+        netcat-traditional \
+	; \
+	rm -rf /var/lib/apt/lists/*
+
 # MediaWiki setup
 RUN set -eux; \
     fetchDeps=" \
         gnupg \
         dirmngr \
         unzip \
-		netcat-traditional \
     "; \
     apt-get update; \
     apt-get install -y --no-install-recommends $fetchDeps; \
