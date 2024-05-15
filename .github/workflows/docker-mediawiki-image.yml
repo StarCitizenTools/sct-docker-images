@@ -20,4 +20,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: starcitizentools/nginx:latest,starcitizentools/nginx:v1.2.0
+          tags: starcitizentools/nginx:latest,starcitizentools/nginx:v1.2.1
