@@ -10,7 +10,7 @@ RUN set -eux; \
         gnupg \
         dirmngr \
         unzip \
-		netcat \
+		netcat-traditional \
     "; \
     apt-get update; \
     apt-get install -y --no-install-recommends $fetchDeps; \
