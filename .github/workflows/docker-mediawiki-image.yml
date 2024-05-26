@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'nginx'
+  workflow_dispatch:
 
 jobs:
   docker:
