@@ -48,7 +48,6 @@ RUN set -eux; \
 COPY ./resources /var/www/mediawiki/resources
 
 COPY ./config/robots.txt /var/www/mediawiki/robots.txt
-COPY ./resources/assets/favicon.ico /var/www/mediawiki/favicon.ico
 
 RUN set -eux; \
    chown -R www-data:www-data /var/www
