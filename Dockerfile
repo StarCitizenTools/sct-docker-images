@@ -9,7 +9,7 @@ RUN set -eux; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
- 	nginx-module-brotli \
+ 	libnginx-mod-brotli \
         netcat-traditional \
 	; \
 	rm -rf /var/lib/apt/lists/*
