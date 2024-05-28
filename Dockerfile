@@ -9,37 +9,11 @@ RUN set -eux; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
+        libnginx-mod-http-brotli-filter \
+        libnginx-mod-http-brotli-static \
         netcat-traditional \
 	; \
 	rm -rf /var/lib/apt/lists/*
-
-# Compile ngx_brotli
-# Set working directory inside the container
-WORKDIR /usr/src
-
-# Install dependencies required for building ngx_brotli
-RUN apt-get update && \
-    apt-get install -y git build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev cmake
-
-# Clone the ngx_brotli module from the official GitHub repository
-RUN git clone --recurse-submodules https://github.com/google/ngx_brotli.git
-
-# Build the Brotli dependencies
-RUN cd ngx_brotli/deps/brotli && \
-    mkdir out && cd out && \
-    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF .. && \
-    cmake --build . --config Release --target install
-
-# Configure NGINX with ngx_brotli module
-RUN cd /usr/src/nginx-1.26.0 && \
-    ./configure --add-module=/usr/src/ngx_brotli && \
-    make && make install
-
-# Clean up unnecessary files and packages to reduce image size
-RUN apt-get remove --purge -y git build-essential libpcre3-dev zlib1g-dev libssl-dev cmake && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /usr/src/ngx_brotli
 
 # MediaWiki setup
 RUN set -eux; \
