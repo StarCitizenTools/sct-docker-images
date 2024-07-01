@@ -795,15 +795,15 @@ $wgNamespaceProtection[NS_ORG] = array( 'org-edit' );
 
 # Namespace alias
 $wgNamespaceAliases['SCW'] = NS_PROJECT;
-# Legacy support
-$wgNamespaceAliases['Star_Citizen'] = NS_PROJECT;
 $wgNamespaceAliases['SC'] = NS_PROJECT;
 $wgNamespaceAliases['ST'] = NS_PROJECT_TALK;
 $wgNamespaceAliases['H'] = NS_HELP;
 $wgNamespaceAliases['T'] = NS_TEMPLATE;
-$wgNamespaceAliases['CAT'] = NS_CATEGORY;
+$wgNamespaceAliases['C'] = NS_CATEGORY;
 $wgNamespaceAliases['CL'] = NS_COMMLINK;
 $wgNamespaceAliases['U'] = NS_UPDATE;
+# Legacy support
+$wgNamespaceAliases['Star_Citizen'] = NS_PROJECT;
 
 $wgVisualEditorAvailableNamespaces = array(
   NS_MAIN     	=> true,
