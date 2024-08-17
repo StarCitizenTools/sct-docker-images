@@ -1,4 +1,4 @@
-FROM nginx:1.27.0
+FROM nginx:1.27.1
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION 1.39
