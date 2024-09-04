@@ -150,8 +150,10 @@ $wgCacheDirectory = "$IP/cache";
 
 ## Shared memory settings
 $wgMainCacheType = 'redis';
+$wgParserCacheType = CACHE_DB;
 $wgSessionCacheType = 'redis';
 $wgMemCachedServers = array();
+$wgMainStash = 'redis';
 
 # Extend parser cache to 3 days
 $wgParserCacheExpireTime = 259200;
