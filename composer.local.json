@@ -50,6 +50,7 @@
                 "mediawiki/semantic-drilldown": "1.39.0",
                 "starcitizenwiki/apiunto": "dev-develop",
                 "mediawiki/pageviewinfo": "1.39.0",
+                "mediawiki/floatingui": "1.39.0",
                 "octfx/webp": "dev-develop",
                 "starcitizenwiki/picture-html-support": "dev-master"
         },
@@ -662,6 +663,23 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-PageViewInfo.git",
                                         "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/floatingui",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-FloatingUI/archive/main.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-FloatingUI.git",
+                                        "reference": "main"
                                 }
                         }
                 }

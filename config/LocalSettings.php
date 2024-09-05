@@ -265,6 +265,7 @@ wfLoadExtension( 'DynamicPageList3' );
 wfLoadExtension( 'Echo' );
 wfLoadExtension( 'Elastica' );
 wfLoadExtension( 'EmbedVideo' );
+wfLoadExtension( 'FloatingUI' );
 wfLoadExtension( 'Gadgets' );
 #wfLoadExtension( 'Graph' ); -- Disabled due to security issue
 wfLoadExtension( 'InputBox' );
