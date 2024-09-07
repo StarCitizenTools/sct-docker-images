@@ -399,6 +399,8 @@ $wgMultiPurgeStaticPurges = [
 $wgMultiPurgeRunInQueue = true;
 
 # PageImages
+$wgPageImagesAPIDefaultLicense = "any";
+$wgPageImagesLeadSectionOnly = false;
 $wgPageImagesNamespaces = array( 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG' );
 $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/sitelogo.svg";
 
