@@ -49,8 +49,8 @@
                 "starcitizenwiki/apiunto": "dev-develop",
                 "mediawiki/pageviewinfo": "1.39.0",
                 "mediawiki/floatingui": "1.39.0",
-                "octfx/webp": "dev-develop#3ffc34cb75e1b21059e2827e9fceb7ed10e34b14",
-                "starcitizenwiki/picture-html-support": "dev-master#8e130fe541461c42162a92ab4c88be1bbbfad40a"
+                "octfx/webp": "dev-develop",
+                "starcitizenwiki/picture-html-support": "dev-master"
         },
         "extra": {
                 "merge-plugin": {
