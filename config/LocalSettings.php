@@ -272,7 +272,6 @@ wfLoadExtension( 'InputBox' );
 wfLoadExtension( 'Interwiki' );
 wfLoadExtension( 'JsonConfig' );
 wfLoadExtension( 'Linter' );
-wfLoadExtension( 'Loops' );
 wfLoadExtension( 'MediaSearch' );
 wfLoadExtension( 'MultimediaViewer' );
 wfLoadExtension( 'MultiPurge' );
@@ -309,7 +308,6 @@ wfLoadExtension( 'Thanks' );
 wfLoadExtension( 'TwoColConflict' );
 wfLoadExtension( 'UniversalLanguageSelector' );
 wfLoadExtension( 'UploadWizard' );
-wfLoadExtension( 'Variables' );
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'WebP' );
 wfLoadExtension( 'WebAuthn' );
@@ -681,9 +679,6 @@ $wgUploadWizardConfig = array(
     )
   )
 );
-
-# Variables
-$egVariablesDisabledFunctions = [ 'var_final' ];
 
 # Visual Editor
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
