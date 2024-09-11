@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION 1.39
