@@ -18,6 +18,7 @@
                 "mediawiki/graph": "1.39.0",
                 "mediawiki/json-config": "1.39.0",
                 "mediawiki/linter": "1.39.0",
+                "mediawiki/loops": "1.39.0",
                 "mediawiki/mediasearch": "1.39.0",
                 "octfx/multipurge": "dev-master",
                 "mediawiki/nativesvghandler": "1.39.0",
@@ -35,6 +36,7 @@
                 "mediawiki/twocolconflict": "1.39.0",
                 "mediawiki/upload-wizard": "1.39.0",
                 "mediawiki/universal-language-selector": "2023.12",
+                "mediawiki/variables": "1.39.0",
                 "mediawiki/webauthn": "1.39.0",
                 "octfx/wiki-seo": "dev-REL1_39",
                 "starcitizenwiki/embedvideo": "dev-develop",
@@ -140,6 +142,23 @@
                 {
                         "type": "package",
                         "package": {
+                                "name": "mediawiki/loops",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Loops/archive/REL1_39.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Loops.git",
+                                        "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
                                 "name": "mediawiki/revisionslider",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
@@ -185,6 +204,23 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-RSS.git",
                                         "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/variables",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Variables/archive/REL1_39.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Variables.git",
+                                        "reference": "master"
                                 }
                         }
                 },
