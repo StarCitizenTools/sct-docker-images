@@ -1004,54 +1004,53 @@ $wgHooks['SkinAddFooterLinks'][] = function ( $sk, $key, &$footerlinks ) {
 	$rel = 'nofollow noreferrer noopener';
 
 	if ( $key === 'places' ) {
-		$footerlinks['cookiestatement'] = Html::rawElement(
+		$footerlinks['cookiestatement'] = Html::element(
 			'a',
-			[
-				'href'=> Title::newFromText(
-					$sk-msg( 'cookiestatementpage' )->inContentLanguage()->text()
-				)->getFullURL()
+			[ 
+				'href' => $sk->msg( 'cookiestatementpage' )->escaped(),
+				'title' => $sk->msg( 'cookiestatementpage' )->text()
 			],
-			$sk->msg( 'cookiestatement' )->escaped()
+			$sk->msg( 'cookiestatement' )->text()
 		);
-		#$footerlinks['analytics'] = Html::rawElement(
+		#$footerlinks['analytics'] = Html::element(
 		#	'a',
 		#	[
 		#		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
 		#		'rel' => $rel
 		#	],
-		#	$sk->msg( 'footer-analytics' )->escaped()
+		#	$sk->msg( 'footer-analytics' )->text()
 		#);
-		$footerlinks['statuspage'] = Html::rawElement(
+		$footerlinks['statuspage'] = Html::element(
 			'a',
 			[
 				'href' => 'https://status.starcitizen.tools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-statuspage' )->escaped()
+			$sk->msg( 'footer-statuspage' )->text()
 		);
-		$footerlinks['github'] = Html::rawElement(
+		$footerlinks['github'] = Html::element(
 			'a',
 			[
 				'href' => 'https://github.com/StarCitizenTools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-github' )->escaped()
+			$sk->msg( 'footer-github' )->text()
 		);
-		$footerlinks['patreon'] = Html::rawElement(
+		$footerlinks['patreon'] = Html::element(
 			'a',
 			[
 				'href' => 'https://www.patreon.com/starcitizentools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-patreon' )->escaped()
+			$sk->msg( 'footer-patreon' )->text()
 		);
-		$footerlinks['kofi'] = Html::rawElement(
+		$footerlinks['kofi'] = Html::element(
 			'a',
 			[
 				'href' => 'https://ko-fi.com/starcitizentools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-kofi' )->escaped()
+			$sk->msg( 'footer-kofi' )->text()
 		);
 	}
 };
