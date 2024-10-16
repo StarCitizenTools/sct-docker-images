@@ -59,7 +59,6 @@ $wgResourceLoaderUseObjectCacheForDeps = true;
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 $wgScriptPath = "";
 $wgScriptExtension = "$wgScriptPath/index.php";
-$wgRedirectScript   = "$wgScriptPath/redirect.php";
 $wgArticlePath = "/$1";
 	
 # Sitemap
@@ -1005,53 +1004,54 @@ $wgHooks['SkinAddFooterLinks'][] = function ( $sk, $key, &$footerlinks ) {
 	$rel = 'nofollow noreferrer noopener';
 
 	if ( $key === 'places' ) {
-		$footerlinks['cookiestatement'] = Html::element(
+		$footerlinks['cookiestatement'] = Html::rawElement(
 			'a',
-			[ 
-				'href' => $sk->msg( 'cookiestatementpage' )->escaped(),
-				'title' => $sk->msg( 'cookiestatementpage' )->text()
+			[
+				'href'=> Title::newFromText(
+					$sk-msg( 'cookiestatementpage' )->inContentLanguage()->text()
+				)->getFullURL()
 			],
-			$sk->msg( 'cookiestatement' )->text()
+			$sk->msg( 'cookiestatement' )->escaped()
 		);
-		#$footerlinks['analytics'] = Html::element(
+		#$footerlinks['analytics'] = Html::rawElement(
 		#	'a',
 		#	[
 		#		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
 		#		'rel' => $rel
 		#	],
-		#	$sk->msg( 'footer-analytics' )->text()
+		#	$sk->msg( 'footer-analytics' )->escaped()
 		#);
-		$footerlinks['statuspage'] = Html::element(
+		$footerlinks['statuspage'] = Html::rawElement(
 			'a',
 			[
 				'href' => 'https://status.starcitizen.tools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-statuspage' )->text()
+			$sk->msg( 'footer-statuspage' )->escaped()
 		);
-		$footerlinks['github'] = Html::element(
+		$footerlinks['github'] = Html::rawElement(
 			'a',
 			[
 				'href' => 'https://github.com/StarCitizenTools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-github' )->text()
+			$sk->msg( 'footer-github' )->escaped()
 		);
-		$footerlinks['patreon'] = Html::element(
+		$footerlinks['patreon'] = Html::rawElement(
 			'a',
 			[
 				'href' => 'https://www.patreon.com/starcitizentools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-patreon' )->text()
+			$sk->msg( 'footer-patreon' )->escaped()
 		);
-		$footerlinks['kofi'] = Html::element(
+		$footerlinks['kofi'] = Html::rawElement(
 			'a',
 			[
 				'href' => 'https://ko-fi.com/starcitizentools',
 				'rel' => $rel
 			],
-			$sk->msg( 'footer-kofi' )->text()
+			$sk->msg( 'footer-kofi' )->escaped()
 		);
 	}
 };
