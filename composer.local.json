@@ -38,7 +38,7 @@
                 "mediawiki/universal-language-selector": "2023.12",
                 "mediawiki/variables": "1.39.0",
                 "mediawiki/webauthn": "1.39.0",
-                "octfx/wiki-seo": "dev-REL1_39",
+                "octfx/wiki-seo": "dev-master",
                 "starcitizenwiki/embedvideo": "dev-develop",
                 "universal-omega/dynamic-page-list3": "dev-master",
                 "edwardspec/mediawiki-aws-s3": "v0.13.0",
