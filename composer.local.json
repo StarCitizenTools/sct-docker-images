@@ -42,7 +42,7 @@
                 "starcitizenwiki/embedvideo": "dev-develop",
                 "universal-omega/dynamic-page-list3": "dev-master",
                 "edwardspec/mediawiki-aws-s3": "v0.13.0",
-                "mediawiki/swiftmailer": "1.39.0",
+                "mediawiki/symfonymailer": "1.39.0",
                 "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "~3.0",
                 "mediawiki/semantic-result-formats": "dev-master",
@@ -64,7 +64,7 @@
                                 "extensions/OATHAuth/composer.json",
                                 "extensions/TemplateStyles/composer.json",
                                 "extensions/AWS/composer.json",
-                                "extensions/Swiftmailer/composer.json",
+                                "extensions/SymfonyMailer/composer.json",
                                 "extensions/Apiunto/composer.json",
                                 "extensions/PageViewInfo/composer.json"
                         ]
@@ -635,17 +635,17 @@
                 {
                         "type": "package",
                         "package": {
-                                "name": "mediawiki/swiftmailer",
+                                "name": "mediawiki/symfonymailer",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-SwiftMailer/archive/REL1_39.zip",
+                                        "url": "https://github.com/StarCitizenWiki/mediawiki-extensions-SymfonyMailer/archive/master.zip",
                                         "type": "zip"
                                 },
                                 "source": {
                                         "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-SwiftMailer.git",
-                                        "reference": "main"
+                                        "url": "https://github.com/StarCitizenWiki/mediawiki-extensions-SymfonyMailer.git",
+                                        "reference": "master"
                                 }
                         }
                 },
