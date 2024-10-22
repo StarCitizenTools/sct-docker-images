@@ -42,7 +42,7 @@
                 "starcitizenwiki/embedvideo": "dev-develop",
                 "universal-omega/dynamic-page-list3": "dev-master",
                 "edwardspec/mediawiki-aws-s3": "v0.13.0",
-                "mediawiki/symfonymailer": "1.39.0",
+                "mediawiki/symfony-mailer": "1.39.0",
                 "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "~3.0",
                 "mediawiki/semantic-result-formats": "dev-master",
@@ -635,7 +635,7 @@
                 {
                         "type": "package",
                         "package": {
-                                "name": "mediawiki/symfonymailer",
+                                "name": "mediawiki/symfony-mailer",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
