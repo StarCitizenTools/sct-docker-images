@@ -165,7 +165,6 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \
 	mv /var/www/mediawiki/skins/citizen /var/www/mediawiki/skins/Citizen; \
 	mv /var/www/mediawiki/extensions/Twocolconflict /var/www/mediawiki/extensions/TwoColConflict; \
-	mv /var/www/mediawiki/extensions/Symfonymailer /var/www/mediawiki/extensions/SymfonyMailer; \
 	mv /var/www/mediawiki/extensions/Pageviewinfo /var/www/mediawiki/extensions/PageViewInfo; \
 	mv /var/www/mediawiki/extensions/Floatingui /var/www/mediawiki/extensions/FloatingUI; \
 	\
