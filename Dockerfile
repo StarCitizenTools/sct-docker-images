@@ -165,13 +165,11 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \
 	mv /var/www/mediawiki/skins/citizen /var/www/mediawiki/skins/Citizen; \
 	mv /var/www/mediawiki/extensions/Twocolconflict /var/www/mediawiki/extensions/TwoColConflict; \
-	mv /var/www/mediawiki/extensions/Swiftmailer /var/www/mediawiki/extensions/SwiftMailer; \
+	mv /var/www/mediawiki/extensions/Symfonymailer /var/www/mediawiki/extensions/SymfonyMailer; \
 	mv /var/www/mediawiki/extensions/Pageviewinfo /var/www/mediawiki/extensions/PageViewInfo; \
 	mv /var/www/mediawiki/extensions/Floatingui /var/www/mediawiki/extensions/FloatingUI; \
 	\
 	cp /var/www/mediawiki/extensions/PictureHtmlSupport/includes/ThumbnailImage.php /var/www/mediawiki/includes/media/ThumbnailImage.php; \
 	chown -R www-data:www-data /var/www
-
-COPY ./config/swiftmailer-extension.json /var/www/mediawiki/extensions/SwiftMailer/extension.json
 
 CMD ["php-fpm"]
