@@ -297,7 +297,7 @@ wfLoadExtension( 'SemanticResultFormats' );
 wfLoadExtension( 'SemanticScribunto' );
 wfLoadExtension( 'Scribunto' );
 wfLoadExtension( 'ShortDescription' );
-wfLoadExtension( 'SymfonyMailer' );
+#wfLoadExtension( 'SymfonyMailer' );
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'TabberNeue' );
 wfLoadExtension( 'TemplateData' );
