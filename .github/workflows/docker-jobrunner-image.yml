@@ -20,4 +20,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: starcitizentools/mediawiki:jobrunner-latest,starcitizentools/mediawiki:jobrunner-v2.0.0
+          tags: starcitizentools/mediawiki:jobrunner-latest,starcitizentools/mediawiki:jobrunner-v3.0.0
