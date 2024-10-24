@@ -44,7 +44,7 @@
                 "edwardspec/mediawiki-aws-s3": "v0.13.0",
                 "mediawiki/symfony-mailer": "1.39.0",
                 "mediawiki/semantic-media-wiki": "dev-master",
-                "mediawiki/semantic-extra-special-properties": "~3.0",
+                "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "~2.2",
                 "mediawiki/semantic-drilldown": "1.39.0",
