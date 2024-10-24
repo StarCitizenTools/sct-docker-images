@@ -40,6 +40,18 @@ $wgUpgradeKey = "{$_ENV['MEDIAWIKI_UPGRADEKEY']}";
 
 $wgMiserMode = true;
 
+# Disable all the query pages that take more than about 15 minutes to update
+# We will run these pages separately with a lower interval
+# @see https://github.com/StarCitizenTools/sct-k8-config/blob/smw/mediawiki/mw-cronjob.yaml
+$wgDisableQueryPageUpdate = [
+    'Ancientpages' => 'half-monthly',
+		'Deadendpages' => 'half-monthly',
+		'Fewestrevisions' => 'half-monthly',
+		'Mostlinked' => 'half-monthly',
+		'Mostrevisions' => 'half-monthly',
+		'Wantedpages' => 'half-monthly'
+];
+
 # Database settings
 $wgDBtype = "mysql";
 $wgDBserver = "mariadb-service.default.svc.cluster.local";
