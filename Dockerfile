@@ -1,4 +1,4 @@
-FROM starcitizentools/mediawiki:smw-24.06.01.316
+FROM starcitizentools/mediawiki:smw-latest
 
 USER root
 
