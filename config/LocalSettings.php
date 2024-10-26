@@ -309,7 +309,6 @@ wfLoadExtension( 'SemanticResultFormats' );
 wfLoadExtension( 'SemanticScribunto' );
 wfLoadExtension( 'Scribunto' );
 wfLoadExtension( 'ShortDescription' );
-#wfLoadExtension( 'SymfonyMailer' );
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'TabberNeue' );
 wfLoadExtension( 'TemplateData' );
@@ -506,9 +505,6 @@ $sespgLinksToEnabledNamespaces = [
 $wgScribuntoDefaultEngine = 'luasandbox';
 $wgScribuntoEngineConf['luasandbox']['memoryLimit'] = 50 * 1024 * 1024; # 50 MB
 $wgScribuntoEngineConf['luasandbox']['cpuLimit'] = 10; # Seconds
-
-# SymfonyMailer
-$wgSMTPAuthenticationMethod = 'tls';
 
 # SyntaxHighlight
 $wgPygmentizePath = '/usr/local/bin/pygmentize';
