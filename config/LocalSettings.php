@@ -74,7 +74,7 @@ $wgScriptExtension = "$wgScriptPath/index.php";
 $wgArticlePath = "/$1";
 	
 # Sitemap
-$wgSitemapNamespaces = array(0, 6, 12, 14, 3000, 3006, 3008, 3016);
+$wgSitemapNamespaces = [ 0, 6, 12, 14, 3000, 3006, 3008, 3016 ];
 
 ## Content Security Policy
 ## Flickr API is required for UploadWizard
@@ -102,7 +102,7 @@ $wgCookieSameSite = 'Strict';
 $wgCookieSecure = true;
 
 ## Referrer policy
-$wgReferrerPolicy = array('strict-origin-when-cross-origin', 'strict-origin');
+$wgReferrerPolicy = [ 'strict-origin-when-cross-origin', 'strict-origin' ];
 
 ## Output a canonical meta tag on every page
 $wgEnableCanonicalServerLink = true;
@@ -163,7 +163,7 @@ $wgCacheDirectory = "$IP/cache";
 $wgMainCacheType = 'redis';
 $wgParserCacheType = CACHE_DB;
 $wgSessionCacheType = 'redis';
-$wgMemCachedServers = array();
+$wgMemCachedServers = [];
 $wgMainStash = 'redis';
 
 # Extend parser cache to 3 days
@@ -418,7 +418,8 @@ $wgMultiPurgeRunInQueue = true;
 # PageImages
 $wgPageImagesAPIDefaultLicense = "any";
 $wgPageImagesLeadSectionOnly = false;
-$wgPageImagesNamespaces = array( 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG' );
+# FIXME: Sync this to content namespace
+$wgPageImagesNamespaces = [ 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG' ];
 $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/sitelogo.svg";
 
 # Parsoid
@@ -555,12 +556,12 @@ $wgULSIMEEnabled = false;
 # UploadWizard
 $wgApiFrameOptions = 'SAMEORIGIN';
 $wgAllowCopyUploads = true;
-$wgCopyUploadsDomains = array( '*.flickr.com', '*.staticflickr.com' );
+$wgCopyUploadsDomains = [ '*.flickr.com', '*.staticflickr.com' ];
 $wgUploadNavigationUrl = '/Special:UploadWizard';
-$wgUploadWizardConfig = array(
-  'flickrApiKey' => "{$_ENV['FLICKR_APIKEY']}",
-  );
-$wgUploadWizardConfig = array(
+$wgUploadWizardConfig = [
+  'flickrApiKey' => "{$_ENV['FLICKR_APIKEY']}"
+];
+$wgUploadWizardConfig = [
   'debug' => false,
   'altUploadForm' => 'Special:Upload',
   'fallbackToAltUploadForm' => false,
@@ -568,62 +569,62 @@ $wgUploadWizardConfig = array(
   'enableFormData' => true,
   'enableMultipleFiles' => true,
   'enableMultiFileSelect' => false,
-  'tutorial' => array(
+  'tutorial' => [
     'skip' => true
-  ),
+  ],
   'maxUploads' => 15,
   'fileExtensions' => $wgFileExtensions,
   'flickrApiUrl' => 'https://api.flickr.com/services/rest/?',
-  'licenses' => array(
+  'licenses' => [
     # Cloud Imperium license
-    'rsilicense' => array(
+    'rsilicense' => [
       # HACK: Add custom license message
       # Edit MediaWiki:mwe-upwiz-license-pd-usgov to the text you wanted
       'msg' => 'mwe-upwiz-license-pd-usgov',
       #'msg' => 'mwe-upwiz-license-rsi',
-      'templates' => array('RSIlicense')
-    ),
+      'templates' => [ 'RSIlicense' ]
+    ],
     # CC-BY-NC-SA-2.0 required by Flickr
     # Note that this need to be added to mw.FlickrChecker.js every time it is updated
-    'cc-by-nc-sa-2.0' => array(
+    'cc-by-nc-sa-2.0' => [
       'msg' => 'mwe-upwiz-license-cc-by-nc-sa-2.0',
-      'templates' => array('cc-by-nc-sa-2.0'),
-      #'icons' => array('cc-by','cc-nc','cc-sa'), NC icon is missing
+      'templates' => [ 'cc-by-nc-sa-2.0' ],
+      #'icons' => ['cc-by','cc-nc','cc-sa'], NC icon is missing
       'url' => '//creativecommons.org/licenses/by-nc-sa/2.0/',
       'languageCodePrefix' => 'deed.'
-    ),
+    ],
     # CC-BY-NC-2.0 required by Flickr
     # Note that this need to be added to mw.FlickrChecker.js every time it is updated
-    'cc-by-nc-2.0' => array(
+    'cc-by-nc-2.0' => [
       'msg' => 'mwe-upwiz-license-cc-by-nc-2.0',
-      'templates' => array('cc-by-nc-2.0'),
-      #'icons' => array('cc-by','cc-nc'), NC icon is missing
+      'templates' => [ 'cc-by-nc-2.0' ],
+      #'icons' => [ 'cc-by','cc-nc' ], NC icon is missing
       'url' => '//creativecommons.org/licenses/by-nc/2.0/',
       'languageCodePrefix' => 'deed.'
-    ),
-  ),
+    ],
+  ],
   # License selection page
-  'licensing' => array(
-    'thirdParty' => array(
+  'licensing' => [
+    'thirdParty' => [
       'type' => 'or',
       'defaults' => 'rsilicense',
-      'licenseGroups' => array(
-        array(
-	  # Cloud Imperium license
-	  # HACK: Add custom license header
+      'licenseGroups' => [
+        [
+	        # Cloud Imperium license
+	        # HACK: Add custom license header
           # Edit MediaWiki:mwe-upwiz-license-usgov-head to the text you wanted
           # We have to use this because this message is loaded by UploadWizard and we don't use it
-	  'head' => 'mwe-upwiz-license-usgov-head',
+	        'head' => 'mwe-upwiz-license-usgov-head',
           #'head' => 'mwe-upwiz-license-sc-head',
-          'licenses' => array(
+          'licenses' => [
             'rsilicense'
-          )
-        ),
-        array(
+          ]
+        ],
+        [
           # This should be a list of all CC licenses we can reasonably expect to find around the web
           'head' => 'mwe-upwiz-license-cc-head',
           'subhead' => 'mwe-upwiz-license-cc-subhead',
-          'licenses' => array(
+          'licenses' => [
             'cc-by-sa-4.0',
             'cc-by-sa-3.0',
             'cc-by-sa-2.5',
@@ -631,32 +632,32 @@ $wgUploadWizardConfig = array(
             'cc-by-3.0',
             'cc-by-2.5',
             'cc-zero'
-          )
-        ),
-        array(
+          ]
+        ],
+        [
           # Flickr still uses CC 2.0
           'head' => 'mwe-upwiz-license-flickr-head',
           'subhead'=> 'mwe-upwiz-license-flickr-subhead',
-          'licenses'=> array(
+          'licenses'=> [
             'cc-by-nc-sa-2.0',
             'cc-by-nc-2.0',
             'cc-by-sa-2.0',
             'cc-by-2.0'
-          )
-        ),
-        array(
+          ]
+        ],
+        [
           'head' => 'mwe-upwiz-license-custom-head',
           'special' => 'custom',
-          'licenses' => array( 'custom' ),
-        ),
-        array(
+          'licenses' => [ 'custom' ],
+        ],
+        [
           'head' => 'mwe-upwiz-license-none-head',
-          'licenses' => array( 'none' )
-        ),
-      )
-    )
-  )
-);
+          'licenses' => [ 'none' ]
+        ],
+      ]
+    ]
+  ]
+];
 
 # Visual Editor
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
@@ -706,14 +707,14 @@ $wgCitizenThemeDefault = 'dark';
 
 # Job Queue
 /** @see RedisBagOStuff for a full explanation of these options. **/
-$wgObjectCaches['redis'] = array(
-    'class'                => 'RedisBagOStuff',
-    'servers'              => array( 'redis-service.default.svc.cluster.local' ),
-    // 'connectTimeout'    => 1,
-    // 'persistent'        => false,
-    // 'password'          => 'secret',
-    // 'automaticFailOver' => true,
-);
+$wgObjectCaches['redis'] = [
+  'class'                => 'RedisBagOStuff',
+  'servers'              => [ 'redis-service.default.svc.cluster.local' ],
+  // 'connectTimeout'    => 1,
+  // 'persistent'        => false,
+  // 'password'          => 'secret',
+  // 'automaticFailOver' => true,
+];
 $wgJobTypeConf['default'] = [
 	'class' => 'JobQueueRedis',
 	'order' => 'fifo',
@@ -764,12 +765,12 @@ $wgExtraNamespaces[NS_UPDATE] = "Update";
 $wgExtraNamespaces[NS_UPDATE_TALK] = "Update_talk";
 $wgNamespacesWithSubpages[NS_UPDATE] = true;
 
-$wgNamespaceProtection[NS_TEMPLATE] = array( 'template-edit' );
-$wgNamespaceProtection[NS_COMMLINK] = array( 'commlink-edit' );
-$wgNamespaceProtection[NS_PROJMGMT] = array( 'projmgmt-edit' );
-$wgNamespaceProtection[NS_ISSUE] = array( 'issue-edit' );
-$wgNamespaceProtection[NS_GUIDE] = array( 'guide-edit' );
-$wgNamespaceProtection[NS_ORG] = array( 'org-edit' );
+$wgNamespaceProtection[NS_TEMPLATE] = [ 'template-edit' ];
+$wgNamespaceProtection[NS_COMMLINK] = [ 'commlink-edit' ];
+$wgNamespaceProtection[NS_PROJMGMT] = [ 'projmgmt-edit' ];
+$wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
+$wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
+$wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
 
 # Namespace alias
 # Use capital case to avoid conflicts with interwiki links
@@ -790,7 +791,7 @@ $wgNamespaceAliases = [
   'U' => NS_UPDATE
 ];
 
-$wgVisualEditorAvailableNamespaces = array(
+$wgVisualEditorAvailableNamespaces = [
   NS_MAIN     	=> true,
   NS_USER     	=> true,
   NS_HELP     	=> true,
@@ -801,22 +802,24 @@ $wgVisualEditorAvailableNamespaces = array(
   NS_GUIDE    	=> true,
   NS_ORG      	=> true,
   NS_UPDATE     => true
-);
+];
 
 $wgContentNamespaces = [ NS_MAIN, NS_GUIDE, NS_COMMLINK, NS_UPDATE ];
 
 #=============================================== Permissions ===============================================
-$wgAutopromote = array(
-  "autoconfirmed" => array( "&",
-    array( APCOND_EDITCOUNT, &$wgAutoConfirmCount ),
-    array( APCOND_AGE, &$wgAutoConfirmAge ),
+$wgAutopromote = [
+  "autoconfirmed" => [
+    "&",
+    [ APCOND_EDITCOUNT, &$wgAutoConfirmCount ],
+    [ APCOND_AGE, &$wgAutoConfirmAge ],
     APCOND_EMAILCONFIRMED,
-  ),
-  "Trusted" => array( "&",
-    array( APCOND_EDITCOUNT, 300),
-    array( APCOND_INGROUPS, "Verified"),
-  ),
-);
+  ],
+  "Trusted" => [
+    "&",
+    [ APCOND_EDITCOUNT, 300 ],
+    [ APCOND_INGROUPS, "Verified" ],
+  ]
+];
 
 #all
 $wgGroupPermissions['*']['createaccount'] = true;
@@ -875,7 +878,7 @@ $wgGroupPermissions['Trusted']['template-edit'] = true;
 
 #editor
 $wgGroupPermissions['Editor'] = $wgGroupPermissions['Trusted'];
-$wgAddGroups['Editor'] = array( 'Verified', 'Translator', 'ORG-Editor' );
+$wgAddGroups['Editor'] = [ 'Verified', 'Translator', 'ORG-Editor' ];
 $wgGroupPermissions['Editor']['rollback'] = true;
 $wgGroupPermissions['Editor']['protect'] = true;
 $wgGroupPermissions['Editor']['editprotected'] = true;
