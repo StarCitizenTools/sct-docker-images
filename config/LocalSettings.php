@@ -372,6 +372,10 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
 # Code Editor
 $wgDefaultUserOptions['usebetatoolbar'] = 1; // user option provided by WikiEditor extension
 
+# Code Mirror
+# Enable syntax highlight in editor by default
+$wgDefaultUserOptions['usecodemirror'] = 1;
+
 # CookieWarning
 $wgCookieWarningEnabled = true;
 
