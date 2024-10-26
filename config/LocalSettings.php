@@ -768,16 +768,23 @@ $wgNamespaceProtection[NS_GUIDE] = array( 'guide-edit' );
 $wgNamespaceProtection[NS_ORG] = array( 'org-edit' );
 
 # Namespace alias
-$wgNamespaceAliases['SCW'] = NS_PROJECT;
-$wgNamespaceAliases['SC'] = NS_PROJECT;
-$wgNamespaceAliases['ST'] = NS_PROJECT_TALK;
-$wgNamespaceAliases['H'] = NS_HELP;
-$wgNamespaceAliases['T'] = NS_TEMPLATE;
-$wgNamespaceAliases['C'] = NS_CATEGORY;
-$wgNamespaceAliases['CL'] = NS_COMMLINK;
-$wgNamespaceAliases['U'] = NS_UPDATE;
-# Legacy support
-$wgNamespaceAliases['Star_Citizen'] = NS_PROJECT;
+# Use capital case to avoid conflicts with interwiki links
+$wgNamespaceAliases = [
+  'C' => NS_CATEGORY,
+  'CL' => NS_COMMLINK,
+  'F' => NS_FILE,
+  'H' => NS_HELP,
+  'LUA' => NS_MODULE,
+  'SCW' => NS_PROJECT,
+  'SC' => NS_PROJECT,
+  # Legacy support
+  # We used to use Star Citizen as the project namespace name
+  # TODO: Replace all instance of old namespace name on wiki then remove this
+  'Star_Citizen' => NS_PROJECT,
+  'ST' => NS_PROJECT_TALK,
+  'T' => NS_TEMPLATE,
+  'U' => NS_UPDATE
+];
 
 $wgVisualEditorAvailableNamespaces = array(
   NS_MAIN     	=> true,
