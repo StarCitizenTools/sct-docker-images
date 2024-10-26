@@ -253,78 +253,81 @@ $wgNativeImageLazyLoading = true;
 $wgFixDoubleRedirects = true;
 
 #=============================================== Extension Load ===============================================
-wfLoadExtension( 'AdvancedSearch' );
-wfLoadExtension( 'Apiunto' );
-wfLoadExtension( 'AWS' );
-wfLoadExtension( 'Babel' );
-wfLoadExtension( 'CategoryTree' );
-wfLoadExtension( 'CheckUser' );
-wfLoadExtension( 'CirrusSearch' );
-wfLoadExtension( 'Cite' );
-wfLoadExtension( 'CiteThisPage' );
-wfLoadExtension( 'Cldr' );
-wfLoadExtension( 'CodeEditor' );
-wfLoadExtension( 'CodeMirror' );
-wfLoadExtension( 'CommonsMetadata' );
-wfLoadExtensions([ 'ConfirmEdit', 'ConfirmEdit/QuestyCaptcha' ]);
-wfLoadExtension( 'CookieWarning' );
-wfLoadExtension( 'Disambiguator' );
-wfLoadExtension( 'Discord' );
-wfLoadExtension( 'DiscussionTools' );
-wfLoadExtension( 'DismissableSiteNotice' );
-wfLoadExtension( 'DynamicPageList3' );
-wfLoadExtension( 'Echo' );
-wfLoadExtension( 'Elastica' );
-wfLoadExtension( 'EmbedVideo' );
-wfLoadExtension( 'FloatingUI' );
-wfLoadExtension( 'Gadgets' );
-#wfLoadExtension( 'Graph' ); -- Disabled due to security issue
-wfLoadExtension( 'InputBox' );
-wfLoadExtension( 'Interwiki' );
-wfLoadExtension( 'JsonConfig' );
-wfLoadExtension( 'Linter' );
-wfLoadExtension( 'Loops' );
-wfLoadExtension( 'MediaSearch' );
-wfLoadExtension( 'MultimediaViewer' );
-wfLoadExtension( 'MultiPurge' );
-wfLoadExtension( 'NativeSvgHandler' );
-wfLoadExtension( 'Nuke' );
-wfLoadExtension( 'OATHAuth' );
-wfLoadExtension( 'PageImages' );
-#wfLoadExtension( 'PageViewInfo' ); -- Disabled with Extension:Plausible
-wfLoadExtension( 'ParserFunctions' );
-wfLoadExtension( 'PictureHtmlSupport' );
-#wfLoadExtension( 'Plausible' ); -- Disabled to allocate more resources to MW
-wfLoadExtension( 'Popups' );
-wfLoadExtension( 'RelatedArticles' );
-wfLoadExtension( 'Renameuser' );
-wfLoadExtension( 'ReplaceText' );
-wfLoadExtension( 'RevisionSlider' );
-wfLoadExtension( 'RSS' );
-wfLoadExtension( 'SandboxLink' );
-wfLoadExtension( 'SemanticDrilldown' );
-wfLoadExtension( 'SemanticExtraSpecialProperties' );
-wfLoadExtension( 'SemanticMediaWiki' );
-wfLoadExtension( 'SemanticResultFormats' );
-wfLoadExtension( 'SemanticScribunto' );
-wfLoadExtension( 'Scribunto' );
-wfLoadExtension( 'ShortDescription' );
-wfLoadExtension( 'SyntaxHighlight_GeSHi' );
-wfLoadExtension( 'TabberNeue' );
-wfLoadExtension( 'TemplateData' );
-wfLoadExtension( 'TemplateStyles' );
-wfLoadExtension( 'TemplateStylesExtender' );
-wfLoadExtension( 'TextExtracts' );
-wfLoadExtension( 'Thanks' );
-wfLoadExtension( 'TwoColConflict' );
-wfLoadExtension( 'UniversalLanguageSelector' );
-wfLoadExtension( 'UploadWizard' );
-wfLoadExtension( 'Variables' );
-wfLoadExtension( 'VisualEditor' );
-wfLoadExtension( 'WebP' );
-wfLoadExtension( 'WebAuthn' );
-wfLoadExtension( 'WikiEditor' );
-wfLoadExtension( 'WikiSEO' );
+wfLoadExtensions( [
+  'AdvancedSearch',
+  'Apiunto',
+  'AWS',
+  'Babel',
+  'CategoryTree',
+  'CheckUser',
+  'CirrusSearch',
+  'Cite',
+  'CiteThisPage',
+  'Cldr',
+  'CodeEditor',
+  'CodeMirror',
+  'CommonsMetadata',
+  'ConfirmEdit',
+  'ConfirmEdit/QuestyCaptcha',
+  'CookieWarning',
+  'Disambiguator',
+  'Discord',
+  'DiscussionTools',
+  'DismissableSiteNotice',
+  'DynamicPageList3',
+  'Echo',
+  'Elastica',
+  'EmbedVideo',
+  'FloatingUI',
+  'Gadgets',
+  #'Graph', -- Disabled due to security issue
+  'InputBox',
+  'Interwiki',
+  'JsonConfig',
+  'Linter',
+  'Loops',
+  'MediaSearch',
+  'MultimediaViewer',
+  'MultiPurge',
+  'NativeSvgHandler',
+  'Nuke',
+  'OATHAuth',
+  'PageImages',
+  #'PageViewInfo', -- Disabled with Extension:Plausible
+  'ParserFunctions',
+  'PictureHtmlSupport',
+  #'Plausible', -- Disabled to allocate more resources to MW
+  'Popups',
+  'RelatedArticles',
+  'Renameuser',
+  'ReplaceText',
+  'RevisionSlider',
+  'RSS',
+  'SandboxLink',
+  'SemanticDrilldown',
+  'SemanticExtraSpecialProperties',
+  'SemanticMediaWiki',
+  'SemanticResultFormats',
+  'SemanticScribunto',
+  'Scribunto',
+  'ShortDescription',
+  'SyntaxHighlight_GeSHi',
+  'TabberNeue',
+  'TemplateData',
+  'TemplateStyles',
+  'TemplateStylesExtender',
+  'TextExtracts',
+  'Thanks',
+  'TwoColConflict',
+  'UniversalLanguageSelector',
+  'UploadWizard',
+  'Variables',
+  'VisualEditor',
+  'WebP',
+  'WebAuthn',
+  'WikiEditor',
+  'WikiSEO',
+] );
 
 enableSemantics( 'starcitizen.tools' );
 #=============================================== Extension Config ===============================================
