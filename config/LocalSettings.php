@@ -923,43 +923,21 @@ $wgFooterIcons = [
             "alt" => "Powered by MediaWiki",
             "height" => "42",
             "width" => "127",
-	],
-	"semanticmediawiki" => [
+	      ],
+	      "semanticmediawiki" => [
             'src' => "$wgResourceBasePath/resources/assets/badge-semanticmediawiki.svg",
             'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
             'alt' => 'Powered by Semantic MediaWiki',
             "height" => "42",
             "width" => "131",
-	]
+	      ]
     ],
-/*
-    "monitoredby" => [
-          "wikiapiary" => [
-              "src" => "$wgResourceBasePath/resources/assets/badge-wikiapiary.svg",
-              "url" => "https://wikiapiary.com/wiki/The_Star_Citizen_Wiki",
-              "alt" => "Monitored By Wikiapiary",
-              "height" => "54",
-              "width" => "95",
-          ]
-    ],
-*/
-/*
-  "gdprcompliance" => [
-        "gdpr" => [
-            "src" => "$wgResourceBasePath/resources/assets/badge-gdpr.svg",
-            "url" => "https://gdpr.eu",
-            "alt" => "GDPR compliant",
-	    "height" => "50",
-            "width" => "50",
-        ]
-    ],
-*/
     "copyright" => [
         "copyright" => [
         "src" => "$wgResourceBasePath/resources/assets/badge-ccbysa.svg",
         "url" => $wgRightsUrl,
         "alt" => $wgRightsText,
-	"height" => "50",
+	      "height" => "50",
         "width" => "110",
       ]
     ],
@@ -968,7 +946,7 @@ $wgFooterIcons = [
               "src" => "$wgResourceBasePath/resources/assets/badge-starcitizencommunity.svg",
               "url" => "https://robertsspaceindustries.com",
               "alt" => "Made by the community",
-	      "height" => "50",
+	            "height" => "50",
               "width" => "50",
           ]
     ],
@@ -977,7 +955,7 @@ $wgFooterIcons = [
             "src" => "$wgResourceBasePath/resources/assets/badge-starcitizentools.svg",
             "url" => "https://starcitizen.tools",
             "alt" => "Part of Star Citizen Tools",
-	    "height" => "50",
+	          "height" => "50",
             "width" => "50",
         ]
     ]
