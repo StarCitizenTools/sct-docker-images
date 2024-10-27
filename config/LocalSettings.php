@@ -772,6 +772,10 @@ $wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
 $wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
 $wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
 
+# Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
+define( 'NS_MODULE',      828 );
+define( 'NS_MODULE_TALK', 829 );
+
 # Namespace alias
 # Use capital case to avoid conflicts with interwiki links
 $wgNamespaceAliases = [
