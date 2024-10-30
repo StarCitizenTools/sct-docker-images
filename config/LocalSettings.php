@@ -211,20 +211,45 @@ $wgEnableUploads = true;
 
 # Thumbmail settings
 # MediaWiki thumbnailing is all over the place (T360589)
+# We will be using multiples of 80 for image sizes
 # Since thumbnailing is quite performance-heavy especially
 # when we use Extension:WebP, we need to defragment the image sizes
 
+# List of image widths on the wiki
+# - 120px - File history on file page (ImageHistoryList.php)
+# - 160px - Thumb size 0
+# - 320px - Thumb size 1 / Image size 0
+# - 480px - Responsive image
+# - 640px - Image size 1
+# - 1280px - Image size 2
+# - 1920px - Responsive image
+# - 2560px - Image size 3
+
+# Stream and serve thumbnails with thumb.php
+# Disabled due to Extension:WebP
+# $wgGenerateThumbnailOnParse = false;
+# $wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
+
 # Reduce the number of thumb sizes served
 $wgThumbLimits = [
-	120, // thumb size 0
-  // 150,
-  // 180,
-  // 200,
-	250, // thumb size 1
-	300 // thumb size 2
+	160, // thumb size 0,
+	240, // thumb size 1
+	320 // thumb size 2
 ];
+
 # Set to 300px thumb by default
 $wgDefaultUserOptions['thumbsize'] = 2;
+
+# Reduce the number of image sizes served in description page
+$wgImageLimits = [
+	[ 320, 240 ], // image size 0
+	[ 640, 480 ], // image size 1
+	[ 1280, 1024 ], // image size 2
+	[ 2560, 2048 ], // image size 3
+];
+
+# Set to 1280px image by default
+$wgDefaultUserOptions['imagesize'] = 2; // image size 2
 
 # Use intermediary thumbnails to speed up thumbnail rendering
 # This will result in several chained lossy transformations
@@ -232,27 +257,23 @@ $wgDefaultUserOptions['thumbsize'] = 2;
 $wgThumbnailBuckets = [ 1280 ];
 $wgThumbnailMinimumBucketDistance = 100;
 
-# Enable 404 handler
-# Disabled due to incompatibility with Extension:WebP
-#$wgGenerateThumbnailOnParse = false;
-#$wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
+# Gallery settings
+$wgGalleryOptions = [
+	'imagesPerRow' => 0,
+	'imageWidth' => 320, // Sync with default image size 0
+	'imageHeight' => 240, // Sync with default image size 0
+	'captionLength' => true,
+	'showBytes' => true,
+	'showDimensions' => true,
+	'mode' => 'packed-overlay'
+];
+
 #$wgUploadThumbnailRenderMethod = 'html';
 $wgUseImageMagick = true;
 $wgThumbnailEpoch = "20190815000000";
 $wgIgnoreImageErrors = true;
 
 $wgMaxImageArea = 6.4e7;
-
-# Gallery settings
-$wgGalleryOptions = [
-	'imagesPerRow' => 0,
-	'imageWidth' => 300, // Sync with default thumb size
-	'imageHeight' => 300, // Sync with default thumb size
-	'captionLength' => true,
-	'showBytes' => true,
-	'showDimensions' => true,
-	'mode' => 'packed-overlay'
-];
 
 ## If you want to use image uploads under safe mode,
 ## create the directories images/archive, images/thumb and
