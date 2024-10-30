@@ -680,10 +680,11 @@ $wgVisualEditorEnableDiffPage = true;
 $wgVisualEditorUseSingleEditTab = true;
 $wgVisualEditorEnableVisualSectionEditing = true;
 
-# WebP 
-$wgWebPAutoFilter = true;
-$wgWebPConvertInJobQueue = true;
-$wgWebPEnableConvertOnUpload = true;
+# WebP
+#$wgEnabledTransformers = [
+#  "MediaWiki\\Extension\\WebP\\Transformer\\WebPTransformer",
+#  "MediaWiki\\Extension\\WebP\\Transformer\\AvifTransformer",
+#];
 $wgWebPCompressionQuality = 95;
 
 # WikiEditor
