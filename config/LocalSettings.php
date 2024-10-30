@@ -244,9 +244,15 @@ $wgIgnoreImageErrors = true;
 $wgMaxImageArea = 6.4e7;
 
 # Gallery settings
-$wgGalleryOptions['mode'] = 'packed-overlay';
-$wgGalleryOptions['imageWidth'] = 300; // Sync with default thumb size
-$wgGalleryOptions['imageHeight'] = 300; // Sync with default thumb size
+$wgGalleryOptions = [
+	'imagesPerRow' => 0,
+	'imageWidth' => 300, // Sync with default thumb size
+	'imageHeight' => 300, // Sync with default thumb size
+	'captionLength' => true,
+	'showBytes' => true,
+	'showDimensions' => true,
+	'mode' => 'packed-overlay'
+];
 
 ## If you want to use image uploads under safe mode,
 ## create the directories images/archive, images/thumb and
