@@ -208,8 +208,35 @@ $wgCdnServersNoPurge = [
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
 $wgEnableUploads = true;
+
+# Thumbmail settings
+# MediaWiki thumbnailing is all over the place (T360589)
+# Since thumbnailing is quite performance-heavy especially
+# when we use Extension:WebP, we need to defragment the image sizes
+
+# Reduce the number of thumb sizes served
+$wgThumbLimits = [
+	120, // thumb size 0
+  // 150,
+  // 180,
+  // 200,
+	250, // thumb size 1
+	300 // thumb size 2
+];
+# Set to 300px thumb by default
+$wgDefaultUserOptions['thumbsize'] = 2;
+
+# Use intermediary thumbnails to speed up thumbnail rendering
+# This will result in several chained lossy transformations
+# but we need it because the wiki uses a lot of high quality images
+$wgThumbnailBuckets = [ 1280 ];
+$wgThumbnailMinimumBucketDistance = 100;
+
+# Enable 404 handler
+# Disabled due to incompatibility with Extension:WebP
 #$wgGenerateThumbnailOnParse = false;
 #$wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
+#$wgUploadThumbnailRenderMethod = 'html';
 $wgUseImageMagick = true;
 $wgThumbnailEpoch = "20190815000000";
 $wgIgnoreImageErrors = true;
@@ -217,9 +244,9 @@ $wgIgnoreImageErrors = true;
 $wgMaxImageArea = 6.4e7;
 
 # Gallery settings
-$wgGalleryOptions = [
-  'mode' => 'packed-overlay', // One of "traditional", "nolines", "packed", "packed-hover", "packed-overlay", "slideshow" (1.28+)
-];
+$wgGalleryOptions['mode'] = 'packed-overlay';
+$wgGalleryOptions['imageWidth'] = 300; // Sync with default thumb size
+$wgGalleryOptions['imageHeight'] = 300; // Sync with default thumb size
 
 ## If you want to use image uploads under safe mode,
 ## create the directories images/archive, images/thumb and
@@ -238,18 +265,18 @@ $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 # The following permissions were set based on your choice in the installer
 $wgAllowUserCss = true;
 
-#SVG Support
+# SVG Support
 $wgFileExtensions[] = 'svg';
 $wgAllowTitlesInSVG = true;
 $wgSVGConverter = 'ImageMagick';
 
-#Open external link in new tab/window
+# Open external link in new tab/window
 $wgExternalLinkTarget = '_blank';
 
-#Enable native lazyloading
+# Enable native lazyloading
 $wgNativeImageLazyLoading = true;
 
-#Fix double redirects after a page move
+# Fix double redirects after a page move
 $wgFixDoubleRedirects = true;
 
 #=============================================== Extension Load ===============================================
