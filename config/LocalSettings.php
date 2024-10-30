@@ -430,7 +430,7 @@ $wgMultiPurgeRunInQueue = true;
 $wgPageImagesAPIDefaultLicense = "any";
 $wgPageImagesLeadSectionOnly = false;
 # FIXME: Sync this to content namespace
-$wgPageImagesNamespaces = [ 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG' ];
+$wgPageImagesNamespaces = [ 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG', 'NS_ERROR' ];
 $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/sitelogo.svg";
 
 # Parsoid
@@ -783,6 +783,13 @@ $wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
 $wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
 $wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
 
+define("NS_ERROR", 30000);
+define("NS_ERROR_TALK", 30001);
+$wgExtraNamespaces[NS_ERROR] = "Error";
+$wgExtraNamespaces[NS_ERROR_TALK] = "Error";
+$wgNamespacesWithSubpages[NS_ERROR] = true;
+$wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
+
 # Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
 define( 'NS_MODULE',      828 );
 define( 'NS_MODULE_TALK', 829 );
@@ -792,6 +799,7 @@ define( 'NS_MODULE_TALK', 829 );
 $wgNamespaceAliases = [
   'C' => NS_CATEGORY,
   'CL' => NS_COMMLINK,
+  'E' => NS_ERROR,
   'F' => NS_FILE,
   'H' => NS_HELP,
   'LUA' => NS_MODULE,
@@ -810,8 +818,9 @@ $wgVisualEditorAvailableNamespaces = [
   NS_MAIN     	=> true,
   NS_USER     	=> true,
   NS_HELP     	=> true,
-  NS_PROJECT 	=> true,
+  NS_PROJECT 	  => true,
   NS_COMMLINK 	=> true,
+  NS_ERROR      => true,
   NS_PROJMGMT 	=> true,
   NS_ISSUE    	=> true,
   NS_GUIDE    	=> true,
@@ -819,7 +828,7 @@ $wgVisualEditorAvailableNamespaces = [
   NS_UPDATE     => true
 ];
 
-$wgContentNamespaces = [ NS_MAIN, NS_GUIDE, NS_COMMLINK, NS_UPDATE ];
+$wgContentNamespaces = [ NS_MAIN, NS_GUIDE, NS_COMMLINK, NS_UPDATE, NS_ERROR ];
 
 #=============================================== Permissions ===============================================
 $wgAutopromote = [
