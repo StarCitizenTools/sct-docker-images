@@ -281,6 +281,7 @@ wfLoadExtensions( [
   'FloatingUI',
   'Gadgets',
   #'Graph', -- Disabled due to security issue
+  'HTMLTags',
   'InputBox',
   'Interwiki',
   'JsonConfig',
@@ -402,6 +403,11 @@ $wgAllowHTMLEmail = true;
 # Disable the embed styles so that the EmbedVideo ResourceLoader modules
 # won't load on every single page
 $wgEmbedVideoUseEmbedStyleForLocalVideos = false;
+
+# HTMLTags
+# Allow <details> and <summary> elements for collapsible content
+$wgHTMLTagsAttributes['details'] = [ 'class', 'style', 'open' ];
+$wgHTMLTagsAttributes['summary'] = [ 'class', 'style' ];
 
 # LocalicationUpdate
 // $wgLocalisationUpdateDirectory = "$IP/cache";

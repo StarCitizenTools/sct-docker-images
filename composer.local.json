@@ -16,6 +16,7 @@
                 "mediawiki/echo": "1.39.0",
                 "mediawiki/elastica": "1.39.0",
                 "mediawiki/graph": "1.39.0",
+                "mediawiki/htmltags": "1.39.0",
                 "mediawiki/json-config": "1.39.0",
                 "mediawiki/linter": "1.39.0",
                 "mediawiki/loops": "1.39.0",
@@ -133,6 +134,23 @@
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-Graph.git",
+                                        "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/htmltags",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-HTMLTags/archive/REL1_39.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-HTMLTags.git",
                                         "reference": "REL1_39"
                                 }
                         }
