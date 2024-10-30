@@ -398,6 +398,11 @@ $wgDplSettings['allowUnlimitedResults'] = true;
 # Echo
 $wgAllowHTMLEmail = true;
 
+# EmbedVideo
+# Disable the embed styles so that the EmbedVideo ResourceLoader modules
+# won't load on every single page
+$wgEmbedVideoUseEmbedStyleForLocalVideos = false;
+
 # LocalicationUpdate
 // $wgLocalisationUpdateDirectory = "$IP/cache";
 
