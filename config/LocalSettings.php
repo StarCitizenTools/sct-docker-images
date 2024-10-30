@@ -306,6 +306,9 @@ $wgNativeImageLazyLoading = true;
 # Fix double redirects after a page move
 $wgFixDoubleRedirects = true;
 
+# Allow pages to override their title
+$wgRestrictDisplayTitle = false;
+
 #=============================================== Extension Load ===============================================
 wfLoadExtensions( [
   'AdvancedSearch',
