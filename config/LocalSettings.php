@@ -786,7 +786,7 @@ $wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
 define("NS_ERROR", 30000);
 define("NS_ERROR_TALK", 30001);
 $wgExtraNamespaces[NS_ERROR] = "Error";
-$wgExtraNamespaces[NS_ERROR_TALK] = "Error";
+$wgExtraNamespaces[NS_ERROR_TALK] = "Error_talk";
 $wgNamespacesWithSubpages[NS_ERROR] = true;
 $wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
 
