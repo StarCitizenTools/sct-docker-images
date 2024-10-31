@@ -226,7 +226,7 @@
                 {
                         "type": "package",
                         "package": {
-                                "name": "charize/details",
+                                "name": "chariz/details",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
