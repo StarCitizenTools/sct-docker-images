@@ -72,9 +72,6 @@ $wgResourceLoaderUseObjectCacheForDeps = true;
 $wgScriptPath = "";
 $wgScriptExtension = "$wgScriptPath/index.php";
 $wgArticlePath = "/$1";
-	
-# Sitemap
-$wgSitemapNamespaces = [ 0, 6, 12, 14, 3000, 3006, 3008, 3016 ];
 
 ## Content Security Policy
 ## Flickr API is required for UploadWizard
@@ -309,6 +306,116 @@ $wgFixDoubleRedirects = true;
 # Allow pages to override their title
 $wgRestrictDisplayTitle = false;
 
+#=============================================== Namespaces ===============================================
+define("NS_COMMLINK", 3000);
+define("NS_COMMLINK_TALK", 3001);
+$wgExtraNamespaces[NS_COMMLINK] = "Comm-Link";
+$wgExtraNamespaces[NS_COMMLINK_TALK] = "Comm-Link_talk";
+$wgNamespacesWithSubpages[NS_COMMLINK] = true;
+$wgNamespacesToBeSearchedDefault[NS_COMMLINK] = true;
+
+define("NS_PROJMGMT", 3002);
+define("NS_PROJMGMT_TALK", 3003);
+$wgExtraNamespaces[NS_PROJMGMT] = "ProjMGMT";
+$wgExtraNamespaces[NS_PROJMGMT_TALK] = "ProjMGMT_talk";
+$wgNamespacesWithSubpages[NS_PROJMGMT] = true;
+
+define("NS_ISSUE", 3004);
+define("NS_ISSUE_TALK", 3005);
+$wgExtraNamespaces[NS_ISSUE] = "Issue";
+$wgExtraNamespaces[NS_ISSUE_TALK] = "Issue_talk";
+$wgNamespacesWithSubpages[NS_ISSUE] = true;
+
+define("NS_GUIDE", 3006);
+define("NS_GUIDE_TALK", 3007);
+$wgExtraNamespaces[NS_GUIDE] = "Guide";
+$wgExtraNamespaces[NS_GUIDE_TALK] = "Guide_talk";
+$wgNamespacesWithSubpages[NS_GUIDE] = true;
+$wgNamespacesToBeSearchedDefault[NS_GUIDE] = true;
+
+define("NS_ORG", 3008);
+define("NS_ORG_TALK", 3009);
+$wgExtraNamespaces[NS_ORG] = "ORG";
+$wgExtraNamespaces[NS_ORG_TALK] = "ORG_talk";
+$wgNamespacesWithSubpages[NS_ORG] = true;
+
+# Deleted NS 3010 - 3015 skipped ID to avoid issues
+
+define("NS_UPDATE", 3016);
+define("NS_UPDATE_TALK", 3017);
+$wgExtraNamespaces[NS_UPDATE] = "Update";
+$wgExtraNamespaces[NS_UPDATE_TALK] = "Update_talk";
+$wgNamespacesWithSubpages[NS_UPDATE] = true;
+
+$wgNamespaceProtection[NS_TEMPLATE] = [ 'template-edit' ];
+$wgNamespaceProtection[NS_COMMLINK] = [ 'commlink-edit' ];
+$wgNamespaceProtection[NS_PROJMGMT] = [ 'projmgmt-edit' ];
+$wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
+$wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
+$wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
+
+define("NS_ERROR", 30000);
+define("NS_ERROR_TALK", 30001);
+$wgExtraNamespaces[NS_ERROR] = "Error";
+$wgExtraNamespaces[NS_ERROR_TALK] = "Error_talk";
+$wgNamespacesWithSubpages[NS_ERROR] = true;
+$wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
+
+# Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
+define( 'NS_MODULE',      828 );
+define( 'NS_MODULE_TALK', 829 );
+
+# Namespace alias
+# Use capital case to avoid conflicts with interwiki links
+$wgNamespaceAliases = [
+  'C' => NS_CATEGORY,
+  'CL' => NS_COMMLINK,
+  'E' => NS_ERROR,
+  'F' => NS_FILE,
+  'H' => NS_HELP,
+  'LUA' => NS_MODULE,
+  'SCW' => NS_PROJECT,
+  'SC' => NS_PROJECT,
+  # Legacy support
+  # We used to use Star Citizen as the project namespace name
+  # TODO: Replace all instance of old namespace name on wiki then remove this
+  'Star_Citizen' => NS_PROJECT,
+  'ST' => NS_PROJECT_TALK,
+  'T' => NS_TEMPLATE,
+  'U' => NS_UPDATE
+];
+
+$wgVisualEditorAvailableNamespaces = [
+  NS_MAIN     	=> true,
+  NS_USER     	=> true,
+  NS_HELP     	=> true,
+  NS_PROJECT 	  => true,
+  NS_COMMLINK 	=> true,
+  NS_ERROR      => true,
+  NS_PROJMGMT 	=> true,
+  NS_ISSUE    	=> true,
+  NS_GUIDE    	=> true,
+  NS_ORG      	=> true,
+  NS_UPDATE     => true
+];
+
+$wgContentNamespaces = [
+  NS_MAIN,
+  NS_GUIDE,
+  NS_COMMLINK,
+  NS_UPDATE,
+  NS_ERROR,
+  NS_ORG
+];
+
+# Sitemap
+$wgSitemapNamespaces = array_push(
+  $wgContentNamespaces,
+  NS_HELP,
+  NS_FILE,
+  NS_CATEGORY
+);
+
 #=============================================== Extension Load ===============================================
 wfLoadExtensions( [
   'AdvancedSearch',
@@ -486,7 +593,7 @@ $wgMultiPurgeRunInQueue = true;
 $wgPageImagesAPIDefaultLicense = "any";
 $wgPageImagesLeadSectionOnly = false;
 # FIXME: Sync this to content namespace
-$wgPageImagesNamespaces = [ 'NS_MAIN','NS_UPDATE', 'NS_GUIDE', 'NS_COMMLINK', 'NS_ORG', 'NS_ERROR' ];
+$wgPageImagesNamespaces = $wgContentNamespaces;
 $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/sitelogo.svg";
 
 # Parsoid
@@ -554,10 +661,11 @@ $smwgEnabledQueryDependencyLinksStore = true;
 $smwgQFilterDuplicates = true;
 $smwgConfigFileDir = "/usr/local/smw";
 # Enable SMW in the following namespaces
-# Template namespace
 $smwgNamespacesWithSemanticLinks[NS_TEMPLATE] = true;
-# Module namespace
-$smwgNamespacesWithSemanticLinks[828] = true;
+$smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
+foreach ( $wgContentNamespaces as $contentNS ) {
+  $smwgNamespacesWithSemanticLinks[ $contentNS ] = true;
+}
 # Disable entity issue panel for all users by default since it is useless to most users
 # This generates an uncached call to api.php which is not needed
 $wgDefaultUserOptions['smw-prefs-general-options-show-entity-issue-panel'] = false;
@@ -572,8 +680,8 @@ $sespgEnabledPropertyList = [
 ];
 # Required by Module:DependencyList
 $sespgLinksToEnabledNamespaces = [
-  10,
-  828
+  NS_TEMPLATE,
+  NS_MODULE
 ];
 
 # Scribunto
@@ -792,101 +900,6 @@ $wgJobTypeConf['default'] = [
 	'daemonized' => true
 ];
 $wgJobRunRate = 0;
-
-#=============================================== Namespaces ===============================================
-define("NS_COMMLINK", 3000);
-define("NS_COMMLINK_TALK", 3001);
-$wgExtraNamespaces[NS_COMMLINK] = "Comm-Link";
-$wgExtraNamespaces[NS_COMMLINK_TALK] = "Comm-Link_talk";
-$wgNamespacesWithSubpages[NS_COMMLINK] = true;
-$wgNamespacesToBeSearchedDefault[NS_COMMLINK] = true;
-
-define("NS_PROJMGMT", 3002);
-define("NS_PROJMGMT_TALK", 3003);
-$wgExtraNamespaces[NS_PROJMGMT] = "ProjMGMT";
-$wgExtraNamespaces[NS_PROJMGMT_TALK] = "ProjMGMT_talk";
-$wgNamespacesWithSubpages[NS_PROJMGMT] = true;
-
-define("NS_ISSUE", 3004);
-define("NS_ISSUE_TALK", 3005);
-$wgExtraNamespaces[NS_ISSUE] = "Issue";
-$wgExtraNamespaces[NS_ISSUE_TALK] = "Issue_talk";
-$wgNamespacesWithSubpages[NS_ISSUE] = true;
-
-define("NS_GUIDE", 3006);
-define("NS_GUIDE_TALK", 3007);
-$wgExtraNamespaces[NS_GUIDE] = "Guide";
-$wgExtraNamespaces[NS_GUIDE_TALK] = "Guide_talk";
-$wgNamespacesWithSubpages[NS_GUIDE] = true;
-$wgNamespacesToBeSearchedDefault[NS_GUIDE] = true;
-
-define("NS_ORG", 3008);
-define("NS_ORG_TALK", 3009);
-$wgExtraNamespaces[NS_ORG] = "ORG";
-$wgExtraNamespaces[NS_ORG_TALK] = "ORG_talk";
-$wgNamespacesWithSubpages[NS_ORG] = true;
-
-# Deleted NS 3010 - 3015 skipped ID to avoid issues
-
-define("NS_UPDATE", 3016);
-define("NS_UPDATE_TALK", 3017);
-$wgExtraNamespaces[NS_UPDATE] = "Update";
-$wgExtraNamespaces[NS_UPDATE_TALK] = "Update_talk";
-$wgNamespacesWithSubpages[NS_UPDATE] = true;
-
-$wgNamespaceProtection[NS_TEMPLATE] = [ 'template-edit' ];
-$wgNamespaceProtection[NS_COMMLINK] = [ 'commlink-edit' ];
-$wgNamespaceProtection[NS_PROJMGMT] = [ 'projmgmt-edit' ];
-$wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
-$wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
-$wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
-
-define("NS_ERROR", 30000);
-define("NS_ERROR_TALK", 30001);
-$wgExtraNamespaces[NS_ERROR] = "Error";
-$wgExtraNamespaces[NS_ERROR_TALK] = "Error_talk";
-$wgNamespacesWithSubpages[NS_ERROR] = true;
-$wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
-
-# Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
-define( 'NS_MODULE',      828 );
-define( 'NS_MODULE_TALK', 829 );
-
-# Namespace alias
-# Use capital case to avoid conflicts with interwiki links
-$wgNamespaceAliases = [
-  'C' => NS_CATEGORY,
-  'CL' => NS_COMMLINK,
-  'E' => NS_ERROR,
-  'F' => NS_FILE,
-  'H' => NS_HELP,
-  'LUA' => NS_MODULE,
-  'SCW' => NS_PROJECT,
-  'SC' => NS_PROJECT,
-  # Legacy support
-  # We used to use Star Citizen as the project namespace name
-  # TODO: Replace all instance of old namespace name on wiki then remove this
-  'Star_Citizen' => NS_PROJECT,
-  'ST' => NS_PROJECT_TALK,
-  'T' => NS_TEMPLATE,
-  'U' => NS_UPDATE
-];
-
-$wgVisualEditorAvailableNamespaces = [
-  NS_MAIN     	=> true,
-  NS_USER     	=> true,
-  NS_HELP     	=> true,
-  NS_PROJECT 	  => true,
-  NS_COMMLINK 	=> true,
-  NS_ERROR      => true,
-  NS_PROJMGMT 	=> true,
-  NS_ISSUE    	=> true,
-  NS_GUIDE    	=> true,
-  NS_ORG      	=> true,
-  NS_UPDATE     => true
-];
-
-$wgContentNamespaces = [ NS_MAIN, NS_GUIDE, NS_COMMLINK, NS_UPDATE, NS_ERROR ];
 
 #=============================================== Permissions ===============================================
 $wgAutopromote = [
