@@ -742,6 +742,7 @@ $wgVisualEditorEnableVisualSectionEditing = true;
 #  "MediaWiki\\Extension\\WebP\\Transformer\\AvifTransformer",
 #];
 $wgWebPCompressionQuality = 95;
+$wgWebPEnableResponsiveVersionJobs = true;
 
 # WikiEditor
 $wgWikiEditorRealtimePreview = true;
