@@ -13,10 +13,10 @@
                 "mediawiki/discord": "1.39.0",
                 "mediawiki/discussion-tools": "1.39.0",
                 "mediawiki/dismissablesitenotice": "1.39.0",
+                "chariz/details": "1.39.0",
                 "mediawiki/echo": "1.39.0",
                 "mediawiki/elastica": "1.39.0",
                 "mediawiki/graph": "1.39.0",
-                "mediawiki/htmltags": "1.39.0",
                 "mediawiki/json-config": "1.39.0",
                 "mediawiki/linter": "1.39.0",
                 "mediawiki/loops": "1.39.0",
@@ -141,23 +141,6 @@
                 {
                         "type": "package",
                         "package": {
-                                "name": "mediawiki/htmltags",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-HTMLTags/archive/REL1_39.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-HTMLTags.git",
-                                        "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
                                 "name": "mediawiki/loops",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
@@ -237,6 +220,23 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-Variables.git",
                                         "reference": "master"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "charize/details",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/alistair3149/mediawiki-extensions-Details/archive/patch-139.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/alistair3149/mediawiki-extensions-Details.git",
+                                        "reference": "patch-139"
                                 }
                         }
                 },

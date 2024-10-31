@@ -327,6 +327,7 @@ wfLoadExtensions( [
   'ConfirmEdit',
   'ConfirmEdit/QuestyCaptcha',
   'CookieWarning',
+  'Details',
   'Disambiguator',
   'Discord',
   'DiscussionTools',
@@ -338,7 +339,6 @@ wfLoadExtensions( [
   'FloatingUI',
   'Gadgets',
   #'Graph', -- Disabled due to security issue
-  'HTMLTags',
   'InputBox',
   'Interwiki',
   'JsonConfig',
@@ -443,6 +443,10 @@ $wgCookieWarningEnabled = true;
 $wgCaptchaTriggers['edit'] = true;
 $wgCaptchaTriggers['create'] = true;
 
+# Details
+# Disable custom handling since we only need to write <details> and <summary> in wikitext
+$wgDetailsMWCollapsibleCompatibility = false;
+
 # Discord
 $wgDiscordWebhookURL = ["{$_ENV['DISCORD_WEBHOOKURL']}"];
 
@@ -460,11 +464,6 @@ $wgAllowHTMLEmail = true;
 # Disable the embed styles so that the EmbedVideo ResourceLoader modules
 # won't load on every single page
 $wgEmbedVideoUseEmbedStyleForLocalVideos = false;
-
-# HTMLTags
-# Allow <details> and <summary> elements for collapsible content
-$wgHTMLTagsAttributes['details'] = [ 'class', 'style', 'open' ];
-$wgHTMLTagsAttributes['summary'] = [ 'class', 'style' ];
 
 # LocalicationUpdate
 // $wgLocalisationUpdateDirectory = "$IP/cache";
