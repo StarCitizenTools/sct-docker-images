@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Star Citizen Wiki 
  * https://starcitizen.tools
@@ -7,7 +8,7 @@
  */
 
 # Protect against web entry
-if ( !defined( 'MEDIAWIKI' ) ) {
+if (!defined('MEDIAWIKI')) {
   exit;
 }
 
@@ -29,7 +30,7 @@ $wgMainPageIsDomainRoot = true;
 # Allow MediaWiki:Citizen.css to load on all pages
 $wgAllowSiteCSSOnRestrictedPages = true;
 # Use HTML5 encoding with minimal escaping
-$wgFragmentMode = [ 'html5' ];
+$wgFragmentMode = ['html5'];
 # Use Parsoid media HTML structure
 $wgParserEnableLegacyMediaDOM = false;
 $wgLocaltimezone = "UTC";
@@ -44,12 +45,12 @@ $wgMiserMode = true;
 # We will run these pages separately with a lower interval
 # @see https://github.com/StarCitizenTools/sct-k8-config/blob/smw/mediawiki/mw-cronjob.yaml
 $wgDisableQueryPageUpdate = [
-    'Ancientpages' => 'half-monthly',
-		'Deadendpages' => 'half-monthly',
-		'Fewestrevisions' => 'half-monthly',
-		'Mostlinked' => 'half-monthly',
-		'Mostrevisions' => 'half-monthly',
-		'Wantedpages' => 'half-monthly'
+  'Ancientpages' => 'half-monthly',
+  'Deadendpages' => 'half-monthly',
+  'Fewestrevisions' => 'half-monthly',
+  'Mostlinked' => 'half-monthly',
+  'Mostrevisions' => 'half-monthly',
+  'Wantedpages' => 'half-monthly'
 ];
 
 # Database settings
@@ -77,16 +78,16 @@ $wgArticlePath = "/$1";
 ## Flickr API is required for UploadWizard
 ## nonces have limited support and removed in MW 1.41
 $wgCSPHeader = [
-	'useNonces' => false,
-	'script-src' => [ 
-		'\'self\''
-	],
-	'default-src' => [ 
-		'\'self\'',
-		'https://api.flickr.com'
-	],
-	'style-src' => [ '\'self\'',  ],
-	'object-src' => [ '\'none\'' ],
+  'useNonces' => false,
+  'script-src' => [
+    '\'self\''
+  ],
+  'default-src' => [
+    '\'self\'',
+    'https://api.flickr.com'
+  ],
+  'style-src' => ['\'self\'',],
+  'object-src' => ['\'none\''],
 ];
 
 # Set X-Frame-Options to DENY
@@ -99,7 +100,7 @@ $wgCookieSameSite = 'Strict';
 $wgCookieSecure = true;
 
 ## Referrer policy
-$wgReferrerPolicy = [ 'strict-origin-when-cross-origin', 'strict-origin' ];
+$wgReferrerPolicy = ['strict-origin-when-cross-origin', 'strict-origin'];
 
 ## Output a canonical meta tag on every page
 $wgEnableCanonicalServerLink = true;
@@ -113,7 +114,7 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogos = [
-	'svg' => "$wgResourceBasePath/resources/assets/sitelogo.svg",
+  'svg' => "$wgResourceBasePath/resources/assets/sitelogo.svg",
 ];
 
 $wgFavicon = '/favicon.svg';
@@ -175,31 +176,31 @@ $wgUseCdn = true;
 # Align with parser cache
 $wgCdnMaxAge = 259200;
 $wgCdnServersNoPurge = [
-	'194.233.168.70', # Linode Loadbalancer
-	'10.0.0.0/8',
-	'173.245.48.0/20',
-	'103.21.244.0/22',
-	'103.22.200.0/22',
-	'103.31.4.0/22',
-	'141.101.64.0/18',
-	'108.162.192.0/18',
-	'190.93.240.0/20',
-	'188.114.96.0/20',
-	'197.234.240.0/22',
-	'198.41.128.0/17',
-	'162.158.0.0/15',
-	'104.16.0.0/13',
-	'104.24.0.0/14',
-	'172.64.0.0/13',
-	'131.0.72.0/22',
-	'2400:cb00::/32',
-	'2606:4700::/32',
-	'2803:f800::/32',
-	'2405:b500::/32',
-	'2405:8100::/32',
-	'2a06:98c0::/29',
-	'2c0f:f248::/32',
-	'2405:b500::/32'
+  '194.233.168.70', # Linode Loadbalancer
+  '10.0.0.0/8',
+  '173.245.48.0/20',
+  '103.21.244.0/22',
+  '103.22.200.0/22',
+  '103.31.4.0/22',
+  '141.101.64.0/18',
+  '108.162.192.0/18',
+  '190.93.240.0/20',
+  '188.114.96.0/20',
+  '197.234.240.0/22',
+  '198.41.128.0/17',
+  '162.158.0.0/15',
+  '104.16.0.0/13',
+  '104.24.0.0/14',
+  '172.64.0.0/13',
+  '131.0.72.0/22',
+  '2400:cb00::/32',
+  '2606:4700::/32',
+  '2803:f800::/32',
+  '2405:b500::/32',
+  '2405:8100::/32',
+  '2a06:98c0::/29',
+  '2c0f:f248::/32',
+  '2405:b500::/32'
 ];
 
 ## To enable image uploads, make sure the 'images' directory
@@ -229,9 +230,9 @@ $wgEnableUploads = true;
 
 # Reduce the number of thumb sizes served
 $wgThumbLimits = [
-	160, // thumb size 0,
-	240, // thumb size 1
-	320 // thumb size 2
+  160, // thumb size 0,
+  240, // thumb size 1
+  320 // thumb size 2
 ];
 
 # Set to 300px thumb by default
@@ -239,10 +240,10 @@ $wgDefaultUserOptions['thumbsize'] = 2;
 
 # Reduce the number of image sizes served in description page
 $wgImageLimits = [
-	[ 320, 240 ], // image size 0
-	[ 640, 480 ], // image size 1
-	[ 1280, 1024 ], // image size 2
-	[ 2560, 2048 ], // image size 3
+  [320, 240], // image size 0
+  [640, 480], // image size 1
+  [1280, 1024], // image size 2
+  [2560, 2048], // image size 3
 ];
 
 # Set to 1280px image by default
@@ -251,18 +252,18 @@ $wgDefaultUserOptions['imagesize'] = 2; // image size 2
 # Use intermediary thumbnails to speed up thumbnail rendering
 # This will result in several chained lossy transformations
 # but we need it because the wiki uses a lot of high quality images
-$wgThumbnailBuckets = [ 1280 ];
+$wgThumbnailBuckets = [1280];
 $wgThumbnailMinimumBucketDistance = 100;
 
 # Gallery settings
 $wgGalleryOptions = [
-	'imagesPerRow' => 0,
-	'imageWidth' => 320, // Sync with default image size 0
-	'imageHeight' => 240, // Sync with default image size 0
-	'captionLength' => true,
-	'showBytes' => true,
-	'showDimensions' => true,
-	'mode' => 'packed-overlay'
+  'imagesPerRow' => 0,
+  'imageWidth' => 320, // Sync with default image size 0
+  'imageHeight' => 240, // Sync with default image size 0
+  'captionLength' => true,
+  'showBytes' => true,
+  'showDimensions' => true,
+  'mode' => 'packed-overlay'
 ];
 
 #$wgUploadThumbnailRenderMethod = 'html';
@@ -347,12 +348,12 @@ $wgExtraNamespaces[NS_UPDATE] = "Update";
 $wgExtraNamespaces[NS_UPDATE_TALK] = "Update_talk";
 $wgNamespacesWithSubpages[NS_UPDATE] = true;
 
-$wgNamespaceProtection[NS_TEMPLATE] = [ 'template-edit' ];
-$wgNamespaceProtection[NS_COMMLINK] = [ 'commlink-edit' ];
-$wgNamespaceProtection[NS_PROJMGMT] = [ 'projmgmt-edit' ];
-$wgNamespaceProtection[NS_ISSUE] = [ 'issue-edit' ];
-$wgNamespaceProtection[NS_GUIDE] = [ 'guide-edit' ];
-$wgNamespaceProtection[NS_ORG] = [ 'org-edit' ];
+$wgNamespaceProtection[NS_TEMPLATE] = ['template-edit'];
+$wgNamespaceProtection[NS_COMMLINK] = ['commlink-edit'];
+$wgNamespaceProtection[NS_PROJMGMT] = ['projmgmt-edit'];
+$wgNamespaceProtection[NS_ISSUE] = ['issue-edit'];
+$wgNamespaceProtection[NS_GUIDE] = ['guide-edit'];
+$wgNamespaceProtection[NS_ORG] = ['org-edit'];
 
 define("NS_ERROR", 30000);
 define("NS_ERROR_TALK", 30001);
@@ -362,8 +363,8 @@ $wgNamespacesWithSubpages[NS_ERROR] = true;
 $wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
 
 # Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
-define( 'NS_MODULE',      828 );
-define( 'NS_MODULE_TALK', 829 );
+define('NS_MODULE',      828);
+define('NS_MODULE_TALK', 829);
 
 # Namespace alias
 # Use capital case to avoid conflicts with interwiki links
@@ -386,16 +387,16 @@ $wgNamespaceAliases = [
 ];
 
 $wgVisualEditorAvailableNamespaces = [
-  NS_MAIN     	=> true,
-  NS_USER     	=> true,
-  NS_HELP     	=> true,
-  NS_PROJECT 	  => true,
-  NS_COMMLINK 	=> true,
+  NS_MAIN       => true,
+  NS_USER       => true,
+  NS_HELP       => true,
+  NS_PROJECT     => true,
+  NS_COMMLINK   => true,
   NS_ERROR      => true,
-  NS_PROJMGMT 	=> true,
-  NS_ISSUE    	=> true,
-  NS_GUIDE    	=> true,
-  NS_ORG      	=> true,
+  NS_PROJMGMT   => true,
+  NS_ISSUE      => true,
+  NS_GUIDE      => true,
+  NS_ORG        => true,
   NS_UPDATE     => true
 ];
 
@@ -417,7 +418,7 @@ $wgSitemapNamespaces = array_push(
 );
 
 #=============================================== Extension Load ===============================================
-wfLoadExtensions( [
+wfLoadExtensions([
   'AdvancedSearch',
   'Apiunto',
   'AWS',
@@ -492,15 +493,15 @@ wfLoadExtensions( [
   'WebAuthn',
   'WikiEditor',
   'WikiSEO',
-] );
+]);
 
-enableSemantics( 'starcitizen.tools' );
+enableSemantics('starcitizen.tools');
 #=============================================== Extension Config ===============================================
 # Apiunto 
-$wgApiuntoKey = ''; 
+$wgApiuntoKey = '';
 $wgApiuntoUrl = 'https://api.star-citizen.wiki';
 $wgApiuntoTimeout = '30'; // 5 seconds
-$wgApiuntoDefaultLocale = 'en_EN'; 
+$wgApiuntoDefaultLocale = 'en_EN';
 
 # AWS
 $wgAWSCredentials = [
@@ -520,13 +521,13 @@ $wgCirrusSearchIndexBaseName = 'scw_prod';
 $wgSearchType = 'CirrusSearch';
 $wgCirrusSearchUseCompletionSuggester = 'yes';
 $wgCirrusSearchClusters = [
-    'default' => ['elasticsearch-es-elasticsearch.default.svc.cluster.local'],
+  'default' => ['elasticsearch-es-elasticsearch.default.svc.cluster.local'],
 ];
 $wgCirrusSearchCompletionSuggesterSubphrases = [
-    'build'  => true,
-    'use' => true,
-    'type' => 'anywords',
-    'limit' => 5,
+  'build'  => true,
+  'use' => true,
+  'type' => 'anywords',
+  'limit' => 5,
 ];
 
 # CleanChanges
@@ -580,8 +581,8 @@ $wgMediaViewerEnableByDefault = true;
 $wgMediaViewerEnableByDefaultForAnonymous = true;
 
 # MultiPurge
-$wgMultiPurgeEnabledServices = array ( 'Cloudflare' );
-$wgMultiPurgeServiceOrder = array ( 'Cloudflare' );
+$wgMultiPurgeEnabledServices = array('Cloudflare');
+$wgMultiPurgeServiceOrder = array('Cloudflare');
 $wgMultiPurgeCloudFlareZoneId = "{$_ENV['CLOUDFLARE_ZONEID']}";
 $wgMultiPurgeCloudFlareApiToken = "{$_ENV['CLOUDFLARE_APITOKEN']}";
 $wgMultiPurgeStaticPurges = [
@@ -599,18 +600,18 @@ $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/site
 # Parsoid
 # Need to load Parsoid explicitly to make Linter work
 # @see https://github.com/StarCitizenWiki/WikiDocker/commit/ea149d74daba5cc13594cee57db70dab099e214d
-wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
+wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
 $wgParsoidSettings = [
-    'useSelser' => true,
-    'linting' => true,
+  'useSelser' => true,
+  'linting' => true,
 ];
 # This belongs to VE but this is more relevant here
 $wgVisualEditorParsoidAutoConfig = false;
 $wgVirtualRestConfig['modules']['parsoid'] = [
-	// URL to the Parsoid instance - use port 8142 if you use the Debian package - the parameter 'URL' was first used but is now deprecated (string)
-	'url' => 'https://starcitizen.tools/rest.php',
-	// Parsoid "domain" (string, optional) - MediaWiki >= 1.26
-	'domain' => 'starcitizen.tools',
+  // URL to the Parsoid instance - use port 8142 if you use the Debian package - the parameter 'URL' was first used but is now deprecated (string)
+  'url' => 'https://starcitizen.tools/rest.php',
+  // Parsoid "domain" (string, optional) - MediaWiki >= 1.26
+  'domain' => 'starcitizen.tools',
   'restbaseCompat' => false,
   'timeout' => 30,
 ];
@@ -636,15 +637,15 @@ $wgPopupsReferencePreviewsBetaFeature = false;
 
 # Questy Catpcha
 $wgCaptchaQuestions = [
-  "What the name of site?" => [ 'sct', 'star citizen wiki', 'star citizen tools', 'starcitizen.tools' ],
-  "What is the name of the company that is developing the game?" => [ 'cig', 'rsi', 'cloud imperium', 'cloud imperium games', 'robert space industries', 'roberts space industries'],
-  "Who is the co-founder, CEO, director of the game's developer" => ['chris roberts','chris robert'],
+  "What the name of site?" => ['sct', 'star citizen wiki', 'star citizen tools', 'starcitizen.tools'],
+  "What is the name of the company that is developing the game?" => ['cig', 'rsi', 'cloud imperium', 'cloud imperium games', 'robert space industries', 'roberts space industries'],
+  "Who is the co-founder, CEO, director of the game's developer" => ['chris roberts', 'chris robert'],
   "What is the single player part of the game named?" => ['squadron 42', 'sq42', 'squadron42'],
   "Who is the in-lore manufacturer of the <a href='https://starcitizen.tools/Talon'> Talon</a>? " => ['esperia', 'espr', 'esperia (espr)']
 ];
 
 # RelatedArticles 
-$wgRelatedArticlesFooterWhitelistedSkins = [ 'citizen' ];
+$wgRelatedArticlesFooterWhitelistedSkins = ['citizen'];
 $wgRelatedArticlesUseCirrusSearchApiUrl = '/api.php';
 $wgRelatedArticlesDescriptionSource = 'wikidata';
 $wgRelatedArticlesUseCirrusSearch = true;
@@ -663,8 +664,8 @@ $smwgConfigFileDir = "/usr/local/smw";
 # Enable SMW in the following namespaces
 $smwgNamespacesWithSemanticLinks[NS_TEMPLATE] = true;
 $smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
-foreach ( $wgContentNamespaces as $contentNS ) {
-  $smwgNamespacesWithSemanticLinks[ $contentNS ] = true;
+foreach ($wgContentNamespaces as $contentNS) {
+  $smwgNamespacesWithSemanticLinks[$contentNS] = true;
 }
 # Disable entity issue panel for all users by default since it is useless to most users
 # This generates an uncached call to api.php which is not needed
@@ -673,10 +674,10 @@ $wgDefaultUserOptions['smw-prefs-general-options-show-entity-issue-panel'] = fal
 # Semantic Extra Special Properties
 $sespgUseFixedTables = true;
 $sespgEnabledPropertyList = [
-	'_USERREG',
-	'_USEREDITCNT',
-	'_PAGEIMG',
-	'_LINKSTO'
+  '_USERREG',
+  '_USEREDITCNT',
+  '_PAGEIMG',
+  '_LINKSTO'
 ];
 # Required by Module:DependencyList
 $sespgLinksToEnabledNamespaces = [
@@ -710,13 +711,13 @@ $wgTemplateStylesAllowedUrls = [
     "<^https://starcitizen\\.tools/>"
   ],
   "namespace" => [
-      "<.>"
+    "<.>"
   ],
   "css" => []
 ];
 
 # TextExtracts
-$wgExtractsRemoveClasses = ['dd','dablink', 'translate', 'figcaption', 'li'];
+$wgExtractsRemoveClasses = ['dd', 'dablink', 'translate', 'figcaption', 'li'];
 
 # TwoColConflict
 $wgTwoColConflictBetaFeature = false;
@@ -731,7 +732,7 @@ $wgULSIMEEnabled = false;
 # UploadWizard
 $wgApiFrameOptions = 'SAMEORIGIN';
 $wgAllowCopyUploads = true;
-$wgCopyUploadsDomains = [ '*.flickr.com', '*.staticflickr.com' ];
+$wgCopyUploadsDomains = ['*.flickr.com', '*.staticflickr.com'];
 $wgUploadNavigationUrl = '/Special:UploadWizard';
 $wgUploadWizardConfig = [
   'flickrApiKey' => "{$_ENV['FLICKR_APIKEY']}"
@@ -757,13 +758,13 @@ $wgUploadWizardConfig = [
       # Edit MediaWiki:mwe-upwiz-license-pd-usgov to the text you wanted
       'msg' => 'mwe-upwiz-license-pd-usgov',
       #'msg' => 'mwe-upwiz-license-rsi',
-      'templates' => [ 'RSIlicense' ]
+      'templates' => ['RSIlicense']
     ],
     # CC-BY-NC-SA-2.0 required by Flickr
     # Note that this need to be added to mw.FlickrChecker.js every time it is updated
     'cc-by-nc-sa-2.0' => [
       'msg' => 'mwe-upwiz-license-cc-by-nc-sa-2.0',
-      'templates' => [ 'cc-by-nc-sa-2.0' ],
+      'templates' => ['cc-by-nc-sa-2.0'],
       #'icons' => ['cc-by','cc-nc','cc-sa'], NC icon is missing
       'url' => '//creativecommons.org/licenses/by-nc-sa/2.0/',
       'languageCodePrefix' => 'deed.'
@@ -772,7 +773,7 @@ $wgUploadWizardConfig = [
     # Note that this need to be added to mw.FlickrChecker.js every time it is updated
     'cc-by-nc-2.0' => [
       'msg' => 'mwe-upwiz-license-cc-by-nc-2.0',
-      'templates' => [ 'cc-by-nc-2.0' ],
+      'templates' => ['cc-by-nc-2.0'],
       #'icons' => [ 'cc-by','cc-nc' ], NC icon is missing
       'url' => '//creativecommons.org/licenses/by-nc/2.0/',
       'languageCodePrefix' => 'deed.'
@@ -785,11 +786,11 @@ $wgUploadWizardConfig = [
       'defaults' => 'rsilicense',
       'licenseGroups' => [
         [
-	        # Cloud Imperium license
-	        # HACK: Add custom license header
+          # Cloud Imperium license
+          # HACK: Add custom license header
           # Edit MediaWiki:mwe-upwiz-license-usgov-head to the text you wanted
           # We have to use this because this message is loaded by UploadWizard and we don't use it
-	        'head' => 'mwe-upwiz-license-usgov-head',
+          'head' => 'mwe-upwiz-license-usgov-head',
           #'head' => 'mwe-upwiz-license-sc-head',
           'licenses' => [
             'rsilicense'
@@ -812,8 +813,8 @@ $wgUploadWizardConfig = [
         [
           # Flickr still uses CC 2.0
           'head' => 'mwe-upwiz-license-flickr-head',
-          'subhead'=> 'mwe-upwiz-license-flickr-subhead',
-          'licenses'=> [
+          'subhead' => 'mwe-upwiz-license-flickr-subhead',
+          'licenses' => [
             'cc-by-nc-sa-2.0',
             'cc-by-nc-2.0',
             'cc-by-sa-2.0',
@@ -823,11 +824,11 @@ $wgUploadWizardConfig = [
         [
           'head' => 'mwe-upwiz-license-custom-head',
           'special' => 'custom',
-          'licenses' => [ 'custom' ],
+          'licenses' => ['custom'],
         ],
         [
           'head' => 'mwe-upwiz-license-none-head',
-          'licenses' => [ 'none' ]
+          'licenses' => ['none']
         ],
       ]
     ]
@@ -871,7 +872,7 @@ $wgWikiSeoTryCleanAutoDescription = true;
 $wgDefaultSkin = 'citizen';
 
 # Citizen needs to be loaded after extensions to display correct icons for extensions
-wfLoadSkin( 'Citizen' );
+wfLoadSkin('Citizen');
 
 # Use REST API search endpoint
 $wgCitizenSearchGateway = 'mwRestApi';
@@ -886,18 +887,18 @@ $wgCitizenThemeDefault = 'dark';
 /** @see RedisBagOStuff for a full explanation of these options. **/
 $wgObjectCaches['redis'] = [
   'class'                => 'RedisBagOStuff',
-  'servers'              => [ 'redis-service.default.svc.cluster.local' ],
+  'servers'              => ['redis-service.default.svc.cluster.local'],
   // 'connectTimeout'    => 1,
   // 'persistent'        => false,
   // 'password'          => 'secret',
   // 'automaticFailOver' => true,
 ];
 $wgJobTypeConf['default'] = [
-	'class' => 'JobQueueRedis',
-	'order' => 'fifo',
-	'redisServer' => 'redis-service.default.svc.cluster.local',
-	'checkDelay' => true,
-	'daemonized' => true
+  'class' => 'JobQueueRedis',
+  'order' => 'fifo',
+  'redisServer' => 'redis-service.default.svc.cluster.local',
+  'checkDelay' => true,
+  'daemonized' => true
 ];
 $wgJobRunRate = 0;
 
@@ -905,14 +906,14 @@ $wgJobRunRate = 0;
 $wgAutopromote = [
   "autoconfirmed" => [
     "&",
-    [ APCOND_EDITCOUNT, &$wgAutoConfirmCount ],
-    [ APCOND_AGE, &$wgAutoConfirmAge ],
+    [APCOND_EDITCOUNT, &$wgAutoConfirmCount],
+    [APCOND_AGE, &$wgAutoConfirmAge],
     APCOND_EMAILCONFIRMED,
   ],
   "Trusted" => [
     "&",
-    [ APCOND_EDITCOUNT, 300 ],
-    [ APCOND_INGROUPS, "Verified" ],
+    [APCOND_EDITCOUNT, 300],
+    [APCOND_INGROUPS, "Verified"],
   ]
 ];
 
@@ -943,7 +944,7 @@ $wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgGroupPermissions['ORG-Editor']['org-edit'] = true;
 
 #autoconfirmed
-$wgAutoConfirmAge = 86400*3; // three days
+$wgAutoConfirmAge = 86400 * 3; // three days
 $wgAutoConfirmCount = 20;
 $wgGroupPermissions['autoconfirmed']['upload_by_url'] = true;
 $wgGroupPermissions['autoconfirmed']['createpage'] = true;
@@ -973,7 +974,7 @@ $wgGroupPermissions['Trusted']['template-edit'] = true;
 
 #editor
 $wgGroupPermissions['Editor'] = $wgGroupPermissions['Trusted'];
-$wgAddGroups['Editor'] = [ 'Verified', 'Translator', 'ORG-Editor' ];
+$wgAddGroups['Editor'] = ['Verified', 'Translator', 'ORG-Editor'];
 $wgGroupPermissions['Editor']['rollback'] = true;
 $wgGroupPermissions['Editor']['protect'] = true;
 $wgGroupPermissions['Editor']['editprotected'] = true;
@@ -1014,106 +1015,106 @@ $wgGroupPermissions['sysop']['interwiki'] = true;
 #=============================================== Footer ===============================================
 
 $wgFooterIcons = [
-    "poweredby" => [
-        "mediawiki" => [
-            "src" => "$wgResourceBasePath/resources/assets/badge-mediawiki.svg",
-            "url" => "https://www.mediawiki.org",
-            "alt" => "Powered by MediaWiki",
-            "height" => "42",
-            "width" => "127",
-	      ],
-	      "semanticmediawiki" => [
-            'src' => "$wgResourceBasePath/resources/assets/badge-semanticmediawiki.svg",
-            'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
-            'alt' => 'Powered by Semantic MediaWiki',
-            "height" => "42",
-            "width" => "131",
-	      ]
+  "poweredby" => [
+    "mediawiki" => [
+      "src" => "$wgResourceBasePath/resources/assets/badge-mediawiki.svg",
+      "url" => "https://www.mediawiki.org",
+      "alt" => "Powered by MediaWiki",
+      "height" => "42",
+      "width" => "127",
     ],
-    "copyright" => [
-        "copyright" => [
-        "src" => "$wgResourceBasePath/resources/assets/badge-ccbysa.svg",
-        "url" => $wgRightsUrl,
-        "alt" => $wgRightsText,
-	      "height" => "50",
-        "width" => "110",
-      ]
-    ],
-    "madeby" => [
-          "thecommunity" => [
-              "src" => "$wgResourceBasePath/resources/assets/badge-starcitizencommunity.svg",
-              "url" => "https://robertsspaceindustries.com",
-              "alt" => "Made by the community",
-	            "height" => "50",
-              "width" => "50",
-          ]
-    ],
-    "partof" => [
-        "starcitizentools" => [
-            "src" => "$wgResourceBasePath/resources/assets/badge-starcitizentools.svg",
-            "url" => "https://starcitizen.tools",
-            "alt" => "Part of Star Citizen Tools",
-	          "height" => "50",
-            "width" => "50",
-        ]
+    "semanticmediawiki" => [
+      'src' => "$wgResourceBasePath/resources/assets/badge-semanticmediawiki.svg",
+      'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
+      'alt' => 'Powered by Semantic MediaWiki',
+      "height" => "42",
+      "width" => "131",
     ]
+  ],
+  "copyright" => [
+    "copyright" => [
+      "src" => "$wgResourceBasePath/resources/assets/badge-ccbysa.svg",
+      "url" => $wgRightsUrl,
+      "alt" => $wgRightsText,
+      "height" => "50",
+      "width" => "110",
+    ]
+  ],
+  "madeby" => [
+    "thecommunity" => [
+      "src" => "$wgResourceBasePath/resources/assets/badge-starcitizencommunity.svg",
+      "url" => "https://robertsspaceindustries.com",
+      "alt" => "Made by the community",
+      "height" => "50",
+      "width" => "50",
+    ]
+  ],
+  "partof" => [
+    "starcitizentools" => [
+      "src" => "$wgResourceBasePath/resources/assets/badge-starcitizentools.svg",
+      "url" => "https://starcitizen.tools",
+      "alt" => "Part of Star Citizen Tools",
+      "height" => "50",
+      "width" => "50",
+    ]
+  ]
 ];
 
 # Add links to footer
-$wgHooks['SkinAddFooterLinks'][] = function ( $sk, $key, &$footerlinks ) {
-	$rel = 'nofollow noreferrer noopener';
+$wgHooks['SkinAddFooterLinks'][] = function ($sk, $key, &$footerlinks) {
+  $rel = 'nofollow noreferrer noopener';
 
-	if ( $key === 'places' ) {
-		$footerlinks['cookiestatement'] = Html::rawElement(
-			'a',
-			[
-				'href'=> Title::newFromText(
-					$sk->msg( 'cookiestatementpage' )->inContentLanguage()->text()
-				)->getFullURL()
-			],
-			$sk->msg( 'cookiestatement' )->escaped()
-		);
-		#$footerlinks['analytics'] = Html::rawElement(
-		#	'a',
-		#	[
-		#		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
-		#		'rel' => $rel
-		#	],
-		#	$sk->msg( 'footer-analytics' )->escaped()
-		#);
-		$footerlinks['statuspage'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://status.starcitizen.tools',
-				'rel' => $rel
-			],
-			$sk->msg( 'footer-statuspage' )->escaped()
-		);
-		$footerlinks['github'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://github.com/StarCitizenTools',
-				'rel' => $rel
-			],
-			$sk->msg( 'footer-github' )->escaped()
-		);
-		$footerlinks['patreon'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://www.patreon.com/starcitizentools',
-				'rel' => $rel
-			],
-			$sk->msg( 'footer-patreon' )->escaped()
-		);
-		$footerlinks['kofi'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://ko-fi.com/starcitizentools',
-				'rel' => $rel
-			],
-			$sk->msg( 'footer-kofi' )->escaped()
-		);
-	}
+  if ($key === 'places') {
+    $footerlinks['cookiestatement'] = Html::rawElement(
+      'a',
+      [
+        'href' => Title::newFromText(
+          $sk->msg('cookiestatementpage')->inContentLanguage()->text()
+        )->getFullURL()
+      ],
+      $sk->msg('cookiestatement')->escaped()
+    );
+    #$footerlinks['analytics'] = Html::rawElement(
+    #	'a',
+    #	[
+    #		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
+    #		'rel' => $rel
+    #	],
+    #	$sk->msg( 'footer-analytics' )->escaped()
+    #);
+    $footerlinks['statuspage'] = Html::rawElement(
+      'a',
+      [
+        'href' => 'https://status.starcitizen.tools',
+        'rel' => $rel
+      ],
+      $sk->msg('footer-statuspage')->escaped()
+    );
+    $footerlinks['github'] = Html::rawElement(
+      'a',
+      [
+        'href' => 'https://github.com/StarCitizenTools',
+        'rel' => $rel
+      ],
+      $sk->msg('footer-github')->escaped()
+    );
+    $footerlinks['patreon'] = Html::rawElement(
+      'a',
+      [
+        'href' => 'https://www.patreon.com/starcitizentools',
+        'rel' => $rel
+      ],
+      $sk->msg('footer-patreon')->escaped()
+    );
+    $footerlinks['kofi'] = Html::rawElement(
+      'a',
+      [
+        'href' => 'https://ko-fi.com/starcitizentools',
+        'rel' => $rel
+      ],
+      $sk->msg('footer-kofi')->escaped()
+    );
+  }
 };
 
 # Eager load the first image on the page
@@ -1121,21 +1122,21 @@ $wgHooks['SkinAddFooterLinks'][] = function ( $sk, $key, &$footerlinks ) {
 # so we will just grab the first image with 400px as width,
 # since it is used by infoboxes usually.
 $hasSetImageEager = false;
-$wgHooks['ThumbnailBeforeProduceHTML'][] = function ( $thumbnail, &$attribs, &$linkAttribs ) {
-	global $hasSetImageEager;
-	if ( $hasSetImageEager === false ) {
+$wgHooks['ThumbnailBeforeProduceHTML'][] = function ($thumbnail, &$attribs, &$linkAttribs) {
+  global $hasSetImageEager;
+  if ($hasSetImageEager === false) {
     /**
      * Check if the image is a LCP image
      * 1. Make sure that the image has the mw-file-description class
      * 2. Make sure that the image has 400px image width (i.e. infobox image)
      */
-    $isLCPImage = strpos( $linkAttribs['class'] ?? '', 'mw-file-description' ) !== false &&
+    $isLCPImage = strpos($linkAttribs['class'] ?? '', 'mw-file-description') !== false &&
       $attribs['width'] === 400;
-		if ( $isLCPImage ) {
-			unset( $attribs['loading'] );
+    if ($isLCPImage) {
+      unset($attribs['loading']);
       $attribs['fetchpriority'] = 'high';
-			$hasSetImageEager = true;
-		}
-	}
-	return true;
+      $hasSetImageEager = true;
+    }
+  }
+  return true;
 };
