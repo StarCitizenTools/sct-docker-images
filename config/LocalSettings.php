@@ -1123,10 +1123,17 @@ $wgHooks['SkinAddFooterLinks'][] = function ( $sk, $key, &$footerlinks ) {
 $hasSetImageEager = false;
 $wgHooks['ThumbnailBeforeProduceHTML'][] = function ( $thumbnail, &$attribs, &$linkAttribs ) {
 	global $hasSetImageEager;
-	$class = $linkAttribs['class'] ?? '';
-	if ( $hasSetImageEager !== true ) {
-		if ( isset( $attribs[ 'loading' ] ) && strpos( $class, 'mw-file-description' ) !== false && $attribs['width'] === 400 ) {
+	if ( $hasSetImageEager === false ) {
+    /**
+     * Check if the image is a LCP image
+     * 1. Make sure that the image has the mw-file-description class
+     * 2. Make sure that the image has 400px image width (i.e. infobox image)
+     */
+    $isLCPImage = strpos( $linkAttribs['class'] ?? '', 'mw-file-description' ) !== false &&
+      $attribs['width'] === 400;
+		if ( $isLCPImage ) {
 			unset( $attribs['loading'] );
+      $attribs['fetchpriority'] = 'high';
 			$hasSetImageEager = true;
 		}
 	}
