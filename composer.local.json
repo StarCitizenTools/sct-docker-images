@@ -230,13 +230,13 @@
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
-                                        "url": "https://github.com/alistair3149/mediawiki-extensions-Details/archive/patch-139.zip",
+                                        "url": "https://github.com/chariz/mediawiki-extensions-Details/archive/main.zip",
                                         "type": "zip"
                                 },
                                 "source": {
                                         "type": "git",
-                                        "url": "https://github.com/alistair3149/mediawiki-extensions-Details.git",
-                                        "reference": "patch-139"
+                                        "url": "https://github.com/chariz/mediawiki-extensions-Details.git",
+                                        "reference": "main"
                                 }
                         }
                 },
