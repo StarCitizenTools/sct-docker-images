@@ -19,6 +19,7 @@
                 "mediawiki/graph": "1.39.0",
                 "mediawiki/json-config": "1.39.0",
                 "mediawiki/linter": "1.39.0",
+                "mediawiki/loginnotify": "1.39.0",
                 "mediawiki/loops": "1.39.0",
                 "mediawiki/mediasearch": "1.39.0",
                 "octfx/multipurge": "dev-master",
@@ -457,6 +458,23 @@
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-Linter.git",
+                                        "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/loginnotify",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-LoginNotify/archive/REL1_39.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-LoginNotify.git",
                                         "reference": "REL1_39"
                                 }
                         }

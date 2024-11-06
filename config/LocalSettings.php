@@ -451,6 +451,7 @@ wfLoadExtensions([
   'Interwiki',
   'JsonConfig',
   'Linter',
+  'LoginNotify',
   'Loops',
   'MediaSearch',
   'MultimediaViewer',
