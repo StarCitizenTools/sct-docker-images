@@ -483,7 +483,7 @@ wfLoadExtensions([
   'TextExtracts',
   'Thanks',
   'TwoColConflict',
-  'UniversalLanguageSelector',
+  #'UniversalLanguageSelector', -- Disabled due to performance issue
   'UploadWizard',
   'Variables',
   'VisualEditor',
@@ -723,13 +723,13 @@ $wgTwoColConflictBetaFeature = false;
 # Universal Language Selector
 # Disable language detection as some message fallback are broken
 # Copyright notice and footer does not appear
-$wgULSLanguageDetection = false;
+#$wgULSLanguageDetection = false;
 # Disable IME as it is not needed nowadays
-$wgULSIMEEnabled = false;
+#$wgULSIMEEnabled = false;
 # Disable web fonts as it is not needed nowadays
-$wgULSWebfontsEnabled = false;
+#$wgULSWebfontsEnabled = false;
 # Disable due to caching
-$wgULSAnonCanChangeLanguage = false;
+#$wgULSAnonCanChangeLanguage = false;
 
 # UploadWizard
 $wgApiFrameOptions = 'SAMEORIGIN';
