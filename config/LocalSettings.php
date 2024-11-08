@@ -724,8 +724,12 @@ $wgTwoColConflictBetaFeature = false;
 # Disable language detection as some message fallback are broken
 # Copyright notice and footer does not appear
 $wgULSLanguageDetection = false;
-# Disable IME
+# Disable IME as it is not needed nowadays
 $wgULSIMEEnabled = false;
+# Disable web fonts as it is not needed nowadays
+$wgULSWebfontsEnabled = false;
+# Disable due to caching
+$wgULSAnonCanChangeLanguage = false;
 
 # UploadWizard
 $wgApiFrameOptions = 'SAMEORIGIN';
