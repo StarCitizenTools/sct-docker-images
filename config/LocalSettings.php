@@ -252,19 +252,16 @@ $wgDefaultUserOptions['imagesize'] = 2; // image size 2
 # Use intermediary thumbnails to speed up thumbnail rendering
 # This will result in several chained lossy transformations
 # but we need it because the wiki uses a lot of high quality images
-$wgThumbnailBuckets = [1280];
+$wgThumbnailBuckets = [
+  1280,
+  2560
+];
 $wgThumbnailMinimumBucketDistance = 100;
 
 # Gallery settings
-$wgGalleryOptions = [
-  'imagesPerRow' => 0,
-  'imageWidth' => 320, // Sync with default image size 0
-  'imageHeight' => 240, // Sync with default image size 0
-  'captionLength' => true,
-  'showBytes' => true,
-  'showDimensions' => true,
-  'mode' => 'packed-overlay'
-];
+# Sync with default image size 0
+$wgGalleryOptions['imageWidth'] = 320;
+$wgGalleryOptions['imageHeight'] = 240;
 
 #$wgUploadThumbnailRenderMethod = 'html';
 $wgUseImageMagick = true;
