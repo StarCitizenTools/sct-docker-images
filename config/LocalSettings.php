@@ -431,7 +431,7 @@ wfLoadExtensions([
   'CommonsMetadata',
   'ConfirmEdit',
   'ConfirmEdit/QuestyCaptcha',
-  'CookieWarning',
+  #'CookieWarning', -- Disabled due to performance issue and we only have first party functional cookies
   'Details',
   'Disambiguator',
   'Discord',
@@ -541,7 +541,7 @@ $wgDefaultUserOptions['usebetatoolbar'] = 1; // user option provided by WikiEdit
 $wgDefaultUserOptions['usecodemirror'] = 1;
 
 # CookieWarning
-$wgCookieWarningEnabled = true;
+#$wgCookieWarningEnabled = true;
 
 # ConfirmEdit
 #$wgHCaptchaSiteKey = "{$_ENV['HCAPTCHA_SITEKEY']}";
