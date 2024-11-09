@@ -488,6 +488,7 @@ wfLoadExtensions([
   #'UniversalLanguageSelector', -- Disabled due to performance issue
   'UploadWizard',
   'Variables',
+  'VipsScaler',
   'VisualEditor',
   'WebP',
   'WebAuthn',
@@ -838,6 +839,9 @@ $wgUploadWizardConfig = [
     ]
   ]
 ];
+
+# VipsScaler
+$wgVipsExposeTestPage = true;
 
 # Visual Editor
 $wgDefaultUserOptions['visualeditor-enable'] = 1;

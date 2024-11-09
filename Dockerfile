@@ -12,6 +12,7 @@ RUN set -eux; \
 		git \
 		librsvg2-bin \
 		imagemagick \
+		libvips-tools \
 		ffmpeg \
 		webp \
 		unzip \
@@ -163,6 +164,7 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Revisionslider /var/www/mediawiki/extensions/RevisionSlider; \
 	mv /var/www/mediawiki/extensions/Rss /var/www/mediawiki/extensions/RSS; \
 	mv /var/www/mediawiki/extensions/Shortdescription /var/www/mediawiki/extensions/ShortDescription; \
+	mv /var/www/mediawiki/extensions/Vipsscaler /var/www/mediawiki/extensions/VipsScaler; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \
 	mv /var/www/mediawiki/skins/citizen /var/www/mediawiki/skins/Citizen; \
 	mv /var/www/mediawiki/extensions/Twocolconflict /var/www/mediawiki/extensions/TwoColConflict; \
