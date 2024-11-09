@@ -262,6 +262,7 @@ $wgThumbnailMinimumBucketDistance = 100;
 # Sync with default image size 0
 $wgGalleryOptions['imageWidth'] = 320;
 $wgGalleryOptions['imageHeight'] = 240;
+$wgGalleryOptions['mode'] = 'packed-overlay';
 
 #$wgUploadThumbnailRenderMethod = 'html';
 $wgUseImageMagick = true;
