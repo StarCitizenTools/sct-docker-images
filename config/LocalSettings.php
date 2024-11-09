@@ -841,7 +841,6 @@ $wgUploadWizardConfig = [
 ];
 
 # VipsScaler
-$wgVipsExposeTestPage = true;
 $wgVipsOptions = [
   [
     'conditions' => [
