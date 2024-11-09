@@ -488,7 +488,7 @@ wfLoadExtensions([
   #'UniversalLanguageSelector', -- Disabled due to performance issue
   'UploadWizard',
   'Variables',
-  #'VipsScaler', -- Disabled due to quality loss and image size increase
+  'VipsScaler',
   'VisualEditor',
   'WebP',
   'WebAuthn',
@@ -841,25 +841,25 @@ $wgUploadWizardConfig = [
 ];
 
 # VipsScaler
-#$wgVipsExposeTestPage = true;
-#$wgVipsOptions = [
-#  [
-#    'conditions' => [
-#      'mimeType' => 'image/png',
-#      'minArea' => 2e7,
-#    ],
-#  ],
-#  [
-#    'conditions' => [
-#      'mimeType' => 'image/tiff',
-#      'minShrinkFactor' => 1.2,
-#      'minArea' => 5e7,
-#    ],
-#    'sharpen' => [
-#     'sigma' => 0.8
-#    ],
-#  ],
-#];
+$wgVipsExposeTestPage = true;
+$wgVipsOptions = [
+  [
+    'conditions' => [
+      'mimeType' => 'image/png',
+      'minArea' => 2e7,
+    ],
+  ],
+  [
+    'conditions' => [
+      'mimeType' => 'image/tiff',
+      'minShrinkFactor' => 1.2,
+      'minArea' => 5e7,
+    ],
+    'sharpen' => [
+     'sigma' => 0.8
+    ],
+  ],
+];
 
 # Visual Editor
 $wgDefaultUserOptions['visualeditor-enable'] = 1;

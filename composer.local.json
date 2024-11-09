@@ -232,13 +232,13 @@
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-VipsScaler/archive/REL1_39.zip",
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-VipsScaler/archive/main-REL1_39.zip",
                                         "type": "zip"
                                 },
                                 "source": {
                                         "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-VipsScaler.git",
-                                        "reference": "REL1_39"
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-VipsScaler.git",
+                                        "reference": "main-REL1_39"
                                 }
                         }
                 },
