@@ -846,19 +846,8 @@ $wgVipsOptions = [
   [
     'conditions' => [
       'mimeType' => 'image/png',
-      'minArea' => 2e7,
     ],
-  ],
-  [
-    'conditions' => [
-      'mimeType' => 'image/tiff',
-      'minShrinkFactor' => 1.2,
-      'minArea' => 5e7,
-    ],
-    'sharpen' => [
-     'sigma' => 0.8
-    ],
-  ],
+  ]
 ];
 
 # Visual Editor
@@ -949,6 +938,7 @@ $wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['*']['createpage'] = false;
 $wgGroupPermissions['*']['writeapi'] = true;
 $wgGroupPermissions['*']['createtalk'] = false;
+$wgGroupPermissions['*']['vipsscaler-test'] = false;
 
 #user
 $wgGroupPermissions['user']['edit'] = true;
@@ -1018,6 +1008,7 @@ $wgGroupPermissions['Editor']['browsearchive'] = true;
 $wgGroupPermissions['Editor']['noratelimit'] = true;
 $wgGroupPermissions['Editor']['move-rootuserpages'] = true;
 $wgGroupPermissions['Editor']['org-edit'] = true;
+$wgGroupPermissions['Editor']['vipsscaler-test'] = true;
 
 #sysop
 $wgGroupPermissions['sysop'] = $wgGroupPermissions['Editor'];
