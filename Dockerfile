@@ -33,6 +33,11 @@ RUN set -eux; \
  	;
   
 # Install the PHP extensions we need
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+# Install wikidiff2
+RUN install-php-extensions wikidiff2
+
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -46,7 +51,6 @@ RUN set -eux; \
 		libwebp7 \
 		libzip-dev \
 		liblua5.1-0-dev \
-  		libthai-dev \
 	; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
@@ -56,7 +60,6 @@ RUN set -eux; \
 		mbstring \
 		mysqli \
 		opcache \
-  		wikidiff2 \
   		zip \
 	; \
 	\
