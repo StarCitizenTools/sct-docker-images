@@ -1,8 +1,8 @@
 FROM php:8.1-fpm
 
 # Version
-ENV MEDIAWIKI_MAJOR_VERSION 1.39
-ENV MEDIAWIKI_VERSION 1.39.10
+ENV MEDIAWIKI_MAJOR_VERSION=1.39
+ENV MEDIAWIKI_VERSION=1.39.10
 
 # System dependencies
 RUN set -eux; \
@@ -19,21 +19,29 @@ RUN set -eux; \
 		openssh-client \
 		rsync \
 		nano \
-  		liblua5.1-0 \
-  		libzip4 \
-        	s3cmd \
-	 	python3 \
-   		python3-pip \
+		liblua5.1-0 \
+		libzip4 \
+		s3cmd \
+		python3 \
+		python3-pip \
 	; \
 	rm -rf /var/lib/apt/lists/*
- 
+
 # Install the Python packages we need
 RUN set -eux; \
-	pip3 install Pygments --break-system-packages\
- 	;
-  
+	pip3 install Pygments --break-system-packages \
+	;
+
 # Install the PHP extensions we need
 RUN set -eux; \
+	# Install wikidiff2
+	# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
+	curl -sSLf \
+		-o /usr/local/bin/install-php-extensions \
+		https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+		chmod +x /usr/local/bin/install-php-extensions && \
+		install-php-extensions wikidiff2 \
+	; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	\
@@ -50,12 +58,12 @@ RUN set -eux; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
 		calendar \
-  		exif \
+		exif \
 		intl \
 		mbstring \
 		mysqli \
 		opcache \
-  		zip \
+		zip \
 	; \
 	\
 	pecl install \ 
@@ -86,46 +94,34 @@ RUN set -eux; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*
 
-# Install wikidiff2
-# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
-RUN set -eux; \
-	curl -sSLf \
-        -o /usr/local/bin/install-php-extensions \
-        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
-    chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions wikidiff2
-
-# Get a list of enabled PHP extensions and echo them
-RUN echo "Enabled PHP extensions:" && php -m | grep -v "Module" | awk '{ print "  - "$1 }'
-
 # MediaWiki setup
 RUN set -eux; \
-    fetchDeps=" \
-        gnupg \
-        dirmngr \
-    "; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends $fetchDeps; \
-    \
-    curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz; \
-    curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o mediawiki.tar.gz.sig; \
-    export GNUPGHOME="$(mktemp -d)"; \
-    # gpg key from https://www.mediawiki.org/keys/keys.txt
-    gpg --batch --keyserver keyserver.ubuntu.com --recv-keys \
-        D7D6767D135A514BEB86E9BA75682B08E8A3FEC4 \
-        441276E9CCD15F44F6D97D18C119E1A64D70938E \
-        F7F780D82EBFB8A56556E7EE82403E59F9F8CD79 \
-        1D98867E82982C8FE0ABC25F9B69B3109D3BB7B0 \
-    ; \
-    gpg --batch --verify mediawiki.tar.gz.sig mediawiki.tar.gz; \
+	fetchDeps=" \
+		gnupg \
+		dirmngr \
+	"; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends $fetchDeps; \
+	\
+	curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz; \
+	curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz.sig" -o mediawiki.tar.gz.sig; \
+	export GNUPGHOME="$(mktemp -d)"; \
+	# gpg key from https://www.mediawiki.org/keys/keys.txt
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys \
+		D7D6767D135A514BEB86E9BA75682B08E8A3FEC4 \
+		441276E9CCD15F44F6D97D18C119E1A64D70938E \
+		F7F780D82EBFB8A56556E7EE82403E59F9F8CD79 \
+		1D98867E82982C8FE0ABC25F9B69B3109D3BB7B0 \
+	; \
+	gpg --batch --verify mediawiki.tar.gz.sig mediawiki.tar.gz; \
 	mkdir /var/www/mediawiki; \
-    tar -x --strip-components=1 -f mediawiki.tar.gz -C /var/www/mediawiki; \
-    gpgconf --kill all; \
-    rm -r "$GNUPGHOME" mediawiki.tar.gz.sig mediawiki.tar.gz; \
-    \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
-    rm -rf /var/lib/apt/lists/*
-    
+	tar -x --strip-components=1 -f mediawiki.tar.gz -C /var/www/mediawiki; \
+	gpgconf --kill all; \
+	rm -r "$GNUPGHOME" mediawiki.tar.gz.sig mediawiki.tar.gz; \
+	\
+	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
+	rm -rf /var/lib/apt/lists/*
+
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
 COPY ./resources /var/www/mediawiki/resources
 
@@ -134,39 +130,39 @@ COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY ./config/robots.txt /var/www/mediawiki/robots.txt
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini; \
-    echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini; \
+	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini; \
 	echo 'pm.max_children = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-    echo 'pm.max_requests = 200' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
+	echo 'pm.max_requests = 200' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
 	echo 'pm.start_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-    echo 'pm.min_spare_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-    echo 'pm.max_spare_servers = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf; 
+	echo 'pm.min_spare_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
+	echo 'pm.max_spare_servers = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf; 
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 COPY composer.local.json /var/www/mediawiki
 
 RUN set -eux; \
-   chown -R www-data:www-data /var/www; \
-   	\
-	 mkdir /usr/local/smw; \
-	 chown www-data:www-data /usr/local/smw
+	chown -R www-data:www-data /var/www; \
+	\
+	mkdir /usr/local/smw; \
+	chown www-data:www-data /usr/local/smw
 
 WORKDIR /var/www/mediawiki
 
 USER www-data
 
 RUN set -eux; \
-   /usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
-   /usr/bin/composer install --no-dev \
-     --ignore-platform-reqs \
-     --no-ansi \
-     --no-interaction \
-     --no-scripts; \
-   rm -f composer.lock.json ;\
-   /usr/bin/composer update --no-dev \
-                            --no-ansi \
-                            --no-interaction \
-                            --no-scripts; \
+	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
+	/usr/bin/composer install --no-dev \
+		--ignore-platform-reqs \
+		--no-ansi \
+		--no-interaction \
+		--no-scripts; \
+	rm -f composer.lock.json ;\
+	/usr/bin/composer update --no-dev \
+		--no-ansi \
+		--no-interaction \
+		--no-scripts; \
 	\
 	mv /var/www/mediawiki/extensions/Checkuser /var/www/mediawiki/extensions/CheckUser; \
 	mv /var/www/mediawiki/extensions/Dismissablesitenotice /var/www/mediawiki/extensions/DismissableSiteNotice; \
