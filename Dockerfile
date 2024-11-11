@@ -67,7 +67,7 @@ RUN set -eux; \
 	; \
 	\
 	pecl install \ 
-		APCu-5.1.24 \
+		APCu \
 		luasandbox \
 		imagick \
 		redis \
