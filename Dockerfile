@@ -33,12 +33,6 @@ RUN set -eux; \
  	;
   
 # Install the PHP extensions we need
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-# Install wikidiff2
-# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
-RUN install-php-extensions wikidiff2
-
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -75,8 +69,6 @@ RUN set -eux; \
 		luasandbox \
 		imagick  \
 		redis \
-		# install-php-extensions should enable wikidiff2 but somehow it does not
-		wikidiff2 \
 	; \
 	rm -r /tmp/pear; \
 	\
@@ -93,6 +85,14 @@ RUN set -eux; \
 	\
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*
+
+# Install wikidiff2
+# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions wikidiff2
 
 # MediaWiki setup
 RUN set -eux; \
