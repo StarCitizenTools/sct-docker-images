@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  _____ _               _____ _ _   _                 _____           _     
  * /  ___| |             /  __ (_) | (_)               |_   _|         | |    
@@ -9,162 +8,78 @@
  * \____/ \__\__,_|_|     \____/_|\__|_/___\___|_| |_|   \_/\___/ \___/|_|___/
  *
  * MediaWiki configuration setting for Star Citizen Wiki
- * @see https://www.mediawiki.org/wiki/Manual:LocalSettings.php Documentation
  *
+ * MediaWiki branch: REL1_39
+ * When updating major MediaWiki version, please update the branch text above
+ * in this document, it will update the documentation links to the right version.
+ *
+ * @see https://www.mediawiki.org/wiki/Manual:LocalSettings.php Documentation
  * @link https://starcitizen.tools/ Offical site
  * @link https://discord.com/invite/XcKwqyD4sc Contact us
  */
 
 // Protect against web entry
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
 /**
- * Namespace global constants
- *
- * @see https://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Creating_a_custom_namespace
+ * Maintenance config
  */
-// Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
-define('NS_MODULE', 828);
-define('NS_MODULE_TALK', 829);
+// $wgReadOnly = 'Maintenance is underway. Website is on read-only mode';
+// Invalidate cache
+// Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
+// $wgCacheEpoch = '20241110231803'; // Page cache
+// $wgThumbnailEpoch = '20241110231803'; // Thumbnail cache
+// $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
 
-// Custom namespaces
-define("NS_COMMLINK", 3000);
-define("NS_COMMLINK_TALK", 3001);
-define("NS_PROJMGMT", 3002);
-define("NS_PROJMGMT_TALK", 3003);
-define("NS_ISSUE", 3004);
-define("NS_ISSUE_TALK", 3005);
-define("NS_GUIDE", 3006);
-define("NS_GUIDE_TALK", 3007);
-define("NS_ORG", 3008);
-define("NS_ORG_TALK", 3009);
-define("NS_UPDATE", 3016);
-define("NS_UPDATE_TALK", 3017);
-define("NS_ERROR", 30000);
-define("NS_ERROR_TALK", 30001);
-
-// Debug settings
+/**
+ * Debug/Development config
+ * Do not enable these on production unless necessary
+ * 
+ * @see https://www.mediawiki.org/wiki/Manual:How_to_debug
+ */
+// error_reporting( -1 );
+// ini_set( 'display_errors', 1 );
 // $wgShowExceptionDetails = true;
+// $wgDebugToolbar = true;
+// $wgDevelopmentWarnings = true;
 // $wgDebugDumpSql = true;
 // $wgDebugComments = true;
-// $wgDebugToolbar = true;
 
-// Maintenance
-// $wgReadOnly = 'Maintenance is underway. Website is on read-only mode';
+/**
+ * MediaWiki core main config
+ *
+ * @see https://github.com/wikimedia/mediawiki/blob/REL1_39/includes/MainConfigSchema.php Definitions
+ * @see https://www.mediawiki.org/wiki/Manual:Configuration_settings Documentation
+ */
 
-# General Settings
-$wgSitename = "Star Citizen Wiki";
-$wgServer = "https://starcitizen.tools";
-$wgMetaNamespace = "Star_Citizen_Wiki";
-# Force HTTPS
-$wgForceHTTPS = true;
-# Main page is served as the domain root
-$wgMainPageIsDomainRoot = true;
-# Allow MediaWiki:Citizen.css to load on all pages
-$wgAllowSiteCSSOnRestrictedPages = true;
-# Use HTML5 encoding with minimal escaping
-$wgFragmentMode = ['html5'];
-# Use Parsoid media HTML structure
-$wgParserEnableLegacyMediaDOM = false;
-$wgLocaltimezone = "UTC";
-$wgMaxShellMemory = 0;
-
+/**
+ * Keys
+ */
 $wgSecretKey = "{$_ENV['MEDIAWIKI_SECRETKEY']}";
 $wgUpgradeKey = "{$_ENV['MEDIAWIKI_UPGRADEKEY']}";
 
-$wgMiserMode = true;
-
-# Disable all the query pages that take more than about 15 minutes to update
-# We will run these pages separately with a lower interval
-# @see https://github.com/StarCitizenTools/sct-k8-config/blob/smw/mediawiki/mw-cronjob.yaml
-$wgDisableQueryPageUpdate = [
-	'Ancientpages' => 'half-monthly',
-	'Deadendpages' => 'half-monthly',
-	'Fewestrevisions' => 'half-monthly',
-	'Mostlinked' => 'half-monthly',
-	'Mostrevisions' => 'half-monthly',
-	'Wantedpages' => 'half-monthly'
-];
-
-# Database settings
-$wgDBtype = "mysql";
-$wgDBserver = "mariadb-service.default.svc.cluster.local";
-$wgDBname = "scw_PROD";
-$wgDBuser = "root";
-$wgDBpassword = "{$_ENV['PRD_DB_PASSWORD']}";
-$wgDBprefix = "wiki";
-
-# See T343492
-# TODO: Remove after updating to MW 1.43
-$wgResourceLoaderUseObjectCacheForDeps = true;
-
-## The URL base path to the directory containing the wiki;
-## defaults for all runtime URL paths are based off of this.
-## For more information on customizing the URLs
-## (like /w/index.php/Page_title to /wiki/Page_title) please see:
-## https://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath = "";
-$wgScriptExtension = "$wgScriptPath/index.php";
+/**
+ * Server/site settings
+ */
+$wgSitename = 'Star Citizen Wiki';
+$wgServer = 'https://starcitizen.tools';
+// Short URL paths
 $wgArticlePath = "/$1";
+$wgScriptPath = "";
+// Main page is served as the domain root
+$wgMainPageIsDomainRoot = true;
+$wgLocaltimezone = "UTC";
+$wgMaxShellMemory = 0;
 
-## Content Security Policy
-## Flickr API is required for UploadWizard
-## nonces have limited support and removed in MW 1.41
-$wgCSPHeader = [
-	'useNonces' => false,
-	'script-src' => [
-		'\'self\''
-	],
-	'default-src' => [
-		'\'self\'',
-		'https://api.flickr.com'
-	],
-	'style-src' => ['\'self\'',],
-	'object-src' => ['\'none\''],
-];
-
-# Set X-Frame-Options to DENY
-$wgBreakFrames = true;
-
-## Cookies policy
-## Strict - Cookies for me and not for thee
-$wgCookieSameSite = 'Strict';
-## Only send over HTTPS
-$wgCookieSecure = true;
-
-## Referrer policy
-$wgReferrerPolicy = ['strict-origin-when-cross-origin', 'strict-origin'];
-
-## Output a canonical meta tag on every page
-$wgEnableCanonicalServerLink = true;
-
-# Preconnect to the media subdomain
-$wgImagePreconnect = true;
-
-## The URL path to static resources (images, scripts, etc.)
-$wgResourceBasePath = $wgScriptPath;
-
-## The URL path to the logo.  Make sure you change this from the default,
-## or else you'll overwrite your logo when you upgrade!
+// Logos
 $wgLogos = [
 	'svg' => "$wgResourceBasePath/resources/assets/sitelogo.svg",
 ];
-
 $wgFavicon = '/favicon.svg';
 
-## UPO means: this is also a user preference option
-$wgEnableEmail = true;
-$wgEnableUserEmail = true; # UPO
-
-$wgEmergencyContact = "webmaster@starcitizen.tools";
-$wgPasswordSender = "no-reply@starcitizen.tools";
-
-$wgEnotifUserTalk = false; # UPO
-$wgEnotifWatchlist = false; # UPO
-$wgEmailAuthentication = true;
-
+// Email
 $wgSMTP = [
 	'host' => 'mail.methean.com',
 	'IDHost' => 'starcitizen.tools',
@@ -173,45 +88,64 @@ $wgSMTP = [
 	'username' => 'no-reply@starcitizen.tools',
 	'password' => $_ENV['SMTP_PASSWORD']
 ];
+$wgEmergencyContact = "webmaster@starcitizen.tools";
+$wgPasswordSender = "no-reply@starcitizen.tools";
+// Required for sending multipart emails (e.g. Extension:Echo)
+$wgAllowHTMLEmail = true;
 
-## Allow logged-in users to set a preference whether or not matches 
-## in search results should force redirection to that page.
-$wgSearchMatchRedirectPreference = true;
+// Copyright
+$wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
+$wgRightsUrl = "https://creativecommons.org/licenses/by-sa/4.0/";
+$wgRightsText = "Creative Commons Attribution-ShareAlike";
+$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
-# Disable the real name field
-$wgHiddenPrefs[] = 'realname';
-
-# Use argon2 to hash user password (MW default: 'pbkdf2')
-$wgPasswordDefault = 'argon2';
-
-# MySQL table options to use during installation or update
+/**
+ * Database settings
+ */
+$wgDBserver = "mariadb-service.default.svc.cluster.local";
+$wgDBname = "scw_PROD";
+$wgDBuser = "root";
+$wgDBpassword = "{$_ENV['PRD_DB_PASSWORD']}";
+$wgDBprefix = "wiki";
+// MySQL table options to use during installation or update
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
 
-## Set $wgCacheDirectory to a writable directory on the web server
-## to make your wiki go slightly faster. The directory should not
-## be publically accessible from the web.
+/**
+ * Cache settings
+ */
+// Set $wgCacheDirectory to a writable directory on the web server
+// to make your wiki go slightly faster. The directory should not
+// be publically accessible from the web.
 $wgCacheDirectory = "$IP/cache";
 
-## Shared memory settings
+// Define redis
+$wgObjectCaches['redis'] = [
+	'class' => 'RedisBagOStuff',
+	'servers' => [ 'redis-service.default.svc.cluster.local' ],
+	'persistent' => true,
+	// 'connectTimeout' => 1,
+	// 'password' => 'secret',
+	// 'automaticFailOver' => true,
+];
+
+// https://phabricator.wikimedia.org/T352481
+$wgMainStash = 'redis';
 $wgMainCacheType = 'redis';
+// Set explicitly to CACHE_DB (https://www.mediawiki.org/wiki/Manual:$wgParserCacheType)
 $wgParserCacheType = CACHE_DB;
 $wgSessionCacheType = 'redis';
 $wgMemCachedServers = [];
-$wgMainStash = 'redis';
-
-# Extend parser cache to 3 days
-$wgParserCacheExpireTime = 259200;
 $wgEnableSidebarCache = true;
 $wgUseLocalMessageCache = true;
+// Extend parser cache to 3 days
+$wgParserCacheExpireTime = 259200;
 
-# Cloudflare CDN
-# IP range: https://www.cloudflare.com/ips/
-$wgUsePrivateIPs = true;
+// Cloudflare CDN settings
 $wgUseCdn = true;
-# Align with parser cache
-$wgCdnMaxAge = 259200;
+$wgCdnMaxAge = $wgParserCacheExpireTime;
+// https://www.cloudflare.com/ips
 $wgCdnServersNoPurge = [
-	'194.233.168.70', # Linode Loadbalancer
+	'194.233.168.70', // Linode Loadbalancer
 	'10.0.0.0/8',
 	'173.245.48.0/20',
 	'103.21.244.0/22',
@@ -237,111 +171,221 @@ $wgCdnServersNoPurge = [
 	'2c0f:f248::/32',
 	'2405:b500::/32'
 ];
+$wgUsePrivateIPs = true;
 
-## To enable image uploads, make sure the 'images' directory
-## is writable, then set this to true:
+/**
+ * Security and privacy settings
+ */
+// We have HSTS preload, so we should enforce HTTPS at all times
+$wgForceHTTPS = true;
+// Set X-Frame-Options to DENY
+$wgBreakFrames = true;
+$wgCSPHeader = [
+	// nonces have limited support and removed in MW 1.41
+	'useNonces' => false,
+	'script-src' => [
+		'\'self\''
+	],
+	'default-src' => [
+		'\'self\'',
+		// Flickr API is required for UploadWizard
+		'https://api.flickr.com'
+	],
+	'style-src' => ['\'self\'',],
+	'object-src' => ['\'none\''],
+];
+$wgReferrerPolicy = 'strict-origin-when-cross-origin';
+// Cookies for me and not for thee
+$wgCookieSameSite = 'Strict';
+// Only send cookies over HTTPS
+$wgCookieSecure = true;
+// Use argon2 to hash user password (MW default: 'pbkdf2')
+$wgPasswordDefault = 'argon2';
+// Eww we don't want to know your real name,
+// remove the real name field from sign up and preference page.
+$wgHiddenPrefs[] = 'realname';
+// Open external link in new tab/window
+$wgExternalLinkTarget = '_blank';
+
+/**
+ * Performance settings
+ */
+$wgMultiShardSiteStats = true;
+// @see https://phabricator.wikimedia.org/T343492
+$wgResourceLoaderUseObjectCacheForDeps = true;
+// Don't invalidate cache for changes in localsettings.php,
+// instead use $wgCacheEpoch above to do it.
+$wgInvalidateCacheOnLocalSettingsChange = false;
+/**
+ * Disable database-intensive features and let cron to handle them
+ *
+ * @see https://github.com/StarCitizenTools/sct-k8-config/blob/smw/mediawiki/mw-cronjob.yaml
+ */
+$wgMiserMode = true;
+// Disable all the query pages that take more than about 15 minutes to update
+// We will run these pages separately with a lower interval
+$wgDisableQueryPageUpdate = [
+	'Ancientpages' => 'half-monthly',
+	'Deadendpages' => 'half-monthly',
+	'Fewestrevisions' => 'half-monthly',
+	'Mostlinked' => 'half-monthly',
+	'Mostrevisions' => 'half-monthly',
+	'Wantedpages' => 'half-monthly'
+];
+// Job queue
+$wgJobTypeConf['default'] = [
+	'class' => 'JobQueueRedis',
+	'order' => 'fifo',
+	'redisServer' => 'redis-service.default.svc.cluster.local',
+	'checkDelay' => true,
+	'daemonized' => true
+];
+// We have jobrunner set up so don't run any jobs on request
+$wgJobRunRate = 0;
+// Defer upload tasks to jobrunner
+// TODO: Check if our jobrunner can handle that
+// $wgEnableAsyncUploads = true;
+
+/**
+ * Output settings
+ */
+// Use HTML5 encoding with minimal escaping
+$wgFragmentMode = [ 'html5' ];
+// Use Parsoid media HTML structure
+$wgParserEnableLegacyMediaDOM = false;
+// Allow MediaWiki:Citizen.css to load on all pages
+$wgAllowSiteCSSOnRestrictedPages = true;
+// Output a canonical meta tag on every page
+$wgEnableCanonicalServerLink = true;
+// Enable native lazyloading
+$wgNativeImageLazyLoading = true;
+
+/**
+ * File settings
+ */
+// Enable image uploads
+// Make sure the 'images' directory is writable
 $wgEnableUploads = true;
-
-# Thumbmail settings
-# MediaWiki thumbnailing is all over the place (T360589)
-# We will be using multiples of 80 for image sizes
-# Since thumbnailing is quite performance-heavy especially
-# when we use Extension:WebP, we need to defragment the image sizes
-
-# List of image widths on the wiki
-# - 120px - File history on file page (ImageHistoryList.php)
-# - 160px - Thumb size 0
-# - 320px - Thumb size 1 / Image size 0
-# - 480px - Responsive image
-# - 640px - Image size 1
-# - 1280px - Image size 2
-# - 1920px - Responsive image
-# - 2560px - Image size 3
-
-# Stream and serve thumbnails with thumb.php
-# Disabled due to Extension:WebP
-# $wgGenerateThumbnailOnParse = false;
-# $wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
-
-# Reduce the number of thumb sizes served
-$wgThumbLimits = [
-	160, // thumb size 0,
-	240, // thumb size 1
-	320 // thumb size 2
-];
-
-# Set to 300px thumb by default
-$wgDefaultUserOptions['thumbsize'] = 2;
-
-# Reduce the number of image sizes served in description page
-$wgImageLimits = [
-	[320, 240], // image size 0
-	[640, 480], // image size 1
-	[1280, 1024], // image size 2
-	[2560, 2048], // image size 3
-];
-
-# Set to 1280px image by default
-$wgDefaultUserOptions['imagesize'] = 2; // image size 2
-
-# Use intermediary thumbnails to speed up thumbnail rendering
-# This will result in several chained lossy transformations
-# but we need it because the wiki uses a lot of high quality images
-$wgThumbnailBuckets = [
-	1280,
-	2560
-];
-$wgThumbnailMinimumBucketDistance = 100;
-
-# Gallery settings
-# Sync with default image size 0
-$wgGalleryOptions['imageWidth'] = 320;
-$wgGalleryOptions['imageHeight'] = 240;
-# Use traditional mode as packed-overlay seems to ignore the thumbnail restrictions above
-#$wgGalleryOptions['mode'] = 'packed-overlay';
-
-#$wgUploadThumbnailRenderMethod = 'html';
-$wgUseImageMagick = true;
-$wgThumbnailEpoch = "20190815000000";
 $wgIgnoreImageErrors = true;
-
 $wgMaxImageArea = 6.4e7;
+$wgUseImageMagick = true;
+// Stream and serve thumbnails with thumb.php
+// Disabled due to incompatibility with Extension:WebP
+// $wgGenerateThumbnailOnParse = false;
+// $wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
 
-## If you want to use image uploads under safe mode,
-## create the directories images/archive, images/thumb and
-## images/temp, and make them all writable. Then uncomment
-## this, if it's not already uncommented:
-#$wgHashedUploadDirectory = false;
-
-## For attaching licensing metadata to pages, and displaying an
-## appropriate copyright notice / icon. GNU Free Documentation
-## License and Creative Commons licenses are supported so far.
-$wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "https://creativecommons.org/licenses/by-sa/4.0/";
-$wgRightsText = "Creative Commons Attribution-ShareAlike";
-$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
-
-# The following permissions were set based on your choice in the installer
-$wgAllowUserCss = true;
-
-# SVG Support
+// SVG Support
 $wgFileExtensions[] = 'svg';
 $wgAllowTitlesInSVG = true;
 $wgSVGConverter = 'ImageMagick';
 
-# Open external link in new tab/window
-$wgExternalLinkTarget = '_blank';
+/**
+ * Standardize thumbnail sizes
+ * MediaWiki thumbnailing is all over the place (T360589)
+ * Since thumbnailing is quite performance-heavy especially
+ * when we use Extension:WebP, we need to defragment the image sizes
+ *
+ * TODO: Wait on https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1084920
+ * TODO: Set wgMediaViewerThumbnailBucketSizes once we move to MW 1.43
+ *
+ * List of image widths on the wiki
+ * 120px - File history on file page (ImageHistoryList.php)
+ * 160px - Thumb size 0
+ * 320px - Thumb size 1 / Image size 0
+ * 480px - Responsive image
+ * 640px - Image size 1
+ * 1280px - Image size 2
+ * 1920px - Responsive image
+ * 2560px - Image size 3
+ */
 
-# Enable native lazyloading
-$wgNativeImageLazyLoading = true;
+/** @var array Standardized thumb sizes (Multiples of 80) */
+const SCT_THUMB_SIZES = [
+	[ 160, 120 ],
+	[ 240, 180 ],
+	[ 320, 240 ],
+	[ 640, 480 ],
+	[ 1280, 1024 ],
+	[ 2560, 2048 ]
+];
 
-# Fix double redirects after a page move
+// Reduce the number of thumb sizes served
+$wgThumbLimits = [
+	SCT_THUMB_SIZES[0][0], // thumb size 0,
+	SCT_THUMB_SIZES[1][0], // thumb size 1
+	SCT_THUMB_SIZES[2][0] // thumb size 2
+];
+// Set to 300px thumb by default
+$wgDefaultUserOptions['thumbsize'] = 2;
+// Reduce the number of image sizes served in description page
+$wgImageLimits = [
+	[ SCT_THUMB_SIZES[3][0], SCT_THUMB_SIZES[3][1] ], // image size 0
+	[ SCT_THUMB_SIZES[4][0], SCT_THUMB_SIZES[4][1] ], // image size 1
+	[ SCT_THUMB_SIZES[5][0], SCT_THUMB_SIZES[5][1] ], // image size 2
+	[ SCT_THUMB_SIZES[6][0], SCT_THUMB_SIZES[6][1] ], // image size 3
+];
+// Set to 1280px image by default
+$wgDefaultUserOptions['imagesize'] = 2; // image size 2
+
+// Use intermediary thumbnails to speed up thumbnail rendering
+// This will result in several chained lossy transformations
+// but we need it because the wiki uses a lot of high quality images
+$wgThumbnailBuckets = [ SCT_THUMB_SIZES[5][0] ];
+$wgThumbnailMinimumBucketDistance = 100;
+
+// Gallery settings
+// Sync with default image size 0
+$wgGalleryOptions['imageWidth'] = $wgImageLimits[0][0];
+$wgGalleryOptions['imageHeight'] = $wgImageLimits[0][1];
+// packed-overlay seems to ignore the thumbnail restrictions above
+// $wgGalleryOptions['mode'] = 'packed-overlay';
+
+/**
+ * Content settings
+ */
+// Fix double redirects after a page move
 $wgFixDoubleRedirects = true;
-
-# Allow pages to override their title
+// Allow pages to override their title
 $wgRestrictDisplayTitle = false;
 
+/**
+ * User settings
+ */
+// Allow user styles
+$wgAllowUserCss = true;
+// Allow logged-in users to set a preference whether or not matches 
+// in search results should force redirection to that page.
+$wgSearchMatchRedirectPreference = true;
+
 #=============================================== Namespaces ===============================================
+/**
+ * Namespace global constants
+ *
+ * @see https://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Creating_a_custom_namespace
+ */
+// Would be defined by Scribunto later, but we need it for $wgNamespaceAliases
+define('NS_MODULE', 828);
+define('NS_MODULE_TALK', 829);
+
+// Custom namespaces
+define("NS_COMMLINK", 3000);
+define("NS_COMMLINK_TALK", 3001);
+define("NS_PROJMGMT", 3002);
+define("NS_PROJMGMT_TALK", 3003);
+define("NS_ISSUE", 3004);
+define("NS_ISSUE_TALK", 3005);
+define("NS_GUIDE", 3006);
+define("NS_GUIDE_TALK", 3007);
+define("NS_ORG", 3008);
+define("NS_ORG_TALK", 3009);
+define("NS_UPDATE", 3016);
+define("NS_UPDATE_TALK", 3017);
+define("NS_ERROR", 30000);
+define("NS_ERROR_TALK", 30001);
+
+// Default to $wgSitename but we need to escape it with underscores
+$wgMetaNamespace = 'Star_Citizen_Wiki';
+
 $wgExtraNamespaces[NS_COMMLINK] = "Comm-Link";
 $wgExtraNamespaces[NS_COMMLINK_TALK] = "Comm-Link_talk";
 $wgNamespacesWithSubpages[NS_COMMLINK] = true;
@@ -531,8 +575,13 @@ $wgAWSBucketName = 'media.starcitizen.tools';
 $wgAWSBucketDomain = 'media.starcitizen.tools';
 $wgAWSRepoHashLevels = '2';
 $wgAWSRepoDeletedHashLevels = '3';
-$wgFileBackends['s3']['endpoint'] = 'https://eu-central-1.linodeobjects.com';
 $wgAWSRegion = 'eu-central-1';
+// These MW core settings are grouped under Extension:AWS
+// because Extension:AWS is the only consumer
+// Set up S3 bucket as backend
+$wgFileBackends['s3']['endpoint'] = 'https://eu-central-1.linodeobjects.com';
+// Preconnect to media.starcitizen.tools
+$wgImagePreconnect = true;
 
 # CirrusSearch
 $wgCirrusSearchIndexBaseName = 'scw_prod';
@@ -582,9 +631,6 @@ $wgDismissableSiteNoticeForAnons = true;
 # DynamicPageList3
 $wgDplSettings['recursiveTagParse'] = true;
 $wgDplSettings['allowUnlimitedResults'] = true;
-
-# Echo
-$wgAllowHTMLEmail = true;
 
 # EmbedVideo
 # Disable the embed styles so that the EmbedVideo ResourceLoader modules
@@ -914,25 +960,6 @@ $wgCitizenSearchDescriptionSource = 'wikidata';
 $wgCitizenMaxSearchResults = 10;
 # Default to dark theme
 $wgCitizenThemeDefault = 'dark';
-
-# Job Queue
-/** @see RedisBagOStuff for a full explanation of these options. **/
-$wgObjectCaches['redis'] = [
-	'class'                => 'RedisBagOStuff',
-	'servers'              => ['redis-service.default.svc.cluster.local'],
-	// 'connectTimeout'    => 1,
-	// 'persistent'        => false,
-	// 'password'          => 'secret',
-	// 'automaticFailOver' => true,
-];
-$wgJobTypeConf['default'] = [
-	'class' => 'JobQueueRedis',
-	'order' => 'fifo',
-	'redisServer' => 'redis-service.default.svc.cluster.local',
-	'checkDelay' => true,
-	'daemonized' => true
-];
-$wgJobRunRate = 0;
 
 #=============================================== Permissions ===============================================
 $wgAutopromote = [
