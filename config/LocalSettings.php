@@ -1321,28 +1321,32 @@ $wgHooks['SkinAddFooterLinks'][] = function( $sk, $key, &$footerlinks ) {
 		//	],
 		//	$sk->msg( 'footer-analytics' )->escaped()
 		//);
-		$footerlinks['statuspage'] = Html::rawElement( 'a',
+		$footerlinks['statuspage'] = Html::rawElement(
+			'a',
 			[
 				'href' => 'https://status.starcitizen.tools',
 				'rel' => $rel
 			],
 			$sk->msg('footer-statuspage')->escaped()
 		);
-		$footerlinks['github'] = Html::rawElement( 'a',
+		$footerlinks['github'] = Html::rawElement(
+			'a',
 			[
 				'href' => 'https://github.com/StarCitizenTools',
 				'rel' => $rel
 			],
 			$sk->msg('footer-github')->escaped()
 		);
-		$footerlinks['patreon'] = Html::rawElement( 'a',
+		$footerlinks['patreon'] = Html::rawElement(
+			'a',
 			[
 				'href' => 'https://www.patreon.com/starcitizentools',
 				'rel' => $rel
 			],
 			$sk->msg('footer-patreon')->escaped()
 		);
-		$footerlinks['kofi'] = Html::rawElement( 'a',
+		$footerlinks['kofi'] = Html::rawElement(
+			'a',
 			[
 				'href' => 'https://ko-fi.com/starcitizentools',
 				'rel' => $rel

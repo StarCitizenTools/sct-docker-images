@@ -75,6 +75,8 @@ RUN set -eux; \
 		luasandbox \
 		imagick  \
 		redis \
+		# install-php-extensions should enable wikidiff2 but somehow it does not
+		wikidiff2 \
 	; \
 	rm -r /tmp/pear; \
 	\
