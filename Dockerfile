@@ -55,6 +55,7 @@ RUN set -eux; \
 		mbstring \
 		mysqli \
 		opcache \
+  		wikidiff2 \
   		zip \
 	; \
 	\
