@@ -66,11 +66,11 @@ $wgUpgradeKey = "{$_ENV['MEDIAWIKI_UPGRADEKEY']}";
 $wgSitename = 'Star Citizen Wiki';
 $wgServer = 'https://starcitizen.tools';
 // Short URL paths
-$wgArticlePath = "/$1";
-$wgScriptPath = "";
+$wgArticlePath = '/$1';
+$wgScriptPath = '';
 // Main page is served as the domain root
 $wgMainPageIsDomainRoot = true;
-$wgLocaltimezone = "UTC";
+$wgLocaltimezone = 'UTC';
 $wgMaxShellMemory = 0;
 
 // Logos and icons
@@ -100,8 +100,8 @@ $wgFooterIcons = [
 			'src' => "$wgResourceBasePath/resources/assets/badge-ccbysa.svg",
 			'url' => $wgRightsUrl,
 			'alt' => $wgRightsText,
-			'height' => "50",
-			'width' => "110",
+			'height' => '50',
+			'width' => '110',
 		],
 	],
 	'madeby' => [
@@ -133,27 +133,27 @@ $wgSMTP = [
 	'username' => 'no-reply@starcitizen.tools',
 	'password' => $_ENV['SMTP_PASSWORD'],
 ];
-$wgEmergencyContact = "webmaster@starcitizen.tools";
-$wgPasswordSender = "no-reply@starcitizen.tools";
+$wgEmergencyContact = 'webmaster@starcitizen.tools';
+$wgPasswordSender = 'no-reply@starcitizen.tools';
 // Required for sending multipart emails (e.g. Extension:Echo)
 $wgAllowHTMLEmail = true;
 
 // Copyright
-$wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "https://creativecommons.org/licenses/by-sa/4.0/";
-$wgRightsText = "Creative Commons Attribution-ShareAlike";
+$wgRightsPage = ''; # Set to the title of a wiki page that describes your license/copyright
+$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
+$wgRightsText = 'Creative Commons Attribution-ShareAlike';
 $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
 /**
  * Database settings
  */
-$wgDBserver = "mariadb-service.default.svc.cluster.local";
-$wgDBname = "scw_PROD";
-$wgDBuser = "root";
+$wgDBserver = 'mariadb-service.default.svc.cluster.local';
+$wgDBname = 'scw_PROD';
+$wgDBuser = 'root';
 $wgDBpassword = "{$_ENV['PRD_DB_PASSWORD']}";
-$wgDBprefix = "wiki";
+$wgDBprefix = 'wiki';
 // MySQL table options to use during installation or update
-$wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
+$wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=utf8';
 
 /**
  * Cache settings
@@ -683,11 +683,11 @@ $wgCaptchaTriggers['create'] = true;
 $wgCaptchaTriggers['sendemail'] = true;
 // Questy Catpcha
 $wgCaptchaQuestions = [
-	"What the name of site?" => [ 'sct', 'star citizen wiki', 'star citizen tools', 'starcitizen.tools' ],
-	"What is the name of the company that is developing the game?" => [ 'cig', 'rsi', 'cloud imperium', 'cloud imperium games', 'robert space industries', 'roberts space industries' ],
+	'What the name of site?' => [ 'sct', 'star citizen wiki', 'star citizen tools', 'starcitizen.tools' ],
+	'What is the name of the company that is developing the game?' => [ 'cig', 'rsi', 'cloud imperium', 'cloud imperium games', 'robert space industries', 'roberts space industries' ],
 	"Who is the co-founder, CEO, director of the game's developer" => [ 'chris roberts', 'chris robert' ],
-	"What is the single player part of the game named?" => [ 'squadron 42', 'sq42', 'squadron42' ],
-	"Who is the in-lore manufacturer of the <a href='https://starcitizen.tools/Talon'> Talon</a>? " => [ 'esperia', 'espr', 'esperia (espr)' ],
+	'What is the single player part of the game named?' => [ 'squadron 42', 'sq42', 'squadron42' ],
+	"Who is the in-lore manufacturer of the <a href='https://starcitizen.tools/Talon'> Talon</a>?" => [ 'esperia', 'espr', 'esperia (espr)' ],
 ];
 
 /**
@@ -770,7 +770,7 @@ $wgMultiPurgeCloudFlareZoneId = "{$_ENV['CLOUDFLARE_ZONEID']}";
 $wgMultiPurgeCloudFlareApiToken = "{$_ENV['CLOUDFLARE_APITOKEN']}";
 $wgMultiPurgeStaticPurges = [
 	'Startup script' => 'load.php?lang=en&modules=startup&only=scripts&raw=1&skin=citizen',
-	"Site styles" => "load.php?lang=en&modules=site.styles&only=styles&skin=citizen"
+	'Site styles' => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
 ];
 $wgMultiPurgeRunInQueue = true;
 
@@ -873,7 +873,7 @@ $smwgQueryResultCacheType = 'redis';
 $smwgEnabledQueryDependencyLinksStore = true;
 // Duplicate query conditions should be removed from computing query results
 $smwgQFilterDuplicates = true;
-$smwgConfigFileDir = "/usr/local/smw";
+$smwgConfigFileDir = '/usr/local/smw';
 // Enable SMW in the following namespaces
 $smwgNamespacesWithSemanticLinks[NS_TEMPLATE] = true;
 $smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
@@ -916,25 +916,25 @@ $wgPygmentizePath = '/usr/local/bin/pygmentize';
  * @see https://github.com/wikimedia/mediawiki-extensions-TemplateStyles
  */
 $wgTemplateStylesAllowedUrls = [
-	"audio" => [
-		"<^https://starcitizen\\.tools/>",
-		"<^https://media\\.starcitizen\\.tools/>",
+	'audio' => [
+		'<^https://starcitizen\\.tools/>',
+		'<^https://media\\.starcitizen\\.tools/>',
 	],
-	"image" => [
-		"<^https://starcitizen\\.tools/>",
-		"<^https://media\\.starcitizen\\.tools/>",
+	'image' => [
+		'<^https://starcitizen\\.tools/>',
+		'<^https://media\\.starcitizen\\.tools/>',
 	],
-	"svg" => [
-		"<^https://starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>",
-		"<^https://media\\.starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>",
+	'svg' => [
+		'<^https://starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>',
+		'<^https://media\\.starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>',
 	],
-	"font" => [
-		"<^https://starcitizen\\.tools/>",
+	'font' => [
+		'<^https://starcitizen\\.tools/>',
 	],
-	"namespace" => [
-		"<.>",
+	'namespace' => [
+		'<.>',
 	],
-	"css" => [],
+	'css' => [],
 ];
 $wgTemplateStylesNamespaces = [
 	NS_TEMPLATE => true,
@@ -1112,7 +1112,7 @@ $wgVisualEditorEnableDiffPage = true;
 $wgVisualEditorUseSingleEditTab = true;
 $wgVisualEditorEnableVisualSectionEditing = true;
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
-$wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
+$wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
 // Default to new source editor
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
 // It is enabled by default, no need to add it to preferences
@@ -1124,8 +1124,8 @@ $wgPrefs[] = 'visualeditor-enable';
  * @see https://github.com/octfx/mediawiki-extension-WebP
  */
 // $wgEnabledTransformers = [
-//   "MediaWiki\\Extension\\WebP\\Transformer\\WebPTransformer",
-//   "MediaWiki\\Extension\\WebP\\Transformer\\AvifTransformer",
+//   'MediaWiki\\Extension\\WebP\\Transformer\\WebPTransformer',
+//   'MediaWiki\\Extension\\WebP\\Transformer\\AvifTransformer',
 // ];
 $wgWebPCompressionQuality = 95;
 $wgWebPEnableResponsiveVersionJobs = true;
