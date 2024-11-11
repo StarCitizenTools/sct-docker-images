@@ -88,11 +88,15 @@ RUN set -eux; \
 
 # Install wikidiff2
 # There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
-RUN curl -sSLf \
+RUN set -eux; \
+	curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions wikidiff2
+
+# Get a list of enabled PHP extensions and echo them
+RUN echo "Enabled PHP extensions:" && php -m | grep -v "Module" | awk '{ print "  - "$1 }'
 
 # MediaWiki setup
 RUN set -eux; \
