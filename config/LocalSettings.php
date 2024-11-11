@@ -24,14 +24,21 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * Invalidate cache
+ *
+ * Changing localsettings.php no longer invalidate cache
+ * since we set $wgInvalidateCacheOnLocalSettingsChange to false
+ * These cache would need to be invalidated manually if needed.
+ */
+// Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
+$wgCacheEpoch = '20241110231803'; // Page cache - Invalidate when there are HTML changes
+$wgThumbnailEpoch = '20241110231803'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
+// $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
+
+/**
  * Maintenance config
  */
 // $wgReadOnly = 'Maintenance is underway. Website is on read-only mode';
-// Invalidate cache
-// Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
-// $wgCacheEpoch = '20241110231803'; // Page cache
-// $wgThumbnailEpoch = '20241110231803'; // Thumbnail cache
-// $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
 
 /**
  * Debug/Development config
@@ -72,6 +79,12 @@ $wgScriptPath = '';
 $wgMainPageIsDomainRoot = true;
 $wgLocaltimezone = 'UTC';
 $wgMaxShellMemory = 0;
+
+// Copyright
+$wgRightsPage = ''; # Set to the title of a wiki page that describes your license/copyright
+$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
+$wgRightsText = 'Creative Commons Attribution-ShareAlike';
+$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
 // Logos and icons
 $wgLogos = [
@@ -137,12 +150,6 @@ $wgEmergencyContact = 'webmaster@starcitizen.tools';
 $wgPasswordSender = 'no-reply@starcitizen.tools';
 // Required for sending multipart emails (e.g. Extension:Echo)
 $wgAllowHTMLEmail = true;
-
-// Copyright
-$wgRightsPage = ''; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
-$wgRightsText = 'Creative Commons Attribution-ShareAlike';
-$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
 /**
  * Database settings
@@ -704,6 +711,7 @@ $wgDetailsMWCollapsibleCompatibility = false;
  * @see https://github.com/jayktaylor/mw-discord
  */
 $wgDiscordWebhookURL = [ "{$_ENV['DISCORD_WEBHOOKURL']}" ];
+$wgDiscordUseEmojis = true;
 
 /**
  * Extension:Disambiguator
