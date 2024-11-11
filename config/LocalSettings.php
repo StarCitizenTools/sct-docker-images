@@ -1173,6 +1173,13 @@ $wgCitizenMaxSearchResults = 10;
 $wgCitizenThemeDefault = 'dark';
 
 /**
+ * Enable WikiDiff2
+ */
+if ( extension_loaded( 'wikidiff2' ) ) {
+	$wgDiff = false;
+}
+
+/**
  * User group permission settings
  */
 // Anon
