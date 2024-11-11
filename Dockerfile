@@ -46,6 +46,7 @@ RUN set -eux; \
 		libwebp7 \
 		libzip-dev \
 		liblua5.1-0-dev \
+  		libthai-dev \
 	; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
