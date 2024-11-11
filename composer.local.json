@@ -385,13 +385,13 @@
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
                                 "dist": {
-                                        "url": "https://github.com/jayktaylor/mw-discord/archive/2a560d9acc4af06dcb5f1f7fd9d695f848209160.zip",
+                                        "url": "https://github.com/jayktaylor/mw-discord/archive/master.zip",
                                         "type": "zip"
                                 },
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/jayktaylor/mw-discord.git",
-                                        "reference": "2a560d9acc4af06dcb5f1f7fd9d695f848209160"
+                                        "reference": "master"
                                 }
                         }
                 },
