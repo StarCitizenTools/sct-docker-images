@@ -36,6 +36,7 @@ RUN set -eux; \
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 # Install wikidiff2
+# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
 RUN install-php-extensions wikidiff2
 
 RUN set -eux; \
