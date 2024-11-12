@@ -1175,8 +1175,10 @@ $wgCitizenThemeDefault = 'dark';
 /**
  * Enable WikiDiff2
  */
-if ( extension_loaded( 'wikidiff2' ) ) {
-	$wgDiff = false;
+// Set as a variable because we will re-use it at SoftwareInfo hook
+$sctIsWikiDiff2Enabled = extension_loaded( 'wikidiff2' );
+if ( $sctIsWikiDiff2Enabled ) {
+	$wgDiffEngine = 'wikidiff2';
 }
 
 /**
@@ -1382,4 +1384,16 @@ $wgHooks['ThumbnailBeforeProduceHTML'][] = function( $thumbnail, &$attribs, &$li
 		}
 	}
 	return true;
+};
+
+/**
+ * Extend "Installed software" section in Special:Version
+ *
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/SoftwareInfo
+ */
+$wgHooks['SoftwareInfo'][] = function( &$software ) {
+	// Backported from http://phabricator.wikimedia.org/T339915
+	if ( phpversion( "wikidiff2" ) ) {
+		$software[ '[https://www.mediawiki.org/wiki/Wikidiff2 wikidiff2]' ] = phpversion( "wikidiff2" );
+	}
 };
