@@ -1304,58 +1304,59 @@ $wgGroupPermissions['sysop']['interwiki'] = true;
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/SkinAddFooterLinks
  */
 $wgHooks['SkinAddFooterLinks'][] = function( $sk, $key, &$footerlinks ) {
-	$rel = 'nofollow noreferrer noopener';
-
-	if ( $key === 'places' ) {
-		$footerlinks[ 'cookiestatement' ] = Html::rawElement( 'a',
-			[
-				'href' => Title::newFromText(
-					$sk->msg('cookiestatementpage')->inContentLanguage()->text()
-				)->getFullURL()
-			],
-			$sk->msg('cookiestatement')->escaped()
-		);
-		//$footerlinks['analytics'] = Html::rawElement(
-		//	'a',
-		//	[
-		//		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
-		//		'rel' => $rel
-		//	],
-		//	$sk->msg( 'footer-analytics' )->escaped()
-		//);
-		$footerlinks['statuspage'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://status.starcitizen.tools',
-				'rel' => $rel
-			],
-			$sk->msg('footer-statuspage')->escaped()
-		);
-		$footerlinks['github'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://github.com/StarCitizenTools',
-				'rel' => $rel
-			],
-			$sk->msg('footer-github')->escaped()
-		);
-		$footerlinks['patreon'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://www.patreon.com/starcitizentools',
-				'rel' => $rel
-			],
-			$sk->msg('footer-patreon')->escaped()
-		);
-		$footerlinks['kofi'] = Html::rawElement(
-			'a',
-			[
-				'href' => 'https://ko-fi.com/starcitizentools',
-				'rel' => $rel
-			],
-			$sk->msg('footer-kofi')->escaped()
-		);
+	// Early edit
+	if ( $key !== 'places' ) {
+		return;
 	}
+	$rel = 'nofollow noreferrer noopener';
+	$footerlinks[ 'cookiestatement' ] = Html::rawElement( 'a',
+		[
+			'href' => Title::newFromText(
+				$sk->msg('cookiestatementpage')->inContentLanguage()->text()
+			)->getFullURL()
+		],
+		$sk->msg('cookiestatement')->escaped()
+	);
+	//$footerlinks['analytics'] = Html::rawElement(
+	//	'a',
+	//	[
+	//		'href' => 'https://analytics.starcitizen.tools/starcitizen.tools',
+	//		'rel' => $rel
+	//	],
+	//	$sk->msg( 'footer-analytics' )->escaped()
+	//);
+	$footerlinks['statuspage'] = Html::rawElement(
+		'a',
+		[
+			'href' => 'https://status.starcitizen.tools',
+			'rel' => $rel
+		],
+		$sk->msg('footer-statuspage')->escaped()
+	);
+	$footerlinks['github'] = Html::rawElement(
+		'a',
+		[
+			'href' => 'https://github.com/StarCitizenTools',
+			'rel' => $rel
+		],
+		$sk->msg('footer-github')->escaped()
+	);
+	$footerlinks['patreon'] = Html::rawElement(
+		'a',
+		[
+			'href' => 'https://www.patreon.com/starcitizentools',
+			'rel' => $rel
+		],
+		$sk->msg('footer-patreon')->escaped()
+	);
+	$footerlinks['kofi'] = Html::rawElement(
+		'a',
+		[
+			'href' => 'https://ko-fi.com/starcitizentools',
+			'rel' => $rel
+		],
+		$sk->msg('footer-kofi')->escaped()
+	);
 };
 
 /**
