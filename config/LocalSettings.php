@@ -1387,6 +1387,18 @@ $wgHooks['ThumbnailBeforeProduceHTML'][] = function( $thumbnail, &$attribs, &$li
 };
 
 /**
+ * Append rel="nofollow" to red links to avoid unnessecary crawler traffic
+ *
+ * @see https://www.mediawiki.org/wiki/Manual:$wgNoFollowLinks
+ */
+$wgHooks['HtmlPageLinkRendererEnd'][] = function( $linkRenderer, $target, $isKnown, &$text, &$attribs, &$ret ) {
+	if ( !$isKnown && preg_match( '/\bnew\b/S', $attribs['class'] ?? '' ) ) {
+        $attribs['rel'] = 'nofollow';
+    }
+    return true;
+};
+
+/**
  * Extend "Installed software" section in Special:Version
  *
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/SoftwareInfo
