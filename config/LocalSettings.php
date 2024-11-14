@@ -1171,6 +1171,14 @@ $wgCitizenSearchDescriptionSource = 'wikidata';
 $wgCitizenMaxSearchResults = 10;
 // Default to dark theme
 $wgCitizenThemeDefault = 'dark';
+$wgCitizenThemeColor = '#0d1012';
+$wgCitizenManifestOptions = [
+	'background_color' => '#0d1012',
+	'description' => 'Unofficial wiki dedicated to Star Citizen and Squadron 42',
+	'short_name' => 'SC Wiki',
+	'theme_color' => "#0d1012",
+	'icons' => [],
+];
 
 /**
  * Enable WikiDiff2
