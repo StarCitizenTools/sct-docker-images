@@ -1177,7 +1177,25 @@ $wgCitizenManifestOptions = [
 	'description' => 'Unofficial wiki dedicated to Star Citizen and Squadron 42',
 	'short_name' => 'SC Wiki',
 	'theme_color' => "#0d1012",
-	'icons' => [],
+	'icons' => [
+		[
+			'src' => "$wgResourceBasePath/resources/assets/sitelogo.svg",
+			'sizes' => 'any',
+			'type' => 'image/svg+xml'
+		],
+		[
+			'src' => "$wgResourceBasePath/resources/assets/maskable_icon_x192.png",
+			'sizes' => '192x192',
+			'type' => 'image/png',
+			'purpose' => 'maskable'
+		],
+		[
+			'src' => "$wgResourceBasePath/resources/assets/maskable_icon_x512.png",
+			'sizes' => '512x512',
+			'type' => 'image/png',
+			'purpose' => 'maskable'
+		],
+	],
 ];
 
 /**
