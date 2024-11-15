@@ -246,7 +246,7 @@ $wgCSPHeader = [
 	'style-src' => ['\'self\'',],
 	'object-src' => ['\'none\''],
 ];
-$wgReferrerPolicy = 'strict-origin-when-cross-origin';
+// $wgReferrerPolicy = 'strict-origin-when-cross-origin'; // Enforced through HTTP header
 // Cookies for me and not for thee
 $wgCookieSameSite = 'Strict';
 // Only send cookies over HTTPS
