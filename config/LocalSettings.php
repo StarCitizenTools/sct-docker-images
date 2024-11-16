@@ -31,7 +31,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * These cache would need to be invalidated manually if needed.
  */
 // Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
-$wgCacheEpoch = '20241113030632'; // Page cache - Invalidate when there are HTML changes
+$wgCacheEpoch = '20241116082251'; // Page cache - Invalidate when there are HTML changes
 $wgThumbnailEpoch = '20241110231803'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
 // $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
 
