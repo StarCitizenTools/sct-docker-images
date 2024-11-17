@@ -4,7 +4,7 @@
                 "mediawiki/babel": "2023.12",
                 "mediawiki/checkuser": "1.39.0",
                 "mediawiki/cirrus-search": "1.39.0",
-                "mediawiki/citizen-skin": "1.39.0",
+                "starcitizentools/citizen-skin": "dev-main",
                 "mediawiki/cldr": "2023.12",
                 "mediawiki/code-mirror": "1.39.0",
                 "mediawiki/commons-metadata": "1.39.0",
@@ -647,23 +647,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-WebAuthn.git",
                                         "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/citizen-skin",
-                                "type": "mediawiki-skin",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git",
-                                        "reference": "main"
                                 }
                         }
                 },
