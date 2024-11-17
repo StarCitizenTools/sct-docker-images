@@ -4,7 +4,6 @@
                 "mediawiki/babel": "2023.12",
                 "mediawiki/checkuser": "1.39.0",
                 "mediawiki/cirrus-search": "1.39.0",
-                "starcitizentools/citizen-skin": "dev-main",
                 "mediawiki/cldr": "2023.12",
                 "mediawiki/code-mirror": "1.39.0",
                 "mediawiki/commons-metadata": "1.39.0",
@@ -30,8 +29,6 @@
                 "mediawiki/revisionslider": "1.39.0",
                 "mediawiki/rss": "1.39.0",
                 "mediawiki/sandbox-link": "1.39.0",
-                "mediawiki/shortdescription": "1.39.0",
-                "mediawiki/tabber-neue": "1.39.0",
                 "mediawiki/template-styles": "1.39.0",
                 "octfx/template-styles-extender": "dev-develop",
                 "mediawiki/thanks": "1.39.0",
@@ -52,9 +49,12 @@
                 "mediawiki/semantic-drilldown": "1.39.0",
                 "starcitizenwiki/apiunto": "dev-develop",
                 "mediawiki/pageviewinfo": "1.39.0",
-                "mediawiki/floatingui": "1.39.0",
                 "octfx/webp": "dev-develop",
-                "starcitizenwiki/picture-html-support": "dev-master"
+                "starcitizenwiki/picture-html-support": "dev-master",
+                "starcitizentools/citizen-skin": "dev-main",
+                "starcitizentools/floating-ui": "dev-main",
+                "starcitizentools/short-description": "dev-main",
+                "starcitizentools/tabber-neue": "dev-main"
         },
         "extra": {
                 "merge-plugin": {
@@ -171,23 +171,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-RevisionSlider.git",
                                         "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/shortdescription",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription/archive/master.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription.git",
-                                        "reference": "master"
                                 }
                         }
                 },
@@ -568,23 +551,6 @@
                 {
                         "type": "package",
                         "package": {
-                                "name": "mediawiki/tabber-neue",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue/archive/main.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue.git",
-                                        "reference": "main"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
                                 "name": "mediawiki/thanks",
                                 "type": "mediawiki-extension",
                                 "version": "1.39.0",
@@ -681,23 +647,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-PageViewInfo.git",
                                         "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/floatingui",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-FloatingUI/archive/main.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-FloatingUI.git",
-                                        "reference": "main"
                                 }
                         }
                 }
