@@ -139,7 +139,7 @@ RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-COPY composer.json /var/www/html/composer.local.json
+COPY ./composer.json /var/www/html/composer.local.json
 
 RUN set -eux; \
 	chown -R www-data:www-data /var/www; \
