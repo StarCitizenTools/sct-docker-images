@@ -56,6 +56,11 @@
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main"
         },
+        "config": {
+                "preferred-install": {
+                        "*": "source"
+                }
+        },
         "extra": {
                 "merge-plugin": {
                         "include": [

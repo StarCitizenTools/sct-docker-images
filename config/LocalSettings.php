@@ -189,6 +189,7 @@ $wgSessionCacheType = 'redis';
 $wgMemCachedServers = [];
 $wgEnableSidebarCache = true;
 $wgUseLocalMessageCache = true;
+$wgGitInfoCacheDirectory = "$IP/cache/gitinfo";
 // Extend parser cache to 3 days
 $wgParserCacheExpireTime = 259200;
 
