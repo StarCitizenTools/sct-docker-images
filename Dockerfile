@@ -154,12 +154,14 @@ USER www-data
 RUN set -eux; \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	/usr/bin/composer install --no-dev \
+		--prefer-source \
 		--ignore-platform-reqs \
 		--no-ansi \
 		--no-interaction \
 		--no-scripts; \
 	rm -f composer.lock.json ;\
 	/usr/bin/composer update --no-dev \
+		--prefer-source \
 		--no-ansi \
 		--no-interaction \
 		--no-scripts; \
