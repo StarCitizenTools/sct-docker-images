@@ -1,5 +1,5 @@
-name: 🌻 Build MediaWiki Docker image
-run-name: 🌻 Build MediaWiki Docker image
+name: 🐳 Build & Push Docker Image
+run-name: 🌻➡️🐳 Build & Push MediaWiki Docker Image
 
 on:
   push:
