@@ -264,7 +264,7 @@ $wgExternalLinkTarget = '_blank';
  * Performance settings
  */
 $wgMultiShardSiteStats = true;
-// @see https://phabricator.wikimedia.org/T343492
+/** @see https://phabricator.wikimedia.org/T343492 */
 $wgResourceLoaderUseObjectCacheForDeps = true;
 // Don't invalidate cache for changes in localsettings.php,
 // instead use $wgCacheEpoch above to do it.
@@ -1388,16 +1388,15 @@ $wgHooks['SkinAddFooterLinks'][] = function( $sk, $key, &$footerlinks ) {
 	);
 };
 
-/**
- * Eager load the first image on the page
- * Currently we don't have a reliable way to set which image,
- * so we will just grab the first image with 400px as width,
- * since it is used by infoboxes usually.
- *
- * @see https://www.mediawiki.org/wiki/Manual:Hooks/ThumbnailBeforeProduceHTML
- */
+/** @see https://www.mediawiki.org/wiki/Manual:Hooks/ThumbnailBeforeProduceHTML */
 $sctHasSetImageEager = false;
 $wgHooks['ThumbnailBeforeProduceHTML'][] = function( $thumbnail, &$attribs, &$linkAttribs ) {
+	/**
+	 * Eager load the first image on the page
+	 * Currently we don't have a reliable way to set which image,
+	 * so we will just grab the first image with 400px as width,
+	 * since it is used by infoboxes usually.
+	 */
 	global $sctHasSetImageEager;
 	if ( $sctHasSetImageEager === false ) {
 		/**
@@ -1416,26 +1415,28 @@ $wgHooks['ThumbnailBeforeProduceHTML'][] = function( $thumbnail, &$attribs, &$li
 	return true;
 };
 
-/**
- * Append rel="nofollow" to red links to avoid unnessecary crawler traffic
- *
- * @see https://www.mediawiki.org/wiki/Manual:$wgNoFollowLinks
- */
+/** @see https://www.mediawiki.org/wiki/Manual:$wgNoFollowLinks */
 $wgHooks['HtmlPageLinkRendererEnd'][] = function( $linkRenderer, $target, $isKnown, &$text, &$attribs, &$ret ) {
+	// Append rel="nofollow" to red links to avoid unnessecary crawler traffic
 	if ( !$isKnown && preg_match( '/\bnew\b/S', $attribs['class'] ?? '' ) ) {
         $attribs['rel'] = 'nofollow';
     }
     return true;
 };
 
-/**
- * Extend "Installed software" section in Special:Version
- *
- * @see https://www.mediawiki.org/wiki/Manual:Hooks/SoftwareInfo
- */
+/** @see https://www.mediawiki.org/wiki/Manual:Hooks/SoftwareInfo */
 $wgHooks['SoftwareInfo'][] = function( &$software ) {
+	// Add Wikidiff2 to "Installed software" in Special:Version
 	// Backported from http://phabricator.wikimedia.org/T339915
 	if ( phpversion( "wikidiff2" ) ) {
 		$software[ '[https://www.mediawiki.org/wiki/Wikidiff2 wikidiff2]' ] = phpversion( "wikidiff2" );
+	}
+};
+
+/** @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay */
+$wgHooks['BeforePageDisplay'][] = function( $out, $skin ) {
+	// Don't index VE edit pages (https://phabricator.wikimedia.org/T319124)
+	if ( $out->getRequest()->getVal( 'veaction' ) ) {
+		$out->setRobotPolicy( 'noindex,nofollow' );
 	}
 };
