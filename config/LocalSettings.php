@@ -891,6 +891,8 @@ $smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
 foreach ($wgContentNamespaces as $contentNS) {
 	$smwgNamespacesWithSemanticLinks[$contentNS] = true;
 }
+// Disable RDF link in <head> to mitigate bot scrapers
+$smwgEnableExportRDFLink = false;
 // Disable entity issue panel for all users by default since it is useless to most users
 // This generates an uncached call to api.php which is not needed
 $wgDefaultUserOptions['smw-prefs-general-options-show-entity-issue-panel'] = false;
