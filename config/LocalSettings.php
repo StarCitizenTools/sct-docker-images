@@ -436,6 +436,7 @@ define( 'NS_UPDATE', 3016 );
 define( 'NS_UPDATE_TALK', 3017 );
 define( 'NS_ERROR', 30000 );
 define( 'NS_ERROR_TALK', 30001 );
+define( 'NS_UUID', 69420 );
 
 // Default to $wgSitename but we need to escape it with underscores
 $wgMetaNamespace = 'Star_Citizen_Wiki';
@@ -477,6 +478,8 @@ $wgExtraNamespaces[NS_ERROR] = 'Error';
 $wgExtraNamespaces[NS_ERROR_TALK] = 'Error_talk';
 $wgNamespacesWithSubpages[NS_ERROR] = true;
 $wgNamespacesToBeSearchedDefault[NS_ERROR] = true;
+
+$wgExtraNamespaces[NS_UUID] = 'UUID';
 
 // Namespace alias
 // Use capital case to avoid conflicts with interwiki links
