@@ -196,6 +196,7 @@ $wgParserCacheExpireTime = 259200;
 // Cloudflare CDN settings
 $wgUseCdn = true;
 $wgCdnMaxAge = $wgParserCacheExpireTime;
+$wgCdnMatchParameterOrder = false;
 // https://www.cloudflare.com/ips
 $wgCdnServersNoPurge = [
 	'194.233.168.70', // Linode Loadbalancer
@@ -1422,7 +1423,7 @@ $wgHooks['ThumbnailBeforeProduceHTML'][] = function( $thumbnail, &$attribs, &$li
 
 /** @see https://www.mediawiki.org/wiki/Manual:$wgNoFollowLinks */
 $wgHooks['HtmlPageLinkRendererEnd'][] = function( $linkRenderer, $target, $isKnown, &$text, &$attribs, &$ret ) {
-	// Append rel="nofollow" to red links to avoid unnessecary crawler traffic
+	// Append rel="nofollow" to red links to avoid unnecessary crawler traffic
 	if ( !$isKnown && preg_match( '/\bnew\b/S', $attribs['class'] ?? '' ) ) {
         $attribs['rel'] = 'nofollow';
     }
