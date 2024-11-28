@@ -173,7 +173,6 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Mediasearch /var/www/mediawiki/extensions/MediaSearch; \
 	mv /var/www/mediawiki/extensions/Revisionslider /var/www/mediawiki/extensions/RevisionSlider; \
 	mv /var/www/mediawiki/extensions/Rss /var/www/mediawiki/extensions/RSS; \
-	mv /var/www/mediawiki/extensions/Vipsscaler /var/www/mediawiki/extensions/VipsScaler; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \
 	mv /var/www/mediawiki/extensions/Twocolconflict /var/www/mediawiki/extensions/TwoColConflict; \
 	mv /var/www/mediawiki/extensions/Pageviewinfo /var/www/mediawiki/extensions/PageViewInfo; \

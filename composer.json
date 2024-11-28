@@ -36,7 +36,6 @@
                 "mediawiki/upload-wizard": "1.39.0",
                 "mediawiki/universal-language-selector": "2023.12",
                 "mediawiki/variables": "1.39.0",
-                "mediawiki/vipsscaler": "1.39.0",
                 "mediawiki/webauthn": "1.39.0",
                 "octfx/wiki-seo": "dev-master",
                 "starcitizenwiki/embedvideo": "dev-develop",
@@ -54,7 +53,8 @@
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",
-                "starcitizentools/tabber-neue": "dev-main"
+                "starcitizentools/tabber-neue": "dev-main",
+                "starcitizentools/thumbro": "1.39.0"
         },
         "config": {
                 "preferred-install": {
@@ -210,23 +210,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-Variables.git",
                                         "reference": "master"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/vipsscaler",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-VipsScaler/archive/main.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-VipsScaler.git",
-                                        "reference": "main"
                                 }
                         }
                 },
@@ -652,6 +635,23 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-PageViewInfo.git",
                                         "reference": "REL1_39"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "starcitizentools/thumbro",
+                                "type": "mediawiki-extension",
+                                "version": "1.39.0",
+                                "dist": {
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro/archive/main.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro.git",
+                                        "reference": "main"
                                 }
                         }
                 }

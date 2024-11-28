@@ -601,11 +601,11 @@ wfLoadExtensions( [
 	'TemplateStylesExtender',
 	'TextExtracts',
 	'Thanks',
+	'Thumbro',
 	'TwoColConflict',
 	// 'UniversalLanguageSelector', // Disabled due to performance issue
 	'UploadWizard',
 	'Variables',
-	'VipsScaler',
 	'VisualEditor',
 	'WebP',
 	'WebAuthn',
@@ -966,6 +966,15 @@ $wgTemplateStylesNamespaces = [
 $wgExtractsRemoveClasses[] = '.metadata';
 
 /**
+ * Extension:Thumbro
+ *
+ * @see https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro
+ */
+// We restricted the page to specific user groups
+// Check the group permission settings below
+$wgThumbroExposeTestPage = true;
+
+/**
  * Extension:TwoColConflict
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-TwoColConflict
@@ -1101,23 +1110,6 @@ $wgUploadWizardConfig = [
 ];
 
 /**
- * Extension:VipsScaler
- *
- * @see https://github.com/StarCitizenTools/mediawiki-extensions-VipsScaler
- */
-// We restricted the page to specific user groups
-// Check the group permission settings below
-$wgVipsExposeTestPage = true;
-$wgVipsOptions = [
-	// Enable for all PNGs
-	[
-		'conditions' => [
-			'mimeType' => 'image/png',
-		],
-	],
-];
-
-/**
  * Extension:VisualEditor
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-VisualEditor
@@ -1224,8 +1216,8 @@ if ( $sctIsWikiDiff2Enabled ) {
 $wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['*']['createpage'] = false;
 $wgGroupPermissions['*']['createtalk'] = false;
-// Restrict Vips test page to editors or above
-$wgGroupPermissions['*']['vipsscaler-test'] = false;
+// Restrict Special:ThumbroTest to editors or above
+$wgGroupPermissions['*']['thumbro-test'] = false;
 
 // Registered user
 $wgGroupPermissions['user']['edit'] = true;
@@ -1308,7 +1300,7 @@ $wgGroupPermissions['Editor']['browsearchive'] = true;
 $wgGroupPermissions['Editor']['noratelimit'] = true;
 $wgGroupPermissions['Editor']['move-rootuserpages'] = true;
 $wgGroupPermissions['Editor']['org-edit'] = true;
-$wgGroupPermissions['Editor']['vipsscaler-test'] = true;
+$wgGroupPermissions['Editor']['thumbro-test'] = true;
 
 // Sysop
 // It's Over 9000!
