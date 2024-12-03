@@ -48,8 +48,6 @@
                 "mediawiki/semantic-drilldown": "1.39.0",
                 "starcitizenwiki/apiunto": "dev-develop",
                 "mediawiki/pageviewinfo": "1.39.0",
-                "octfx/webp": "dev-develop",
-                "starcitizenwiki/picture-html-support": "dev-master",
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",

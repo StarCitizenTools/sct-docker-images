@@ -326,7 +326,6 @@ $wgIgnoreImageErrors = true;
 $wgMaxImageArea = 6.4e7;
 $wgUseImageMagick = true;
 // Stream and serve thumbnails with thumb.php
-// Disabled due to incompatibility with Extension:WebP
 // $wgGenerateThumbnailOnParse = false;
 // $wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
 
@@ -338,8 +337,6 @@ $wgSVGConverter = 'ImageMagick';
 /**
  * Standardize thumbnail sizes
  * MediaWiki thumbnailing is all over the place (T360589)
- * Since thumbnailing is quite performance-heavy especially
- * when we use Extension:WebP, we need to defragment the image sizes
  *
  * TODO: Wait on https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1084920
  * TODO: Set wgMediaViewerThumbnailBucketSizes once we move to MW 1.43
@@ -578,7 +575,6 @@ wfLoadExtensions( [
 	'PageImages',
 	// 'PageViewInfo', // Disabled with Extension:Plausible
 	'ParserFunctions',
-	'PictureHtmlSupport',
 	// 'Plausible', // Disabled to allocate more resources to MW
 	'Popups',
 	'RelatedArticles',
@@ -607,7 +603,6 @@ wfLoadExtensions( [
 	'UploadWizard',
 	'Variables',
 	'VisualEditor',
-	'WebP',
 	'WebAuthn',
 	'WikiEditor',
 	'WikiSEO',
@@ -1126,18 +1121,6 @@ $wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
 // It is enabled by default, no need to add it to preferences
 $wgPrefs[] = 'visualeditor-enable';
-
-/**
- * Extension:WebP
- *
- * @see https://github.com/octfx/mediawiki-extension-WebP
- */
-// $wgEnabledTransformers = [
-//   'MediaWiki\\Extension\\WebP\\Transformer\\WebPTransformer',
-//   'MediaWiki\\Extension\\WebP\\Transformer\\AvifTransformer',
-// ];
-$wgWebPCompressionQuality = 95;
-$wgWebPEnableResponsiveVersionJobs = true;
 
 /**
  * Extension:WikiEditor
