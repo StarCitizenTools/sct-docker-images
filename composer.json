@@ -54,7 +54,7 @@
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
-                "starcitizentools/thumbro": "1.39.0"
+                "starcitizentools/thumbro": "dev-main"
         },
         "config": {
                 "preferred-install": {
@@ -635,23 +635,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-PageViewInfo.git",
                                         "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "starcitizentools/thumbro",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro/archive/main.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro.git",
-                                        "reference": "main"
                                 }
                         }
                 }
