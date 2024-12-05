@@ -614,6 +614,15 @@ wfLoadSkin( 'Citizen' );
 $wgDefaultSkin = 'citizen';
 
 /**
+ * Extension:AdvancedSearch
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
+ */
+// We don't have the service to support deepcat:
+// @see https://gerrit.wikimedia.org/g/mediawiki/extensions/AdvancedSearch/+/3019b4f8c10139b85737372b6c6f47981e2d0796/docs/settings.md#category-tree-support
+$wgAdvancedSearchDeepcatEnabled = false;
+
+/**
  * Extension:Apiunto
  * 
  * @see https://github.com/StarCitizenWiki/Apiunto
