@@ -326,8 +326,8 @@ $wgIgnoreImageErrors = true;
 $wgMaxImageArea = 6.4e7;
 $wgUseImageMagick = true;
 // Stream and serve thumbnails with thumb.php
-$wgGenerateThumbnailOnParse = false;
-$wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
+// $wgGenerateThumbnailOnParse = false;
+// $wgThumbnailScriptPath = "$wgScriptPath/thumb.php";
 
 // SVG Support
 $wgFileExtensions[] = 'svg';
@@ -654,7 +654,7 @@ $wgFileBackends['s3']['endpoint'] = 'https://eu-central-1.linodeobjects.com';
 // Preconnect to media.starcitizen.tools
 $wgImagePreconnect = true;
 // Enable 404 handler
-$wgLocalFileRepo['transformVia404'] = true;
+// $wgLocalFileRepo['transformVia404'] = true;
 
 /**
  * Extension:CheckUser
