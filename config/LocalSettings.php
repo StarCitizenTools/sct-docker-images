@@ -653,6 +653,8 @@ $wgAWSRegion = 'eu-central-1';
 $wgFileBackends['s3']['endpoint'] = 'https://eu-central-1.linodeobjects.com';
 // Preconnect to media.starcitizen.tools
 $wgImagePreconnect = true;
+// Enable 404 handler
+$wgLocalFileRepo['transformVia404'] = true;
 
 /**
  * Extension:CheckUser
