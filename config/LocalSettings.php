@@ -584,7 +584,6 @@ wfLoadExtensions( [
 	'RSS',
 	'SandboxLink',
 	'Scribunto',
-	'SemanticDrilldown',
 	'SemanticExtraSpecialProperties',
 	'SemanticMediaWiki',
 	'SemanticResultFormats',

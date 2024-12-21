@@ -45,7 +45,6 @@
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
-                "mediawiki/semantic-drilldown": "dev-master",
                 "starcitizenwiki/apiunto": "dev-develop",
                 "mediawiki/pageviewinfo": "1.39.0",
                 "starcitizentools/citizen-skin": "dev-main",
@@ -599,23 +598,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-WebAuthn.git",
                                         "reference": "REL1_39"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/semantic-drilldown",
-                                "type": "mediawiki-extension",
-                                "version": "1.39.0",
-                                "dist": {
-                                        "url": "https://github.com/SemanticMediaWiki/SemanticDrilldown/archive/master.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/SemanticMediaWiki/SemanticDrilldown.git",
-                                        "reference": "master"
                                 }
                         }
                 },
