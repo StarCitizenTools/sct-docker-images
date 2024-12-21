@@ -2,7 +2,7 @@ FROM php:8.1-fpm
 
 # Version
 ENV MEDIAWIKI_MAJOR_VERSION=1.39
-ENV MEDIAWIKI_VERSION=1.39.10
+ENV MEDIAWIKI_VERSION=1.39.11
 
 # System dependencies
 RUN set -eux; \
