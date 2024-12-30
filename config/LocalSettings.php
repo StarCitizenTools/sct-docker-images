@@ -577,7 +577,6 @@ wfLoadExtensions( [
 	// 'Plausible', // Disabled to allocate more resources to MW
 	'Popups',
 	'RelatedArticles',
-	'Renameuser',
 	'ReplaceText',
 	'RevisionSlider',
 	'RSS',
