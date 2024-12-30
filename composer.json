@@ -18,7 +18,6 @@
                 "mediawiki/loops": "1.43.0",
                 "mediawiki/mediasearch": "1.43.0",
                 "octfx/multipurge": "dev-master",
-                "mediawiki/nativesvghandler": "1.43.0",
                 "octfx/plausible": "dev-master",
                 "mediawiki/popups": "1.43.0",
                 "mediawiki/related-articles": "1.43.0",
@@ -100,23 +99,6 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice.git",
                                         "reference": "REL1_43"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/nativesvghandler",
-                                "type": "mediawiki-extension",
-                                "version": "1.43.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler/archive/master.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git",
-                                        "reference": "master"
                                 }
                         }
                 },
