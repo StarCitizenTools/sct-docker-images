@@ -57,7 +57,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * MediaWiki core main config
  *
- * @see https://github.com/wikimedia/mediawiki/blob/REL1_39/includes/MainConfigSchema.php Definitions
+ * @see https://github.com/wikimedia/mediawiki/blob/REL1_43/includes/MainConfigSchema.php Definitions
  * @see https://www.mediawiki.org/wiki/Manual:Configuration_settings Documentation
  */
 
@@ -332,7 +332,7 @@ $wgUseImageMagick = true;
 // SVG Support
 $wgFileExtensions[] = 'svg';
 $wgAllowTitlesInSVG = true;
-$wgSVGConverter = 'ImageMagick';
+$wgSVGNativeRendering = true;
 
 /**
  * Standardize thumbnail sizes
@@ -563,13 +563,12 @@ wfLoadExtensions( [
 	'InputBox',
 	'Interwiki',
 	'JsonConfig',
-	'Linter',
+	//'Linter', // Disabled temporarily for 1.43
 	'LoginNotify',
 	'Loops',
 	'MediaSearch',
 	'MultimediaViewer',
 	'MultiPurge',
-	'NativeSvgHandler',
 	'Nuke',
 	'OATHAuth',
 	'PageImages',
@@ -810,6 +809,7 @@ $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/site
  *
  * @see https://github.com/StarCitizenWiki/WikiDocker/commit/ea149d74daba5cc13594cee57db70dab099e214d
  */
+/*
 wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
 $wgParsoidSettings = [
 	'useSelser' => true,
@@ -825,6 +825,7 @@ $wgVirtualRestConfig['modules']['parsoid'] = [
 	'restbaseCompat' => false,
 	'timeout' => 30,
 ];
+*/
 
 /**
  * Extension:Plausible
