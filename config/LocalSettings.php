@@ -9,7 +9,7 @@
  *
  * MediaWiki configuration setting for Star Citizen Wiki
  *
- * MediaWiki branch: REL1_39
+ * MediaWiki branch: REL1_43
  * When updating major MediaWiki version, please update the branch text above
  * in this document, it will update the documentation links to the right version.
  *
