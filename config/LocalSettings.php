@@ -1414,20 +1414,3 @@ $wgHooks['HtmlPageLinkRendererEnd'][] = function( $linkRenderer, $target, $isKno
     }
     return true;
 };
-
-/** @see https://www.mediawiki.org/wiki/Manual:Hooks/SoftwareInfo */
-$wgHooks['SoftwareInfo'][] = function( &$software ) {
-	// Add Wikidiff2 to "Installed software" in Special:Version
-	// Backported from http://phabricator.wikimedia.org/T339915
-	if ( phpversion( "wikidiff2" ) ) {
-		$software[ '[https://www.mediawiki.org/wiki/Wikidiff2 wikidiff2]' ] = phpversion( "wikidiff2" );
-	}
-};
-
-/** @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay */
-$wgHooks['BeforePageDisplay'][] = function( $out, $skin ) {
-	// Don't index VE edit pages (https://phabricator.wikimedia.org/T319124)
-	if ( $out->getRequest()->getVal( 'veaction' ) ) {
-		$out->setRobotPolicy( 'noindex,nofollow' );
-	}
-};
