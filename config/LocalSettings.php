@@ -372,10 +372,10 @@ $wgThumbLimits = [
 $wgDefaultUserOptions['thumbsize'] = 2;
 // Reduce the number of image sizes served in description page
 $wgImageLimits = [
-	[ SCT_THUMB_SIZES[3][0], SCT_THUMB_SIZES[3][1] ], // image size 0
-	[ SCT_THUMB_SIZES[4][0], SCT_THUMB_SIZES[4][1] ], // image size 1
-	[ SCT_THUMB_SIZES[5][0], SCT_THUMB_SIZES[5][1] ], // image size 2
-	[ SCT_THUMB_SIZES[6][0], SCT_THUMB_SIZES[6][1] ], // image size 3
+	[ SCT_THUMB_SIZES[2][0], SCT_THUMB_SIZES[2][1] ], // image size 0
+	[ SCT_THUMB_SIZES[3][0], SCT_THUMB_SIZES[3][1] ], // image size 1
+	[ SCT_THUMB_SIZES[4][0], SCT_THUMB_SIZES[4][1] ], // image size 2
+	[ SCT_THUMB_SIZES[5][0], SCT_THUMB_SIZES[5][1] ], // image size 3
 ];
 // Set to 1280px image by default
 $wgDefaultUserOptions['imagesize'] = 2; // image size 2
@@ -383,7 +383,7 @@ $wgDefaultUserOptions['imagesize'] = 2; // image size 2
 // Use intermediary thumbnails to speed up thumbnail rendering
 // This will result in several chained lossy transformations
 // but we need it because the wiki uses a lot of high quality images
-$wgThumbnailBuckets = [ SCT_THUMB_SIZES[5][0] ];
+$wgThumbnailBuckets = [ SCT_THUMB_SIZES[4][0] ];
 $wgThumbnailMinimumBucketDistance = 100;
 
 // Gallery settings
