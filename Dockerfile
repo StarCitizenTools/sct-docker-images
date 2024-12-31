@@ -63,7 +63,6 @@ RUN set -eux; \
 		mbstring \
 		mysqli \
 		opcache \
-		openssl \
 		zip \
 	; \
 	\
