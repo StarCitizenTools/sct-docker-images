@@ -23,6 +23,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+// Use dev.starcitizen.tools for now as this image is used in development
+const SCT_DOMAIN = 'dev.starcitizen.tools';
+
 /**
  * Invalidate cache
  *
@@ -71,7 +74,7 @@ $wgUpgradeKey = "{$_ENV['MEDIAWIKI_UPGRADEKEY']}";
  * Server/site settings
  */
 $wgSitename = 'Star Citizen Wiki';
-$wgServer = 'https://starcitizen.tools';
+$wgServer = 'https://' . SCT_DOMAIN;
 // Short URL paths
 $wgArticlePath = '/$1';
 $wgScriptPath = '';
@@ -887,7 +890,7 @@ $wgScribuntoEngineConf['luasandbox']['cpuLimit'] = 10; // Seconds
  * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki
  */
 // Required to enable SMW
-enableSemantics( 'starcitizen.tools' );
+enableSemantics( SCT_DOMAIN );
 // Set default property type to Text
 // Because we use SMW property for displaying data through templates mainly
 $smwgPDefaultType = '_txt';
