@@ -563,7 +563,7 @@ wfLoadExtensions( [
 	'InputBox',
 	'Interwiki',
 	'JsonConfig',
-	//'Linter', // Disabled temporarily for 1.43
+	'Linter',
 	'LoginNotify',
 	'Loops',
 	'MediaSearch',
