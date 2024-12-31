@@ -268,8 +268,6 @@ $wgExternalLinkTarget = '_blank';
  * Performance settings
  */
 $wgMultiShardSiteStats = true;
-/** @see https://phabricator.wikimedia.org/T343492 */
-$wgResourceLoaderUseObjectCacheForDeps = true;
 // Don't invalidate cache for changes in localsettings.php,
 // instead use $wgCacheEpoch above to do it.
 $wgInvalidateCacheOnLocalSettingsChange = false;
@@ -308,8 +306,12 @@ $wgJobRunRate = 0;
  */
 // Use HTML5 encoding with minimal escaping
 $wgFragmentMode = [ 'html5' ];
-// Disable legacy heading DOM (https://www.mediawiki.org/wiki/Heading_HTML_changes)
+// Enable new heading DOM (https://www.mediawiki.org/wiki/Heading_HTML_changes)(T13555)
 $wgParserEnableLegacyHeadingDOM = false;
+// Enable protection indicators (T12347)
+$wgEnableProtectionIndicators = true;
+// Enable sorted categories (T373480)
+$wgSortedCategories = true;
 // Allow MediaWiki:Citizen.css to load on all pages
 $wgAllowSiteCSSOnRestrictedPages = true;
 // Output a canonical meta tag on every page
