@@ -308,8 +308,8 @@ $wgJobRunRate = 0;
  */
 // Use HTML5 encoding with minimal escaping
 $wgFragmentMode = [ 'html5' ];
-// Use Parsoid media HTML structure
-$wgParserEnableLegacyMediaDOM = false;
+// Disable legacy heading DOM (https://www.mediawiki.org/wiki/Heading_HTML_changes)
+$wgParserEnableLegacyHeadingDOM = false;
 // Allow MediaWiki:Citizen.css to load on all pages
 $wgAllowSiteCSSOnRestrictedPages = true;
 // Output a canonical meta tag on every page
@@ -816,12 +816,12 @@ $wgPageImagesOpenGraphFallbackImage = "$wgResourceBasePath/resources/assets/site
  *
  * @see https://github.com/StarCitizenWiki/WikiDocker/commit/ea149d74daba5cc13594cee57db70dab099e214d
  */
-/*
 wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
 $wgParsoidSettings = [
 	'useSelser' => true,
-	'linting' => true,
+	'linting'   => true
 ];
+/*
 // This belongs to VE but this is more relevant here
 $wgVisualEditorParsoidAutoConfig = false;
 $wgVirtualRestConfig['modules']['parsoid'] = [
