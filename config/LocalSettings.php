@@ -339,7 +339,6 @@ $wgSVGNativeRendering = true;
  * MediaWiki thumbnailing is all over the place (T360589)
  *
  * TODO: Wait on https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1084920
- * TODO: Set wgMediaViewerThumbnailBucketSizes once we move to MW 1.43
  *
  * List of image widths on the wiki
  * 120px - File history on file page (ImageHistoryList.php)
@@ -776,6 +775,12 @@ $wgEmbedVideoUseEmbedStyleForLocalVideos = false;
  * @see https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
  */
 $wgMediaViewerEnableByDefault = true;
+$wgMediaViewerThumbnailBucketSizes = [
+	SCT_THUMB_SIZES[2][0],
+	SCT_THUMB_SIZES[3][0],
+	SCT_THUMB_SIZES[4][0],
+	SCT_THUMB_SIZES[5][0]
+];
 
 /**
  * Extension:MultiPurge
