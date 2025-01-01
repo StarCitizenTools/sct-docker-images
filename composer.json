@@ -46,8 +46,7 @@
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
                 "starcitizentools/thumbro": "dev-main",
-                "mediawiki/oathauth": "1.41.0",
-                
+                "mediawiki/oathauth": "1.41.0"
         },
         "config": {
                 "preferred-install": {
