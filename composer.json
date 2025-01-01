@@ -34,7 +34,7 @@
                 "octfx/wiki-seo": "dev-master",
                 "starcitizenwiki/embedvideo": "dev-develop",
                 "universal-omega/dynamic-page-list3": "dev-master",
-                "edwardspec/mediawiki-aws-s3": "dev-master",
+                "edwardspec/mediawiki-aws-s3": "v0.13.1",
                 "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
