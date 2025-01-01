@@ -45,8 +45,7 @@
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
-                "starcitizentools/thumbro": "dev-main",
-                "mediawiki/oathauth": "1.41.0"
+                "starcitizentools/thumbro": "dev-main"
         },
         "config": {
                 "preferred-install": {
@@ -69,23 +68,6 @@
                 }
         },
         "repositories": [
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/oathauth",
-                                "type": "mediawiki-extension",
-                                "version": "1.41.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-OATHAuth/archive/REL1_41.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-OATHAuth.git",
-                                        "reference": "REL1_41"
-                                }
-                        }
-                },
                 {
                         "type": "package",
                         "package": {
