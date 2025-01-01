@@ -18,6 +18,7 @@
                 "mediawiki/loops": "1.43.0",
                 "mediawiki/mediasearch": "1.43.0",
                 "octfx/multipurge": "dev-master",
+                "mediawiki/parsermigration": "1.43.0",
                 "octfx/plausible": "dev-master",
                 "mediawiki/popups": "1.43.0",
                 "mediawiki/related-articles": "1.43.0",
@@ -387,6 +388,23 @@
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-MediaSearch.git",
+                                        "reference": "REL1_43"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/parsermigration",
+                                "type": "mediawiki-extension",
+                                "version": "1.43.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-ParserMigration/archive/REL1_43.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-ParserMigration.git",
                                         "reference": "REL1_43"
                                 }
                         }

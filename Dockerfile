@@ -163,6 +163,7 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Checkuser /var/www/mediawiki/extensions/CheckUser; \
 	mv /var/www/mediawiki/extensions/Dismissablesitenotice /var/www/mediawiki/extensions/DismissableSiteNotice; \
 	mv /var/www/mediawiki/extensions/Mediasearch /var/www/mediawiki/extensions/MediaSearch; \
+	mv /var/www/mediawiki/extensions/Parsermigration /var/www/mediawiki/extensions/ParserMigration; \
 	mv /var/www/mediawiki/extensions/Revisionslider /var/www/mediawiki/extensions/RevisionSlider; \
 	mv /var/www/mediawiki/extensions/Rss /var/www/mediawiki/extensions/RSS; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \

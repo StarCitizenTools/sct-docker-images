@@ -578,6 +578,7 @@ wfLoadExtensions( [
 	'PageImages',
 	// 'PageViewInfo', // Disabled with Extension:Plausible
 	'ParserFunctions',
+	'ParserMigration',
 	// 'Plausible', // Disabled to allocate more resources to MW
 	'Popups',
 	'RelatedArticles',
