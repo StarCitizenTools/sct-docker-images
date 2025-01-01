@@ -160,7 +160,6 @@ RUN set -eux; \
 		--no-interaction \
 		--no-scripts; \
 	\
- 	mv /var/www/mediawiki/extensions/Oathauth /var/www/mediawiki/extensions/OATHAuth; \
 	mv /var/www/mediawiki/extensions/Checkuser /var/www/mediawiki/extensions/CheckUser; \
 	mv /var/www/mediawiki/extensions/Dismissablesitenotice /var/www/mediawiki/extensions/DismissableSiteNotice; \
 	mv /var/www/mediawiki/extensions/Mediasearch /var/www/mediawiki/extensions/MediaSearch; \
