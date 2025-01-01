@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.3-fpm
 
 # Version
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
