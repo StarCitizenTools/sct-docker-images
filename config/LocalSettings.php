@@ -838,6 +838,17 @@ $wgVirtualRestConfig['modules']['parsoid'] = [
 */
 
 /**
+ * Extension:ParserMigration
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-ParserMigration
+ */
+$wgParserMigrationEnableQueryString = true;
+// $wgParserMigrationEnableParsoidDiscussionTools = true;
+// $wgParserMigrationEnableParsoidArticlePages = true;
+// $wgParserMigrationUserNoticeDays = 365;
+$wgParserMigrationCompactIndicator = true;
+
+/**
  * Extension:Plausible
  *
  * @see https://github.com/octfx/mediawiki-extension-Plausible
