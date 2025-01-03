@@ -23,8 +23,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-// Use dev.starcitizen.tools for now as this image is used in development
-const SCT_DOMAIN = 'dev.starcitizen.tools';
+// Use dev.starcitizen.tools if it is in dev
+const SCT_DOMAIN = 'starcitizen.tools';
 
 /**
  * Invalidate cache
