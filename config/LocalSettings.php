@@ -873,14 +873,6 @@ $wgParserMigrationCompactIndicator = true;
 // $wgPlausibleApiKey = "{$_ENV['PLAUSIBLE_APIKEY']}";
 
 /**
- * Extension:Popups
- *
- * @see https://github.com/wikimedia/mediawiki-extensions-Popups
- */
-// Reference Previews are enabled for all users by default
-$wgPopupsReferencePreviewsBetaFeature = false;
-
-/**
  * Extension:RelatedArticles
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-RelatedArticles
@@ -893,6 +885,8 @@ $wgRelatedArticlesUseCirrusSearchApiUrl = '/api.php';
 $wgRelatedArticlesDescriptionSource = 'wikidata';
 $wgRelatedArticlesUseCirrusSearch = true;
 $wgRelatedArticlesOnlyUseCirrusSearch = true;
+// 5 is weird since we have a 3 col layout
+$wgRelatedArticlesCardLimit = 6;
 
 /**
  * Extension:Scribunto
