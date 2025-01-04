@@ -691,10 +691,13 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
  * @see https://github.com/wikimedia/mediawiki-extensions-CodeMirror
  */
 $wgCodeMirrorV6 = true;
+/*
+NOTE: CodeMirrorV6 is completely broken in 2017 Wikitext Editor without line numbering
 $wgCodeMirrorLineNumberingNamespaces = [
 	NS_TEMPLATE,
 	NS_MODULE
 ];
+*/
 // Enable syntax highlight in editor by default
 $wgDefaultUserOptions['usecodemirror'] = 1;
 
