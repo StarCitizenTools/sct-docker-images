@@ -1285,7 +1285,6 @@ $wgGroupPermissions['Trusted']['patrol'] = true;
 $wgGroupPermissions['Trusted']['move'] = true;
 $wgGroupPermissions['Trusted']['movefile'] = true;
 $wgGroupPermissions['Trusted']['move-categorypages'] = true;
-$wgGroupPermissions['Trusted']['writeapi'] = true;
 $wgGroupPermissions['Trusted']['sendemail'] = true;
 $wgGroupPermissions['Trusted']['commlink-edit'] = true;
 $wgGroupPermissions['Trusted']['issue-edit'] = true;
