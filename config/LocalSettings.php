@@ -689,6 +689,11 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-CodeMirror
  */
+$wgCodeMirrorV6 = true;
+$wgCodeMirrorLineNumberingNamespaces = [
+	NS_TEMPLATE,
+	NS_MODULE
+];
 // Enable syntax highlight in editor by default
 $wgDefaultUserOptions['usecodemirror'] = 1;
 
