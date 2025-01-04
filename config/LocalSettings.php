@@ -1144,14 +1144,15 @@ $wgUploadWizardConfig = [
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-VisualEditor
  */
-// Enable new source editor
+// Enable Edit Check
+// @see https://www.mediawiki.org/wiki/Edit_check
+$wgVisualEditorEditCheck = true;
+// Enable 2017 Wikitext Editor
+// @see https://www.mediawiki.org/wiki/2017_wikitext_editor
 $wgVisualEditorEnableWikitext = true;
-// Enable visual diff
-$wgVisualEditorEnableDiffPage = true;
 $wgVisualEditorUseSingleEditTab = true;
 $wgVisualEditorEnableVisualSectionEditing = true;
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
-$wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
 // Default to new source editor
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
 // It is enabled by default, no need to add it to preferences
