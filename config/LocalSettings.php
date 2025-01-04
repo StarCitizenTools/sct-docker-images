@@ -413,6 +413,7 @@ $wgAllowUserCss = true;
 // Allow logged-in users to set a preference whether or not matches 
 // in search results should force redirection to that page.
 $wgSearchMatchRedirectPreference = true;
+$wgEnableEditRecovery = true;
 
 /**
  * Namespace settings
