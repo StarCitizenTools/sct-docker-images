@@ -35,7 +35,7 @@ RUN set -eux; \
 # Install the PHP extensions we need
 RUN set -eux; \
 	# Install wikidiff2
-	# There is no pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
+	# No pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
 	curl -sSLf \
 		-o /usr/local/bin/install-php-extensions \
 		https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
@@ -69,13 +69,11 @@ RUN set -eux; \
 	pecl install \ 
 		APCu \
 		luasandbox \
-		imagick \
 		redis \
 	; \
 	docker-php-ext-enable \
 		apcu \
 		luasandbox \
-		imagick  \
 		redis \
 	; \
 	rm -r /tmp/pear; \

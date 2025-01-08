@@ -1003,7 +1003,7 @@ $wgExtractsRemoveClasses[] = '.metadata';
  */
 // We restricted the page to specific user groups
 // Check the group permission settings below
-$wgThumbroExposeTestPage = true;
+// $wgThumbroExposeTestPage = true;
 
 /**
  * Extension:TwoColConflict
