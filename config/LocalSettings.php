@@ -1038,23 +1038,14 @@ $wgCopyUploadsDomains = [ '*.flickr.com', '*.staticflickr.com' ];
 $wgUploadNavigationUrl = '/Special:UploadWizard';
 
 // Extension settings
+// @see https://github.com/wikimedia/mediawiki-extensions-UploadWizard/blob/REL1_43/UploadWizard.config.php
 $wgUploadWizardConfig = [
+	'campaignExpensiveStatsEnabled' => false,
 	'flickrApiKey' => "{$_ENV['FLICKR_APIKEY']}",
-];
-$wgUploadWizardConfig = [
-	'debug' => false,
-	'altUploadForm' => 'Special:Upload',
-	'fallbackToAltUploadForm' => false,
-	'alternativeUploadToolsPage' => false,
-	'enableFormData' => true,
-	'enableMultipleFiles' => true,
-	'enableMultiFileSelect' => false,
 	'tutorial' => [
 		'skip' => true,
 	],
-	'maxUploads' => 15,
-	'fileExtensions' => $wgFileExtensions,
-	'flickrApiUrl' => 'https://api.flickr.com/services/rest/?',
+	// Custom licenses
 	'licenses' => [
 		// Cloud Imperium license
 		'rsilicense' => [
@@ -1137,6 +1128,11 @@ $wgUploadWizardConfig = [
 			],
 		],
 	],
+	'maxUploads' => 20,
+	'feedbackLink' => 'https://discord.gg/XcKwqyD4sc',
+	'allCategoriesLink' => '',
+	'altUploadForm' => 'Special:Upload',
+	'alternativeUploadToolsPage' => ''
 ];
 
 /**
