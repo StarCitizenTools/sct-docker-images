@@ -1076,6 +1076,16 @@ $wgUploadWizardConfig = [
 	],
 	// License selection page
 	'licensing' => [
+		'ownWork' => [
+			'type' => 'or',
+			'template' => 'self',
+			'defaults' => [ 'cc-by-sa-4.0' ],
+			'licenses' => [
+				'cc-by-sa-4.0',
+				'cc-by-4.0',
+				'cc-zero',
+			]
+		],
 		'thirdParty' => [
 			'type' => 'or',
 			'defaults' => 'rsilicense',
@@ -1087,21 +1097,17 @@ $wgUploadWizardConfig = [
 					// We have to use this because this message is loaded by UploadWizard and we don't use it
 					'head' => 'mwe-upwiz-license-usgov-head',
 					// 'head' => 'mwe-upwiz-license-sc-head',
-					'licenses' => [
-						'rsilicense',
-					],
+					'defaults' => [ 'rsilicense' ],
+					'licenses' => [ 'rsilicense', ],
 				],
 				[
 					// This should be a list of all CC licenses we can reasonably expect to find around the web
 					'head' => 'mwe-upwiz-license-cc-head',
 					'subhead' => 'mwe-upwiz-license-cc-subhead',
+					'defaults' => [ 'cc-by-sa-4.0' ],
 					'licenses' => [
 						'cc-by-sa-4.0',
-						'cc-by-sa-3.0',
-						'cc-by-sa-2.5',
 						'cc-by-4.0',
-						'cc-by-3.0',
-						'cc-by-2.5',
 						'cc-zero',
 					],
 				],
@@ -1119,11 +1125,13 @@ $wgUploadWizardConfig = [
 				[
 					'head' => 'mwe-upwiz-license-custom-head',
 					'special' => 'custom',
+					'defaults' => [ 'custom' ],
 					'licenses' => [ 'custom' ],
 				],
 				[
 					'head' => 'mwe-upwiz-license-none-head',
-					'licenses' => [ 'none' ]
+					'defaults' => [ 'none' ],
+					'licenses' => [ 'none' ],
 				],
 			],
 		],
