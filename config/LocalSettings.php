@@ -51,7 +51,7 @@ const SCT_DOMAIN = 'starcitizen.tools';
  */
 // error_reporting( -1 );
 // ini_set( 'display_errors', 1 );
-// $wgShowExceptionDetails = true;
+$wgShowExceptionDetails = true;
 // $wgDebugToolbar = true;
 // $wgDevelopmentWarnings = true;
 // $wgDebugDumpSql = true;
