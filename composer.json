@@ -1,10 +1,10 @@
 {
         "require": {
                 "mediawiki/advanced-search": "1.43.0",
-                "mediawiki/babel": "2024.07",
+                "mediawiki/babel": "2025.03",
                 "mediawiki/checkuser": "1.43.0",
                 "mediawiki/cirrus-search": "1.43.0",
-                "mediawiki/cldr": "2024.07",
+                "mediawiki/cldr": "2025.03",
                 "mediawiki/code-mirror": "1.43.0",
                 "mediawiki/commons-metadata": "1.43.0",
                 "mediawiki/cookie-warning": "1.43.0",
@@ -29,7 +29,7 @@
                 "octfx/template-styles-extender": "dev-develop",
                 "mediawiki/twocolconflict": "1.43.0",
                 "mediawiki/upload-wizard": "1.43.0",
-                "mediawiki/universal-language-selector": "2024.07",
+                "mediawiki/universal-language-selector": "2025.03",
                 "mediawiki/variables": "1.43.0",
                 "mediawiki/webauthn": "1.43.0",
                 "octfx/wiki-seo": "dev-master",
