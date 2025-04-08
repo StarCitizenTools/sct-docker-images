@@ -37,6 +37,7 @@ const SCT_DOMAIN = 'starcitizen.tools';
 $wgCacheEpoch = '20250212180557'; // Page cache - Invalidate when there are HTML changes
 // $wgThumbnailEpoch = '20241210023315'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
 // $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
+$sespgLabelCacheVersion = '2025.04'; // Semantic Extra Special Properties cache
 
 /**
  * Maintenance config
