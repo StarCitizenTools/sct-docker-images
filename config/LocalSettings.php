@@ -203,7 +203,6 @@ $wgCdnMatchParameterOrder = false;
 $wgCdnServersNoPurge = [
 	// Linode Loadbalancer
 	'194.233.168.70',
-	'139.162.146.59',
 	// Internal IPs
 	'10.0.0.0/8',
 	// Cloudflare IPv4
@@ -559,7 +558,7 @@ wfLoadExtensions( [
 	// 'CookieWarning', // Disabled due to performance issue and we only have first party functional cookies
 	'Details',
 	'Disambiguator',
-	'Discord',
+	// 'Discord',
 	'DiscussionTools',
 	'DismissableSiteNotice',
 	'DynamicPageList3',
