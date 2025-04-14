@@ -2,7 +2,7 @@ FROM php:8.3-fpm
 
 # Version
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
-ARG MEDIAWIKI_VERSION='1.43.0'
+ARG MEDIAWIKI_VERSION='1.43.1'
 
 # System dependencies
 RUN set -eux; \
