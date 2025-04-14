@@ -1222,6 +1222,8 @@ $wgCitizenManifestOptions = [
 		],
 	],
 ];
+// Enable experimental command palette
+$wgCitizenEnableCommandPalette = true;
 
 /**
  * Enable WikiDiff2
