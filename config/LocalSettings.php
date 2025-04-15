@@ -780,6 +780,13 @@ $wgDplSettings['recursiveTagParse'] = true;
 $wgDplSettings['allowUnlimitedResults'] = true;
 
 /**
+ * Extension:Echo
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-Echo
+ */
+$wgEchoUseJobQueue = true;
+
+/**
  * Extension:EmbedVideo
  *
  * @see https://github.com/StarCitizenWiki/mediawiki-extensions-EmbedVideo
