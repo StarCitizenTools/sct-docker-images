@@ -187,13 +187,13 @@ $wgObjectCaches['redis'] = [
 // https://phabricator.wikimedia.org/T352481
 $wgMainStash = 'redis';
 $wgMainCacheType = 'redis';
-// Set explicitly to CACHE_DB (https://www.mediawiki.org/wiki/Manual:$wgParserCacheType)
-$wgParserCacheType = CACHE_DB;
+$wgParserCacheType  = 'redis';
 $wgSessionCacheType = 'redis';
-$wgMemCachedServers = [];
+$wgLanguageConverterCacheType = 'redis';
 $wgEnableSidebarCache = true;
 $wgUseLocalMessageCache = true;
 $wgGitInfoCacheDirectory = "$IP/cache/gitinfo";
+
 // Extend parser cache to 3 days
 $wgParserCacheExpireTime = 259200;
 
