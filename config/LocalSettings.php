@@ -197,6 +197,9 @@ $wgGitInfoCacheDirectory = "$IP/cache/gitinfo";
 // Extend parser cache to 3 days
 $wgParserCacheExpireTime = 259200;
 
+// Extend search suggestions response cache to 3 hours
+$wgSearchSuggestCacheExpiry = 10800;
+
 // Cloudflare CDN settings
 $wgUseCdn = true;
 $wgCdnMaxAge = $wgParserCacheExpireTime;
