@@ -34,7 +34,7 @@ const SCT_DOMAIN = 'starcitizen.tools';
  * These cache would need to be invalidated manually if needed.
  */
 // Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
-$wgCacheEpoch = '20250212180557'; // Page cache - Invalidate when there are HTML changes
+$wgCacheEpoch = '20250509114224'; // Page cache - Invalidate when there are HTML changes
 // $wgThumbnailEpoch = '20241210023315'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
 // $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
 $sespgLabelCacheVersion = '2025.04'; // Semantic Extra Special Properties cache
