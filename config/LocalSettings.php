@@ -940,6 +940,10 @@ $smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
 foreach ($wgContentNamespaces as $contentNS) {
 	$smwgNamespacesWithSemanticLinks[$contentNS] = true;
 }
+// Raise the default limit since we have a lot of templates and modules
+// that needs to access the data (e.g. Navplates, DataTables, etc.)
+$smwgQDefaultLimit = 2000;
+$smwgQMaxInlineLimit = $smwgQDefaultLimit;
 // Disable RDF link in <head> to mitigate bot scrapers
 $smwgEnableExportRDFLink = false;
 // Disable entity issue panel for all users by default since it is useless to most users
