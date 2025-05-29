@@ -930,7 +930,10 @@ $smwgPDefaultType = '_txt';
 $smwgMainCacheType = 'redis';
 $smwgQueryResultCacheType = 'redis';
 // Enable tracking and storing of dependencies of embedded queries
-$smwgEnabledQueryDependencyLinksStore = true;
+// NOTE: Disabled due to performance issues.
+// Upon enabling, it can potentially trigger a lot of parser cache invalidation,
+// which throws the wiki into a deadlock.
+// $smwgEnabledQueryDependencyLinksStore = true;
 // Duplicate query conditions should be removed from computing query results
 $smwgQFilterDuplicates = true;
 $smwgConfigFileDir = '/usr/local/smw';
