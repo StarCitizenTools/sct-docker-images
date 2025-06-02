@@ -26,7 +26,7 @@
                 "mediawiki/rss": "1.43.0",
                 "mediawiki/sandbox-link": "1.43.0",
                 "mediawiki/template-styles": "1.43.0",
-                "octfx/template-styles-extender": "dev-develop",
+                "octfx/template-styles-extender": "dev-master",
                 "mediawiki/twocolconflict": "1.43.0",
                 "mediawiki/upload-wizard": "1.43.0",
                 "mediawiki/universal-language-selector": "2025.03",
