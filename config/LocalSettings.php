@@ -959,17 +959,12 @@ $wgDefaultUserOptions['smw-prefs-general-options-show-entity-issue-panel'] = fal
  * @see https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties
  */
 
-// Attempt to remove our old local definition for _LINKSTO
-if ( isset( $sespgLocalDefinitions['_LINKSTO'] ) ) {
-	unset( $sespgLocalDefinitions['_LINKSTO'] );
-}
-
 $sespgUseFixedTables = true;
 $sespgEnabledPropertyList = [
 	'_USERREG',
 	'_USEREDITCNT',
 	'_PAGEIMG',
-	'_LINKSTO',
+	//'_LINKSTO', // Attempt to remove our old local definition for _LINKSTO
 ];
 // Required by Module:DependencyList
 $sespgLinksToEnabledNamespaces = [
