@@ -20,8 +20,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 		git \
 		unzip \
 		openssh-client \
-		rsync \
-		nano \
 		# Required to build Pygments
 		python3 \
 		python3-pip \
@@ -127,8 +125,16 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		imagemagick \
+		# Sysops tools
+		openssh-client \
+		nano \
+		rsync \
 		s3cmd \
+		unzip \
+		# MediaWiki requirements
+		imagemagick \
+		# Required to show commit info in Special:Version
+		git \
 		# Extension:EmbedVideo
 		ffmpeg \
 		# Extension:SyntaxHighlight
