@@ -33,30 +33,9 @@ RUN set -eux; \
 	;
 
 # Install the PHP extensions we need
-RUN set -eux; \
-	# Install wikidiff2
-	# No pecl package for wikidiff2 (https://phabricator.wikimedia.org/T196132)
-	curl -sSLf \
-		-o /usr/local/bin/install-php-extensions \
-		https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
-		chmod +x /usr/local/bin/install-php-extensions && \
-		install-php-extensions wikidiff2 \
-	; \
-	\
-	savedAptMark="$(apt-mark showmanual)"; \
-	\
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		libicu-dev \
-		libonig-dev \
-		libcurl4-gnutls-dev \
-		libmagickwand-dev \
-		libwebp7 \
-		libzip-dev \
-		liblua5.1-0-dev \
-	; \
-	\
-	docker-php-ext-install -j "$(nproc)" \
+COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN install-php-extensions \
 		calendar \
 		exif \
 		intl \
@@ -64,33 +43,11 @@ RUN set -eux; \
 		mysqli \
 		opcache \
 		zip \
-	; \
-	\
-	pecl install \ 
-		APCu \
-		luasandbox \
-		redis \
-	; \
-	docker-php-ext-enable \
 		apcu \
 		luasandbox \
 		redis \
-	; \
-	rm -r /tmp/pear; \
-	\
-	# reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
-	apt-mark auto '.*' > /dev/null; \
-	apt-mark manual $savedAptMark; \
-	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-		| awk '/=>/ { print $3 }' \
-		| sort -u \
-		| xargs -r dpkg-query -S \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -rt apt-mark manual; \
-	\
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	rm -rf /var/lib/apt/lists/*
+		wikidiff2 \
+	;
 
 # MediaWiki setup
 RUN set -eux; \
