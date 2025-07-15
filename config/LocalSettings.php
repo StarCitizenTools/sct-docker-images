@@ -587,7 +587,6 @@ wfLoadExtensions( [
 	'RelatedArticles',
 	'ReplaceText',
 	'RevisionSlider',
-	'RSS',
 	'SandboxLink',
 	'Scribunto',
 	'SemanticExtraSpecialProperties',
