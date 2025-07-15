@@ -18,15 +18,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		git \
-		imagemagick \
-		libvips-tools \
-		ffmpeg \
-		webp \
 		unzip \
 		openssh-client \
 		rsync \
 		nano \
-		s3cmd \
+		# Required to build Pygments
 		python3 \
 		python3-pip \
 	;
@@ -132,11 +128,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		imagemagick \
-		libvips-tools \
-		ffmpeg \
-		webp \
 		s3cmd \
+		# Extension:EmbedVideo
+		ffmpeg \
+		# Extension:SyntaxHighlight
 		python3 \
+		# Extension:Thumbro
+		libvips-tools \
+		webp \
 	;
 
 # PHP extensions
