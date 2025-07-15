@@ -866,25 +866,6 @@ $wgParserMigrationEnableQueryString = true;
 $wgParserMigrationCompactIndicator = true;
 
 /**
- * Extension:Plausible
- *
- * @see https://github.com/octfx/mediawiki-extension-Plausible
- */
-// $wgPlausibleDomain = 'https://analytics.starcitizen.tools';
-// $wgPlausibleDomainKey = 'starcitizen.tools';
-// $wgPlausibleHonorDNT = true;
-// $wgPlausibleTrackLoggedIn = true;
-// $wgPlausibleTrackOutboundLinks = true;
-// $wgPlausibleIgnoredTitles = [ '/Special:*' ];
-// $wgPlausibleEnableCustomEvents = true;
-// $wgPlausibleTrack404 = true;
-// $wgPlausibleTrackSearchInput = true;
-// $wgPlausibleTrackEditButtonClicks = true;
-// $wgPlausibleTrackCitizenSearchLinks = true;
-// $wgPlausibleTrackCitizenMenuLinks = true;
-// $wgPlausibleApiKey = "{$_ENV['PLAUSIBLE_APIKEY']}";
-
-/**
  * Extension:RelatedArticles
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-RelatedArticles

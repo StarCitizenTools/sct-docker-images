@@ -19,7 +19,6 @@
                 "mediawiki/mediasearch": "1.43.0",
                 "octfx/multipurge": "dev-master",
                 "mediawiki/parsermigration": "1.43.0",
-                "octfx/plausible": "dev-master",
                 "mediawiki/popups": "1.43.0",
                 "mediawiki/related-articles": "1.43.0",
                 "mediawiki/revisionslider": "1.43.0",
