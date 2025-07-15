@@ -174,6 +174,7 @@ WORKDIR /var/www/mediawiki
 # Copy built application files and python packages from the builder stage
 COPY --from=builder /var/www/mediawiki /var/www/mediawiki
 COPY --from=builder /usr/local/lib/python3.11/dist-packages /usr/local/lib/python3.11/dist-packages
+COPY --from=builder /usr/local/bin/pygmentize /usr/local/bin/pygmentize
 
 # Copy final configs
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
