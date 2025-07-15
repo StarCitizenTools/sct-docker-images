@@ -71,12 +71,8 @@ RUN set -eux; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	rm -rf /var/lib/apt/lists/*
 
-COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
-COPY ./resources /var/www/mediawiki/resources
-
 COPY ./config/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
 COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY ./config/robots.txt /var/www/mediawiki/robots.txt
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini; \
 	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini; \
@@ -84,19 +80,17 @@ RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.
 	echo 'pm.max_requests = 200' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
 	echo 'pm.start_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
 	echo 'pm.min_spare_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-	echo 'pm.max_spare_servers = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf; 
+	echo 'pm.max_spare_servers = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf;
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/mediawiki
 
 COPY ./composer.json /var/www/mediawiki/composer.local.json
 
 RUN set -eux; \
-	chown -R www-data:www-data /var/www; \
-	\
 	mkdir /usr/local/smw; \
-	chown www-data:www-data /usr/local/smw
-
-WORKDIR /var/www/mediawiki
+	chown -R www-data:www-data /var/www/mediawiki /usr/local/smw
 
 USER www-data
 
@@ -107,14 +101,19 @@ RUN set -eux; \
 		--ignore-platform-reqs \
 		--no-ansi \
 		--no-interaction \
-		--no-scripts; \
-	rm -f composer.lock.json ;\
-	/usr/bin/composer update --no-dev \
-		--prefer-source \
-		--no-ansi \
-		--no-interaction \
-		--no-scripts; \
-	\
+		--no-scripts;
+
+USER root
+
+COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
+COPY ./resources /var/www/mediawiki/resources
+COPY ./config/robots.txt /var/www/mediawiki/robots.txt
+
+RUN chown -R www-data:www-data /var/www/mediawiki
+
+USER www-data
+
+RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Checkuser /var/www/mediawiki/extensions/CheckUser; \
 	mv /var/www/mediawiki/extensions/Dismissablesitenotice /var/www/mediawiki/extensions/DismissableSiteNotice; \
 	mv /var/www/mediawiki/extensions/Mediasearch /var/www/mediawiki/extensions/MediaSearch; \
@@ -123,8 +122,6 @@ RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Rss /var/www/mediawiki/extensions/RSS; \
 	mv /var/www/mediawiki/extensions/Webauthn /var/www/mediawiki/extensions/WebAuthn; \
 	mv /var/www/mediawiki/extensions/Twocolconflict /var/www/mediawiki/extensions/TwoColConflict; \
-	mv /var/www/mediawiki/extensions/Pageviewinfo /var/www/mediawiki/extensions/PageViewInfo; \
-	\
-	chown -R www-data:www-data /var/www
+	mv /var/www/mediawiki/extensions/Pageviewinfo /var/www/mediawiki/extensions/PageViewInfo;
 
 CMD ["php-fpm"]
