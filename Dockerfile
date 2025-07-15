@@ -93,12 +93,17 @@ RUN set -eux; \
 	mkdir -p /var/www/.composer; \
 	chown -R www-data:www-data /var/www/mediawiki /usr/local/smw /var/www/.composer
 
-# Bust composer cache in GitHub Actions
-ARG CACHE_BUSTER=1
 USER www-data
 
 RUN set -eux; \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
+	/usr/bin/composer install --no-dev \
+		--prefer-source \
+		--ignore-platform-reqs \
+		--no-ansi \
+		--no-interaction \
+		--no-scripts; \
+	rm -f composer.lock; \
 	/usr/bin/composer update --no-dev \
 		--prefer-source \
 		--no-ansi \
