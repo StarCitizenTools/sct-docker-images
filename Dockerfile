@@ -5,7 +5,7 @@ FROM php:8.3-fpm as builder
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
 ARG MEDIAWIKI_VERSION='1.43.1'
 
-# System dependencies (includes build tools)
+# System dependencies
 RUN set -eux; \
 	\
 	apt-get update; \
@@ -25,12 +25,15 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-# Install the Python packages we need
+# Pygments
+# Required for Extension:SyntaxHighlight
+# This is compiled from source because both the bundled and Debian packages are too old
 RUN set -eux; \
 	pip3 install Pygments --break-system-packages \
 	;
 
-# Install the PHP extensions we need
+# PHP extensions
+# install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions \
 		calendar \
@@ -46,7 +49,7 @@ RUN install-php-extensions \
 		wikidiff2 \
 	;
 
-# MediaWiki setup
+# MediaWiki
 RUN set -eux; \
 	fetchDeps=" \
 		gnupg \
@@ -72,6 +75,8 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/mediawiki
 
+# Skins and extensions
+# Defined in composer.local.json
 COPY ./composer.json /var/www/mediawiki/composer.local.json
 
 RUN set -eux; \
@@ -83,13 +88,19 @@ USER www-data
 
 RUN set -eux; \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
+	\
+	# Install the skins and extensions first
 	/usr/bin/composer install --no-dev \
 		--prefer-source \
 		--ignore-platform-reqs \
 		--no-ansi \
 		--no-interaction \
 		--no-scripts; \
+	\
+	# Remove composer.lock so the next command won't use it
 	rm -f composer.lock; \
+	\
+	# Needed so that composer would install the depedencies of the skins and extensions that we just installed
 	/usr/bin/composer update --no-dev \
 		--prefer-source \
 		--no-ansi \
@@ -99,7 +110,7 @@ RUN set -eux; \
 # Final image
 FROM php:8.3-fpm
 
-# Install only runtime dependencies
+# Runtime dependencies
 RUN set -eux; \
 	\
 	apt-get update; \
@@ -113,7 +124,7 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
+# PHP extensions
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions \
 		calendar \
@@ -160,7 +171,7 @@ RUN chown -R www-data:www-data /var/www/mediawiki
 
 USER www-data
 
-# Rename extensions as before
+# Rename extensions as they are not named correctly
 RUN set -eux; \
 	mv /var/www/mediawiki/extensions/Checkuser /var/www/mediawiki/extensions/CheckUser; \
 	mv /var/www/mediawiki/extensions/Dismissablesitenotice /var/www/mediawiki/extensions/DismissableSiteNotice; \
