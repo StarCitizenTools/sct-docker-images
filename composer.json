@@ -79,6 +79,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-CheckUser.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "CheckUser"
                                 }
                         }
                 },
@@ -96,6 +99,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "DismissableSiteNotice"
                                 }
                         }
                 },
@@ -147,6 +153,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-RevisionSlider.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "RevisionSlider"
                                 }
                         }
                 },
@@ -368,6 +377,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-MediaSearch.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "MediaSearch"
                                 }
                         }
                 },
@@ -385,6 +397,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-ParserMigration.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "ParserMigration"
                                 }
                         }
                 },
@@ -453,6 +468,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-TwoColConflict.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "TwoColConflict"
                                 }
                         }
                 },
@@ -487,6 +505,9 @@
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-WebAuthn.git",
                                         "reference": "REL1_43"
+                                },
+                                "extra": {
+                                    "installer-name": "WebAuthn"
                                 }
                         }
                 },
