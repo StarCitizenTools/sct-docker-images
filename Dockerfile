@@ -19,8 +19,6 @@ RUN set -eux; \
 		openssh-client \
 		rsync \
 		nano \
-		liblua5.1-0 \
-		libzip4 \
 		s3cmd \
 		python3 \
 		python3-pip \
