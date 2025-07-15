@@ -90,7 +90,8 @@ COPY ./composer.json /var/www/mediawiki/composer.local.json
 
 RUN set -eux; \
 	mkdir /usr/local/smw; \
-	chown -R www-data:www-data /var/www/mediawiki /usr/local/smw
+	mkdir -p /var/www/.composer; \
+	chown -R www-data:www-data /var/www/mediawiki /usr/local/smw /var/www/.composer
 
 USER www-data
 
