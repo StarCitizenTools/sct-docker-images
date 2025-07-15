@@ -39,9 +39,7 @@ RUN install-php-extensions \
 		calendar \
 		exif \
 		intl \
-		mbstring \
 		mysqli \
-		opcache \
 		zip \
 		apcu \
 		luasandbox \
@@ -130,9 +128,7 @@ RUN install-php-extensions \
 		calendar \
 		exif \
 		intl \
-		mbstring \
 		mysqli \
-		opcache \
 		zip \
 		apcu \
 		luasandbox \
