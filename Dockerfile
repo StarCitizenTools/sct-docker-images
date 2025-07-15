@@ -1,5 +1,5 @@
 # Builder stage
-FROM php:8.3-fpm as builder
+FROM php:8.3-fpm AS builder
 
 # Version
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
