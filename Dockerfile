@@ -5,9 +5,16 @@ FROM php:8.3-fpm as builder
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
 ARG MEDIAWIKI_VERSION='1.43.1'
 
+# Build arguments
+ARG UPDATE_SYSTEM_DEPENDENCIES=false
+ARG UPDATE_PHP_EXTENSIONS=false
+ARG UPDATE_COMPOSER_DEPENDENCIES=false
+
 # System dependencies
-RUN set -eux; \
-	\
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    set -eux; \
+	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		git \
@@ -22,20 +29,23 @@ RUN set -eux; \
 		s3cmd \
 		python3 \
 		python3-pip \
-	; \
-	rm -rf /var/lib/apt/lists/*
+	;
 
 # Pygments
 # Required for Extension:SyntaxHighlight
 # This is compiled from source because both the bundled and Debian packages are too old
-RUN set -eux; \
+RUN --mount=type=cache,target=/root/.cache/pip \
+    set -eux; \
 	pip3 install Pygments --break-system-packages \
 	;
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions \
+RUN --mount=type=cache,target=/tmp/phpexts-cache \
+    set -eux; \
+    echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+    install-php-extensions \
 		calendar \
 		exif \
 		intl \
@@ -84,7 +94,9 @@ RUN set -eux; \
 
 USER www-data
 
-RUN set -eux; \
+RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
+    set -eux; \
+	echo "Forcing composer update: ${UPDATE_COMPOSER_DEPENDENCIES}"; \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	\
 	# Install the skins and extensions first
@@ -108,8 +120,14 @@ RUN set -eux; \
 # Final image
 FROM php:8.3-fpm
 
+ARG UPDATE_SYSTEM_DEPENDENCIES=false
+ARG UPDATE_PHP_EXTENSIONS=false
+
 # Runtime dependencies
-RUN set -eux; \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    set -eux; \
+	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -119,12 +137,14 @@ RUN set -eux; \
 		webp \
 		s3cmd \
 		python3 \
-	; \
-	rm -rf /var/lib/apt/lists/*
+	;
 
 # PHP extensions
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions \
+RUN --mount=type=cache,target=/tmp/phpexts-cache \
+    set -eux; \
+    echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+    install-php-extensions \
 		calendar \
 		exif \
 		intl \

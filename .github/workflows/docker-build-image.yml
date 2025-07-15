@@ -6,6 +6,22 @@ on:
     branches:
       - 'smw'
   workflow_dispatch:
+    inputs:
+      update_composer_dependencies:
+        description: 'Force a full refresh of Composer dependencies'
+        required: true
+        type: boolean
+        default: false
+      update_system_dependencies:
+        description: 'Force a refresh of apt system packages'
+        required: true
+        type: boolean
+        default: false
+      update_php_extensions:
+        description: 'Force a refresh of PHP extensions'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   docker:
@@ -30,3 +46,9 @@ jobs:
         with:
           push: true
           tags: starcitizentools/mediawiki:smw-latest,starcitizentools/mediawiki:smw-${{ steps.setcalver.outputs.package_version }}
+          build-args: |
+            UPDATE_COMPOSER_DEPENDENCIES=${{ github.event.inputs.update_composer_dependencies }}
+            UPDATE_SYSTEM_DEPENDENCIES=${{ github.event.inputs.update_system_dependencies }}
+            UPDATE_PHP_EXTENSIONS=${{ github.event.inputs.update_php_extensions }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
