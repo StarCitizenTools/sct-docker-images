@@ -10,7 +10,6 @@ RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		git \
-		librsvg2-bin \
 		imagemagick \
 		libvips-tools \
 		ffmpeg \
