@@ -559,10 +559,8 @@ wfLoadExtensions( [
 	'CommonsMetadata',
 	'ConfirmEdit',
 	'ConfirmEdit/QuestyCaptcha',
-	// 'CookieWarning', // Disabled due to performance issue and we only have first party functional cookies
 	'Details',
 	'Disambiguator',
-	// 'Discord',
 	'DiscussionTools',
 	'DismissableSiteNotice',
 	'DynamicPageList3',
@@ -571,7 +569,6 @@ wfLoadExtensions( [
 	'EmbedVideo',
 	'FloatingUI',
 	'Gadgets',
-	// 'Graph', // Disabled due to security issue
 	'InputBox',
 	'Interwiki',
 	'JsonConfig',
@@ -584,10 +581,8 @@ wfLoadExtensions( [
 	'Nuke',
 	'OATHAuth',
 	'PageImages',
-	// 'PageViewInfo', // Disabled with Extension:Plausible
 	'ParserFunctions',
 	'ParserMigration',
-	// 'Plausible', // Disabled to allocate more resources to MW
 	'Popups',
 	'RelatedArticles',
 	'ReplaceText',
@@ -609,7 +604,6 @@ wfLoadExtensions( [
 	'Thanks',
 	'Thumbro',
 	'TwoColConflict',
-	// 'UniversalLanguageSelector', // Disabled due to performance issue
 	'UploadWizard',
 	'Variables',
 	'VisualEditor',
