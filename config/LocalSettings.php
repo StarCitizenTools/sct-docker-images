@@ -923,6 +923,10 @@ $smwgQDefaultLimit = 2000;
 $smwgQMaxInlineLimit = $smwgQDefaultLimit;
 // Disable RDF link in <head> to mitigate bot scrapers
 $smwgEnableExportRDFLink = false;
+// Do not let SMW invalidate parser cache
+$smwgSetParserCacheTimestamp = false;
+// Prevent cache fragmentation caused by userlang and dateformat
+$smwgSetParserCacheKeys = [];
 // Disable entity issue panel for all users by default since it is useless to most users
 // This generates an uncached call to api.php which is not needed
 $wgDefaultUserOptions['smw-prefs-general-options-show-entity-issue-panel'] = false;
