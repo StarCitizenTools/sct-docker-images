@@ -53,7 +53,7 @@
         "extra": {
                 "merge-plugin": {
                         "include": [
-                                "extensions/Checkuser/composer.json",
+                                "extensions/CheckUser/composer.json",
                                 "extensions/CirrusSearch/composer.json",
                                 "extensions/Cite/composer.json",
                                 "extensions/Elastica/composer.json",
