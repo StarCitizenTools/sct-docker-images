@@ -68,8 +68,8 @@ $wgShowExceptionDetails = true;
 /**
  * Keys
  */
-$wgSecretKey = "{$_ENV['MEDIAWIKI_SECRETKEY']}";
-$wgUpgradeKey = "{$_ENV['MEDIAWIKI_UPGRADEKEY']}";
+$wgSecretKey = getenv( 'MEDIAWIKI_SECRETKEY' );
+$wgUpgradeKey = getenv( 'MEDIAWIKI_UPGRADEKEY' );
 
 /**
  * Server/site settings
@@ -148,7 +148,7 @@ $wgSMTP = [
 	'port' => 2525,
 	'auth' => true,
 	'username' => 'no-reply@starcitizen.tools',
-	'password' => $_ENV['SMTP_PASSWORD'],
+	'password' => getenv( 'SMTP_PASSWORD' ),
 ];
 $wgEmergencyContact = 'webmaster@starcitizen.tools';
 $wgPasswordSender = 'no-reply@starcitizen.tools';
@@ -161,7 +161,7 @@ $wgAllowHTMLEmail = true;
 $wgDBserver = 'mariadb-service.default.svc.cluster.local';
 $wgDBname = 'scw_PROD';
 $wgDBuser = 'root';
-$wgDBpassword = "{$_ENV['PRD_DB_PASSWORD']}";
+$wgDBpassword = getenv( 'PRD_DB_PASSWORD' );
 $wgDBprefix = 'wiki';
 // MySQL table options to use during installation or update
 $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=utf8';
@@ -641,8 +641,8 @@ $wgApiuntoDefaultLocale = 'en_EN';
  * @see https://github.com/edwardspec/mediawiki-aws-s3
  */
 $wgAWSCredentials = [
-	'key' => $_ENV['IMAGES_ACCESS_KEY'],
-	'secret' => $_ENV['IMAGES_SECRET_KEY'],
+	'key' => getenv( 'IMAGES_ACCESS_KEY' ),
+	'secret' => getenv( 'IMAGES_SECRET_KEY' ),
 	'token' => false
 ];
 $wgAWSBucketName = 'media.starcitizen.tools';
@@ -707,8 +707,8 @@ $wgDefaultUserOptions['usecodemirror'] = 1;
  * @see https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
  */
 // hCaptcha is disabled as it did not stop the bots :(
-// $wgHCaptchaSiteKey = "{$_ENV['HCAPTCHA_SITEKEY']}";
-// $wgHCaptchaSecretKey = "{$_ENV['HCAPTCHA_SECRETKEY']}";
+// $wgHCaptchaSiteKey = getenv( 'HCAPTCHA_SITEKEY' );
+// $wgHCaptchaSecretKey = getenv( 'HCAPTCHA_SECRETKEY' );
 $wgCaptchaTriggers['edit'] = true;
 $wgCaptchaTriggers['create'] = true;
 $wgCaptchaTriggers['sendemail'] = true;
@@ -734,7 +734,7 @@ $wgDetailsMWCollapsibleCompatibility = false;
  *
  * @see https://github.com/jayktaylor/mw-discord
  */
-$wgDiscordWebhookURL = [ "{$_ENV['DISCORD_WEBHOOKURL']}" ];
+$wgDiscordWebhookURL = [ getenv( 'DISCORD_WEBHOOKURL' ) ];
 $wgDiscordUseEmojis = true;
 
 /**
@@ -811,8 +811,8 @@ $wgMediaViewerThumbnailBucketSizes = [
  */
 $wgMultiPurgeEnabledServices = [ 'Cloudflare' ];
 $wgMultiPurgeServiceOrder = $wgMultiPurgeEnabledServices;
-$wgMultiPurgeCloudFlareZoneId = "{$_ENV['CLOUDFLARE_ZONEID']}";
-$wgMultiPurgeCloudFlareApiToken = "{$_ENV['CLOUDFLARE_APITOKEN']}";
+$wgMultiPurgeCloudFlareZoneId = getenv( 'CLOUDFLARE_ZONEID' );
+$wgMultiPurgeCloudFlareApiToken = getenv( 'CLOUDFLARE_APITOKEN' );
 $wgMultiPurgeStaticPurges = [
 	'Startup script' => 'load.php?lang=en&modules=startup&only=scripts&raw=1&skin=citizen',
 	'Site styles' => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
@@ -1042,7 +1042,7 @@ $wgUploadNavigationUrl = '/Special:UploadWizard';
 // @see https://github.com/wikimedia/mediawiki-extensions-UploadWizard/blob/REL1_43/UploadWizard.config.php
 $wgUploadWizardConfig = [
 	'campaignExpensiveStatsEnabled' => false,
-	'flickrApiKey' => "{$_ENV['FLICKR_APIKEY']}",
+	'flickrApiKey' => getenv( 'FLICKR_APIKEY' ),
 	'tutorial' => [
 		'skip' => true,
 	],
@@ -1218,8 +1218,6 @@ $wgCitizenManifestOptions = [
 		],
 	],
 ];
-// Enable experimental command palette
-$wgCitizenEnableCommandPalette = true;
 
 /**
  * Enable WikiDiff2
