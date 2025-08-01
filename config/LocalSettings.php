@@ -820,6 +820,22 @@ $wgMultiPurgeStaticPurges = [
 $wgMultiPurgeRunInQueue = true;
 
 /**
+ * Extension:OAuth
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-OAuth
+ */
+/* TODO: Enable OAuth
+$wgOAuth2PrivateKey = getenv( 'OAUTH_PRIVATE_KEY' );
+$wgOAuth2PublicKey = getenv( 'OAUTH_PUBLIC_KEY' );
+$wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
+$wgGroupPermissions['sysop']['mwoauthupdateownconsumer'] = true;
+$wgGroupPermissions['sysop']['mwoauthmanageconsumer'] = true;
+$wgGroupPermissions['sysop']['mwoauthsuppress'] = true;
+$wgGroupPermissions['sysop']['mwoauthviewsuppressed'] = true;
+$wgGroupPermissions['user']['mwoauthmanagemygrants'] = true;
+*/
+
+/**
  * Extension:PageImages
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-PageImages
