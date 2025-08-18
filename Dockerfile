@@ -12,8 +12,8 @@ ARG UPDATE_COMPOSER_DEPENDENCIES=false
 
 # System dependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    set -eux; \
+	--mount=type=cache,target=/var/lib/apt,sharing=locked \
+	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -29,21 +29,21 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Required for Extension:SyntaxHighlight
 # This is compiled from source because both the bundled and Debian packages are too old
 RUN --mount=type=cache,target=/root/.cache/pip \
-    set -eux; \
+	set -eux; \
 	pip3 install Pygments --break-system-packages \
 	;
 
 # Create a tarball of the Python packages so that we can copy them to the final image
 RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
-    tar -czf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} .
+	tar -czf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} .
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
-    set -eux; \
-    echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
-    install-php-extensions \
+	set -eux; \
+	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+	install-php-extensions \
 		calendar \
 		exif \
 		intl \
@@ -100,7 +100,7 @@ RUN set -eux; \
 USER www-data
 
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
-    set -eux; \
+	set -eux; \
 	echo "Forcing composer update: ${UPDATE_COMPOSER_DEPENDENCIES}"; \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	\
@@ -130,8 +130,8 @@ ARG UPDATE_PHP_EXTENSIONS=false
 
 # Runtime dependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    set -eux; \
+	--mount=type=cache,target=/var/lib/apt,sharing=locked \
+	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	\
 	apt-get update; \
@@ -157,9 +157,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # PHP extensions
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
-    set -eux; \
-    echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
-    install-php-extensions \
+	set -eux; \
+	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+	install-php-extensions \
 		calendar \
 		exif \
 		intl \
@@ -184,7 +184,7 @@ RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.
 
 # Create required directories
 RUN mkdir -p /var/www/mediawiki /usr/local/smw; \
-    chown www-data:www-data /usr/local/smw
+	chown www-data:www-data /usr/local/smw
 
 WORKDIR /var/www/mediawiki
 
@@ -192,9 +192,9 @@ WORKDIR /var/www/mediawiki
 COPY --from=builder /var/www/mediawiki /var/www/mediawiki
 COPY --from=builder /python-packages.tar.gz /python-packages.tar.gz
 RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
-    mkdir -p ${PY_PACKAGES_PATH} && \
-    tar -xzf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} && \
-    rm /python-packages.tar.gz
+	mkdir -p ${PY_PACKAGES_PATH} && \
+	tar -xzf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} && \
+	rm /python-packages.tar.gz
 COPY --from=builder /usr/local/bin/pygmentize /usr/local/bin/pygmentize
 
 # Copy final configs
