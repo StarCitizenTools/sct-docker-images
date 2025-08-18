@@ -33,6 +33,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 	pip3 install Pygments --break-system-packages \
 	;
 
+# Create a tarball of the Python packages so that we can copy them to the final image
+RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
+    tar -czf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} .
+
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
@@ -186,11 +190,12 @@ WORKDIR /var/www/mediawiki
 
 # Copy built application files and python packages from the builder stage
 COPY --from=builder /var/www/mediawiki /var/www/mediawiki
+COPY --from=builder /python-packages.tar.gz /python-packages.tar.gz
+RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
+    mkdir -p ${PY_PACKAGES_PATH} && \
+    tar -xzf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} && \
+    rm /python-packages.tar.gz
 COPY --from=builder /usr/local/bin/pygmentize /usr/local/bin/pygmentize
-
-# Dynamically find the Python site-packages directory and copy contents
-RUN python3 -c "import site; print(site.getsitepackages()[0])"
-COPY --from=builder /usr/local/lib/python3/dist-packages /usr/local/lib/python3/dist-packages
 
 # Copy final configs
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
