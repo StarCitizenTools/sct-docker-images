@@ -208,7 +208,7 @@ $wgCdnMaxAge = $wgParserCacheExpireTime;
 $wgCdnMatchParameterOrder = false;
 $wgCdnServersNoPurge = [
 	// Linode Loadbalancer
-	'194.233.168.70',
+	'143.42.223.238',
 	// Internal IPs
 	'10.0.0.0/8',
 	// Cloudflare IPv4
