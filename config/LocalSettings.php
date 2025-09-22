@@ -1455,3 +1455,14 @@ $wgHooks['HtmlPageLinkRendererEnd'][] = function( $linkRenderer, $target, $isKno
     }
     return true;
 };
+
+/**
+ * Strengthen Content Security Policy implementation in MW
+ *
+ * @see https://doc.wikimedia.org/mediawiki-core/REL1_43/php/classMediaWiki_1_1HookContainer_1_1HookRunner.html#a1bef6100adfea8724efc95072a9c9ef2
+ */
+$wgHooks['ContentSecurityPolicyDirectives'][] = function( &$directives, &$policyConfig, $mode ) {
+	$directives[] = "base-uri 'none'";
+	$directives[] = "form-action 'self'";
+	$directives[] = "frame-ancestors 'none'";
+};
