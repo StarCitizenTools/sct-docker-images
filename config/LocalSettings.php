@@ -250,8 +250,6 @@ $wgForceHTTPS = true;
 // Set X-Frame-Options to DENY
 $wgBreakFrames = true;
 $wgCSPHeader = [
-	// nonces have limited support and removed in MW 1.41
-	'useNonces' => false,
 	'script-src' => [
 		'\'self\''
 	],
