@@ -18,6 +18,9 @@
  * @link https://discord.com/invite/XcKwqyD4sc Contact us
  */
 
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
+
 // Protect against web entry
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
