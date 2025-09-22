@@ -1240,11 +1240,7 @@ $wgCitizenManifestOptions = [
 /**
  * Enable WikiDiff2
  */
-// Set as a variable because we will re-use it at SoftwareInfo hook
-$sctIsWikiDiff2Enabled = extension_loaded( 'wikidiff2' );
-if ( $sctIsWikiDiff2Enabled ) {
-	$wgDiffEngine = 'wikidiff2';
-}
+$wgDiffEngine = 'wikidiff2';
 
 /**
  * User group permission settings
