@@ -36,7 +36,7 @@
                 "edwardspec/mediawiki-aws-s3": "dev-master",
                 "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
-                "mediawiki/semantic-result-formats": "dev-master",
+                "mediawiki/semantic-result-formats": "dev-feat-datatables-searchpanes-structured-queries",
                 "mediawiki/semantic-scribunto": "dev-master",
                 "alistair3149/apiunto": "1.43.0",
                 "starcitizentools/citizen-skin": "dev-main",
