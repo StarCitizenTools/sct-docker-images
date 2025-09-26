@@ -13,7 +13,6 @@
                 "mediawiki/dismissablesitenotice": "1.43.0",
                 "chariz/details": "1.43.0",
                 "mediawiki/elastica": "1.43.0",
-                "mediawiki/graph": "1.43.0",
                 "mediawiki/json-config": "1.43.0",
                 "mediawiki/loops": "1.43.0",
                 "mediawiki/mediasearch": "1.43.0",
@@ -102,23 +101,6 @@
                                 },
                                 "extra": {
                                     "installer-name": "DismissableSiteNotice"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/graph",
-                                "type": "mediawiki-extension",
-                                "version": "1.43.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Graph/archive/REL1_43.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-Graph.git",
-                                        "reference": "REL1_43"
                                 }
                         }
                 },
