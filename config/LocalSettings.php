@@ -182,7 +182,7 @@ $wgCacheDirectory = "$IP/cache";
 // Define redis
 $wgObjectCaches['redis'] = [
 	'class' => 'RedisBagOStuff',
-	'servers' => [ 'redis-service.default.svc.cluster.local' ],
+	'servers' => [ 'valkey-service.default.svc.cluster.local' ],
 	'persistent' => true,
 	// 'connectTimeout' => 1,
 	// 'password' => 'secret',
