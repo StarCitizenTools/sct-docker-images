@@ -633,10 +633,13 @@ $wgAdvancedSearchDeepcatEnabled = false;
  * 
  * @see https://github.com/StarCitizenWiki/Apiunto
  */
-$wgApiuntoKey = '';
-$wgApiuntoUrl = 'https://api.star-citizen.wiki';
-$wgApiuntoTimeout = 30; // 5 seconds
-$wgApiuntoDefaultLocale = 'en_EN';
+$wgApiuntoSources = [
+	'StarCitizenWikiAPI' => [
+		'baseUrl' => 'https://api.star-citizen.wiki/api/',
+		'token' => '',
+		'timeout' => 30,
+	]
+];
 
 /**
  * Extension:AWS
