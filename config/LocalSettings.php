@@ -251,7 +251,9 @@ $wgForceHTTPS = true;
 $wgBreakFrames = true;
 $wgCSPHeader = [
 	'script-src' => [
-		'\'self\''
+		'\'self\'',
+		// Cloudflare RUM
+		'https://static.cloudflareinsights.com'
 	],
 	'default-src' => [
 		'\'self\'',
