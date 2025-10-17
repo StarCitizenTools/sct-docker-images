@@ -310,6 +310,9 @@ $wgJobTypeConf['default'] = [
 ];
 // We have jobrunner set up so don't run any jobs on request
 $wgJobRunRate = 0;
+// Avoid excessive CPU due to cache misses from rapid invalidations
+$wgJobBackoffThrottling['htmlCacheUpdate'] = 50;
+
 // Defer upload tasks to jobrunner
 // TODO: Check if our jobrunner can handle that
 // $wgEnableAsyncUploads = true;
