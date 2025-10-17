@@ -1316,9 +1316,12 @@ $wgGroupPermissions['Verified']['reupload-own'] = true;
 $wgGroupPermissions['Verified']['minoredit'] = true;
 
 // Trusted users
-$wgAutopromote['Trusted'] = [ '&',
+$wgAutopromoteOnce['onEdit']['Trusted'] = [ '&',
 	[ APCOND_EDITCOUNT, 300 ],
 	[ APCOND_INGROUPS, 'Verified' ],
+	[ '!', [ APCOND_INGROUPS, 'Editor' ] ],
+	[ '!', [ APCOND_INGROUPS, 'sysop' ] ],
+	[ '!', [ APCOND_INGROUPS, 'bot' ] ],
 ];
 $wgGroupPermissions['Trusted'] = $wgGroupPermissions['Verified'];
 $wgGroupPermissions['Trusted']['patrol'] = true;
