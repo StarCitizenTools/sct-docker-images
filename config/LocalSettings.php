@@ -276,6 +276,8 @@ $wgPasswordDefault = 'argon2';
 $wgHiddenPrefs[] = 'realname';
 // Open external link in new tab/window
 $wgExternalLinkTarget = '_blank';
+// Block creating accounts using the API
+$wgAPIModules['createaccount'] = 'ApiDisabled';
 
 /**
  * Performance settings
