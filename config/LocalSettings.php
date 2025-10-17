@@ -276,8 +276,6 @@ $wgPasswordDefault = 'argon2';
 $wgHiddenPrefs[] = 'realname';
 // Open external link in new tab/window
 $wgExternalLinkTarget = '_blank';
-// Block creating accounts using the API
-$wgAPIModules['createaccount'] = 'ApiDisabled';
 
 /**
  * Performance settings
@@ -1257,6 +1255,16 @@ $wgDiffEngine = 'wikidiff2';
 /**
  * User group permission settings
  */
+// Block creating accounts using the API
+$wgAPIModules['createaccount'] = 'ApiDisabled';
+// 6 account creations per day (captcha failures are counted as a creation)
+$wgAccountCreationThrottle = [
+	[
+		'count'   => 6,
+		'seconds' => 86400 // 1 day
+	]
+];
+
 // Anon
 // Disable all anon edits as anti-spam measure
 $wgGroupPermissions['*']['edit'] = false;
