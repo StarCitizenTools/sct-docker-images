@@ -180,7 +180,7 @@ $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=utf8';
 $wgCacheDirectory = "$IP/cache";
 
 // Define redis
-$wgObjectCaches['redis'] = [
+$wgObjectCaches['valkey'] = [
 	'class' => 'RedisBagOStuff',
 	'servers' => [ 'valkey-service.default.svc.cluster.local' ],
 	'persistent' => true,
@@ -190,11 +190,11 @@ $wgObjectCaches['redis'] = [
 ];
 
 // https://phabricator.wikimedia.org/T352481
-$wgMainStash = 'redis';
-$wgMainCacheType = 'redis';
-$wgParserCacheType  = 'redis';
-$wgSessionCacheType = 'redis';
-$wgLanguageConverterCacheType = 'redis';
+$wgMainStash = 'valkey';
+$wgMainCacheType = 'valkey';
+$wgParserCacheType  = 'valkey';
+$wgSessionCacheType = 'valkey';
+$wgLanguageConverterCacheType = 'valkey';
 $wgEnableSidebarCache = true;
 $wgUseLocalMessageCache = true;
 $wgGitInfoCacheDirectory = "$IP/cache/gitinfo";
@@ -304,6 +304,7 @@ $wgDisableQueryPageUpdate = [
 $wgJobTypeConf['default'] = [
 	'class' => 'JobQueueRedis',
 	'redisServer' => 'valkey-service.default.svc.cluster.local',
+	'redisConfig' => [],
 	'checkDelay' => true,
 	'daemonized' => true,
 ];
@@ -924,9 +925,9 @@ enableSemantics( SCT_DOMAIN );
 // Set default property type to Text
 // Because we use SMW property for displaying data through templates mainly
 $smwgPDefaultType = '_txt';
-// Use Redis to cache SMW query result
-$smwgMainCacheType = 'redis';
-$smwgQueryResultCacheType = 'redis';
+// Use Valkey to cache SMW query result
+$smwgMainCacheType = 'valkey';
+$smwgQueryResultCacheType = 'valkey';
 // Enable tracking and storing of dependencies of embedded queries
 // NOTE: Disabled due to performance issues.
 // Upon enabling, it can potentially trigger a lot of parser cache invalidation,
