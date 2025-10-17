@@ -202,8 +202,11 @@ $wgGitInfoCacheDirectory = "$IP/cache/gitinfo";
 // Extend parser cache to 3 days
 $wgParserCacheExpireTime = 259200;
 
-// Extend search suggestions response cache to 3 hours
-$wgSearchSuggestCacheExpiry = 10800;
+// Extend search suggestions response cache to 3 days
+// This allows the CDN to cache the search suggestions response
+// Apparently the cache header is only added for search query with 1 character
+// so it does not need to be fresh and relatively safe to cache for longer
+$wgSearchSuggestCacheExpiry = 259200;
 
 // Cloudflare CDN settings
 $wgUseCdn = true;
