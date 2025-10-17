@@ -714,6 +714,14 @@ $wgCodeMirrorLineNumberingNamespaces = [
 $wgDefaultUserOptions['usecodemirror'] = 1;
 
 /**
+ * Extension:CommonsMetadata
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
+ */
+// Enable tracking categories for CommonsMetadata, to track files without proper metadata
+$wgCommonsMetadataSetTrackingCategories = true;
+
+/**
  * Extension:ConfirmEdit
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
