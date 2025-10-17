@@ -303,7 +303,6 @@ $wgDisableQueryPageUpdate = [
 // Job queue
 $wgJobTypeConf['default'] = [
 	'class' => 'JobQueueRedis',
-	'order' => 'fifo',
 	'redisServer' => 'valkey-service.default.svc.cluster.local',
 	'checkDelay' => true,
 	'daemonized' => true,
