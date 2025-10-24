@@ -15,6 +15,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	--mount=type=cache,target=/var/lib/apt,sharing=locked \
 	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
+	\
+	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" = "true" ]; then \
+		echo "Clearing apt cache..."; \
+		rm -rf /var/cache/apt/*; \
+		rm -rf /var/lib/apt/lists/*; \
+	fi; \
+	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		git \
@@ -43,6 +50,12 @@ COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensio
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+	\
+	if [ "${UPDATE_PHP_EXTENSIONS}" = "true" ]; then \
+		echo "Clearing PHP extensions cache..."; \
+		rm -rf /tmp/phpexts-cache/*; \
+	fi; \
+	\
 	install-php-extensions \
 		calendar \
 		exif \
@@ -102,6 +115,12 @@ USER www-data
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	set -eux; \
 	echo "Forcing composer update: ${UPDATE_COMPOSER_DEPENDENCIES}"; \
+	\
+	if [ "${UPDATE_COMPOSER_DEPENDENCIES}" = "true" ]; then \
+		echo "Clearing composer cache..."; \
+		rm -rf /var/www/.composer/cache/*; \
+	fi; \
+	\
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	\
 	# Install the skins and extensions first
@@ -134,6 +153,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	\
+	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" = "true" ]; then \
+		echo "Clearing apt cache..."; \
+		rm -rf /var/cache/apt/*; \
+		rm -rf /var/lib/apt/lists/*; \
+	fi; \
+	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		# Sysops tools
@@ -159,6 +184,12 @@ COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensio
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+	\
+	if [ "${UPDATE_PHP_EXTENSIONS}" = "true" ]; then \
+		echo "Clearing PHP extensions cache..."; \
+		rm -rf /tmp/phpexts-cache/*; \
+	fi; \
+	\
 	install-php-extensions \
 		calendar \
 		exif \
