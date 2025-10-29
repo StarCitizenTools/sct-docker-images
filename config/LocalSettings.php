@@ -606,6 +606,7 @@ wfLoadExtensions( [
 	'SyntaxHighlight_GeSHi',
 	'TabberNeue',
 	'TemplateData',
+	'TemplateSandbox',
 	'TemplateStyles',
 	'TemplateStylesExtender',
 	'TextExtracts',
@@ -994,6 +995,14 @@ $sespgLinksToEnabledNamespaces = [
  */
 // Use more updated Pygmentize from system instead of bundled one
 $wgPygmentizePath = '/usr/local/bin/pygmentize';
+
+/**
+ * Extension:TemplateSandbox
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
+ */
+// Add module namespace support for TemplateSandbox
+$wgTemplateSandboxEditNamespaces[] = NS_MODULE;
 
 /**
  * Extension:TemplateStyles

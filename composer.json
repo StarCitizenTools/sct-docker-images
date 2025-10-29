@@ -22,6 +22,7 @@
                 "mediawiki/related-articles": "1.43.0",
                 "mediawiki/revisionslider": "1.43.0",
                 "mediawiki/sandbox-link": "1.43.0",
+                "mediawiki/template-sandbox": "1.43.0",
                 "mediawiki/template-styles": "1.43.0",
                 "octfx/template-styles-extender": "dev-master",
                 "mediawiki/twocolconflict": "1.43.0",
@@ -205,6 +206,23 @@
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata.git",
+                                        "reference": "REL1_43"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "mediawiki/template-sandbox",
+                                "type": "mediawiki-extension",
+                                "version": "1.43.0",
+                                "dist": {
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox/archive/REL1_43.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox.git",
                                         "reference": "REL1_43"
                                 }
                         }
