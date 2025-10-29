@@ -729,6 +729,7 @@ $wgCommonsMetadataSetTrackingCategories = true;
 // hCaptcha is disabled as it did not stop the bots :(
 // $wgHCaptchaSiteKey = getenv( 'HCAPTCHA_SITEKEY' );
 // $wgHCaptchaSecretKey = getenv( 'HCAPTCHA_SECRETKEY' );
+$wgCaptchaClass = 'QuestyCaptcha';
 $wgCaptchaTriggers['edit'] = true;
 $wgCaptchaTriggers['create'] = true;
 $wgCaptchaTriggers['sendemail'] = true;
