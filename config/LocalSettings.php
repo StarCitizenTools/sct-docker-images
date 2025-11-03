@@ -959,6 +959,8 @@ foreach ($wgContentNamespaces as $contentNS) {
 // that needs to access the data (e.g. Navplates, DataTables, etc.)
 $smwgQDefaultLimit = 2000;
 $smwgQMaxInlineLimit = $smwgQDefaultLimit;
+// Increase query max size so that we can use query with more OR conditions (e.g. UUID lookup)
+$smwgQMaxSize = 100;
 // Disable RDF link in <head> to mitigate bot scrapers
 $smwgEnableExportRDFLink = false;
 // Do not let SMW invalidate parser cache
