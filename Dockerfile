@@ -38,8 +38,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 RUN --mount=type=cache,target=/root/.cache/pip \
 	set -eux; \
 	python3 -m venv /opt/venv; \
-	/opt/venv/bin/pip install Pygments; \
-	;
+	/opt/venv/bin/pip install Pygments
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
