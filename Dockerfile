@@ -199,6 +199,8 @@ WORKDIR /var/www/mediawiki
 COPY --from=builder /var/www/mediawiki /var/www/mediawiki
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
+# Create a symlink to ensure MediaWiki finds pygmentize
+RUN ln -s /opt/venv/bin/pygmentize /usr/local/bin/pygmentize
 
 # Copy final configs
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
