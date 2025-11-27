@@ -29,7 +29,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 		openssh-client \
 		# Required to build Pygments
 		python3 \
-		python3-pip \
+		python3-venv \
 	;
 
 # Pygments
@@ -37,12 +37,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # This is compiled from source because both the bundled and Debian packages are too old
 RUN --mount=type=cache,target=/root/.cache/pip \
 	set -eux; \
-	pip3 install Pygments --break-system-packages \
+	python3 -m venv /opt/venv; \
+	/opt/venv/bin/pip install Pygments; \
 	;
-
-# Create a tarball of the Python packages so that we can copy them to the final image
-RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
-	tar -czf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} .
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
@@ -221,12 +218,8 @@ WORKDIR /var/www/mediawiki
 
 # Copy built application files and python packages from the builder stage
 COPY --from=builder /var/www/mediawiki /var/www/mediawiki
-COPY --from=builder /python-packages.tar.gz /python-packages.tar.gz
-RUN export PY_PACKAGES_PATH=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') && \
-	mkdir -p ${PY_PACKAGES_PATH} && \
-	tar -xzf /python-packages.tar.gz -C ${PY_PACKAGES_PATH} && \
-	rm /python-packages.tar.gz
-COPY --from=builder /usr/local/bin/pygmentize /usr/local/bin/pygmentize
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy final configs
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
