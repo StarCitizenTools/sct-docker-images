@@ -1,5 +1,34 @@
+# Base stage
+FROM php:8.3-fpm AS base
+
+ARG UPDATE_PHP_EXTENSIONS=false
+
+# PHP extensions
+# install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
+COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
+RUN --mount=type=cache,target=/tmp/phpexts-cache \
+	set -eux; \
+	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
+	\
+	if [ "${UPDATE_PHP_EXTENSIONS}" != "false" ]; then \
+		echo "Clearing PHP extensions cache..."; \
+		rm -rf /tmp/phpexts-cache/*; \
+	fi; \
+	\
+	install-php-extensions \
+		calendar \
+		exif \
+		intl \
+		mysqli \
+		zip \
+		apcu \
+		luasandbox \
+		redis \
+		wikidiff2 \
+	;
+
 # Builder stage
-FROM php:8.3-fpm AS builder
+FROM base AS builder
 
 # Version
 ARG MEDIAWIKI_MAJOR_VERSION='1.43'
@@ -7,7 +36,6 @@ ARG MEDIAWIKI_VERSION='1.43.5'
 
 # Build arguments
 ARG UPDATE_SYSTEM_DEPENDENCIES=false
-ARG UPDATE_PHP_EXTENSIONS=false
 ARG UPDATE_COMPOSER_DEPENDENCIES=false
 
 # System dependencies
@@ -39,30 +67,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 	set -eux; \
 	python3 -m venv /opt/venv; \
 	/opt/venv/bin/pip install Pygments
-
-# PHP extensions
-# install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
-COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
-RUN --mount=type=cache,target=/tmp/phpexts-cache \
-	set -eux; \
-	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
-	\
-	if [ "${UPDATE_PHP_EXTENSIONS}" != "false" ]; then \
-		echo "Clearing PHP extensions cache..."; \
-		rm -rf /tmp/phpexts-cache/*; \
-	fi; \
-	\
-	install-php-extensions \
-		calendar \
-		exif \
-		intl \
-		mysqli \
-		zip \
-		apcu \
-		luasandbox \
-		redis \
-		wikidiff2 \
-	;
 
 # MediaWiki
 RUN set -eux; \
@@ -119,7 +123,7 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	\
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	\
-	# Install the skins and extensions first
+	# Install the skins and extensions
 	/usr/bin/composer install --no-dev \
 		--prefer-source \
 		--ignore-platform-reqs \
@@ -138,10 +142,9 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 		--no-scripts;
 
 # Final image
-FROM php:8.3-fpm
+FROM base AS final
 
 ARG UPDATE_SYSTEM_DEPENDENCIES=false
-ARG UPDATE_PHP_EXTENSIONS=false
 
 # Runtime dependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -173,29 +176,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 		python3 \
 		# Extension:Thumbro
 		libvips-tools \
-	;
-
-# PHP extensions
-COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
-RUN --mount=type=cache,target=/tmp/phpexts-cache \
-	set -eux; \
-	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
-	\
-	if [ "${UPDATE_PHP_EXTENSIONS}" != "false" ]; then \
-		echo "Clearing PHP extensions cache..."; \
-		rm -rf /tmp/phpexts-cache/*; \
-	fi; \
-	\
-	install-php-extensions \
-		calendar \
-		exif \
-		intl \
-		mysqli \
-		zip \
-		apcu \
-		luasandbox \
-		redis \
-		wikidiff2 \
 	;
 
 # Copy PHP configs
