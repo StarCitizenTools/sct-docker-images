@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	\
-	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" = "true" ]; then \
+	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" != "false" ]; then \
 		echo "Clearing apt cache..."; \
 		rm -rf /var/cache/apt/*; \
 		rm -rf /var/lib/apt/lists/*; \
@@ -51,7 +51,7 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
 	\
-	if [ "${UPDATE_PHP_EXTENSIONS}" = "true" ]; then \
+	if [ "${UPDATE_PHP_EXTENSIONS}" != "false" ]; then \
 		echo "Clearing PHP extensions cache..."; \
 		rm -rf /tmp/phpexts-cache/*; \
 	fi; \
@@ -116,7 +116,7 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	set -eux; \
 	echo "Forcing composer update: ${UPDATE_COMPOSER_DEPENDENCIES}"; \
 	\
-	if [ "${UPDATE_COMPOSER_DEPENDENCIES}" = "true" ]; then \
+	if [ "${UPDATE_COMPOSER_DEPENDENCIES}" != "false" ]; then \
 		echo "Clearing composer cache..."; \
 		rm -rf /var/www/.composer/cache/*; \
 	fi; \
@@ -153,7 +153,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 	set -eux; \
 	echo "Updating system dependencies: ${UPDATE_SYSTEM_DEPENDENCIES}"; \
 	\
-	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" = "true" ]; then \
+	if [ "${UPDATE_SYSTEM_DEPENDENCIES}" != "false" ]; then \
 		echo "Clearing apt cache..."; \
 		rm -rf /var/cache/apt/*; \
 		rm -rf /var/lib/apt/lists/*; \
@@ -185,7 +185,7 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
 	\
-	if [ "${UPDATE_PHP_EXTENSIONS}" = "true" ]; then \
+	if [ "${UPDATE_PHP_EXTENSIONS}" != "false" ]; then \
 		echo "Clearing PHP extensions cache..."; \
 		rm -rf /tmp/phpexts-cache/*; \
 	fi; \

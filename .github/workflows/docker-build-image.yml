@@ -50,8 +50,8 @@ jobs:
           push: true
           tags: starcitizentools/mediawiki:smw-latest,starcitizentools/mediawiki:smw-${{ steps.setcalver.outputs.package_version }}
           build-args: |
-            UPDATE_COMPOSER_DEPENDENCIES=${{ github.event.inputs.update_composer_dependencies }}
-            UPDATE_SYSTEM_DEPENDENCIES=${{ github.event.inputs.update_system_dependencies }}
-            UPDATE_PHP_EXTENSIONS=${{ github.event.inputs.update_php_extensions }}
+            UPDATE_COMPOSER_DEPENDENCIES=${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
+            UPDATE_SYSTEM_DEPENDENCIES=${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
+            UPDATE_PHP_EXTENSIONS=${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
