@@ -1,5 +1,5 @@
 # Base stage
-FROM php:8.3-fpm AS base
+FROM php:8.4-fpm AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 
