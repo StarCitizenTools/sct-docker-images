@@ -598,6 +598,7 @@ wfLoadExtensions( [
 	'RevisionSlider',
 	'SandboxLink',
 	'Scribunto',
+	'SearchDigest',
 	'SemanticExtraSpecialProperties',
 	'SemanticMediaWiki',
 	'SemanticResultFormats',
