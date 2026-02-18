@@ -124,7 +124,7 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
 	\
 	# Ignore the phpunit security advisory as it is a dev dependency not used in production
-	/usr/bin/composer config --json audit.ignore.PKSA-z3gr-8qht-p93v true; \
+	/usr/bin/composer config --json audit.ignore '{"PKSA-z3gr-8qht-p93v": "ignored"}'; \
 	\
 	# Install the skins and extensions
 	/usr/bin/composer install --no-dev \
