@@ -22,6 +22,11 @@ on:
         required: true
         type: boolean
         default: false
+      mediawiki_commit_hash:
+        description: 'Specific MediaWiki commit hash to build (optional)'
+        required: false
+        type: string
+        default: ''
 
 jobs:
   docker:
@@ -44,6 +49,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: 🔎 Resolve MediaWiki Commit Hash
+        id: mw_hash
+        run: |
+          if [ -n "${{ github.event.inputs.mediawiki_commit_hash }}" ]; then
+            echo "hash=${{ github.event.inputs.mediawiki_commit_hash }}" >> $GITHUB_OUTPUT
+          else
+            LATEST_HASH=$(git ls-remote https://github.com/wikimedia/mediawiki.git refs/heads/REL1_43 | awk '{print $1}')
+            echo "hash=$LATEST_HASH" >> $GITHUB_OUTPUT
+          fi
+      -
         name: 🏗️ Build and push
         uses: docker/build-push-action@v6
         with:
@@ -53,5 +68,6 @@ jobs:
             UPDATE_COMPOSER_DEPENDENCIES=${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
             UPDATE_SYSTEM_DEPENDENCIES=${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
             UPDATE_PHP_EXTENSIONS=${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
+            MEDIAWIKI_COMMIT_HASH=${{ steps.mw_hash.outputs.hash }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
