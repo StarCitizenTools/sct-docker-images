@@ -55,7 +55,7 @@ $sespgLabelCacheVersion = '2025.04'; // Semantic Extra Special Properties cache
  */
 // error_reporting( -1 );
 // ini_set( 'display_errors', 1 );
-// $wgShowExceptionDetails = true;
+$wgShowExceptionDetails = true;
 // $wgDebugToolbar = true;
 // $wgDevelopmentWarnings = true;
 // $wgDebugDumpSql = true;
