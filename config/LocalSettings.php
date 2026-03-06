@@ -1237,8 +1237,6 @@ $wgWikiSeoTryCleanAutoDescription = true;
  *
  * @see https://github.com/StarCitizenTools/mediawiki-skins-Citizen
  */
-// Use Extension:ShortDescription for search suggestion description
-$wgCitizenSearchDescriptionSource = 'wikidata';
 // Default to dark theme
 $wgCitizenThemeDefault = 'dark';
 $wgCitizenThemeColor = '#0d1012';
