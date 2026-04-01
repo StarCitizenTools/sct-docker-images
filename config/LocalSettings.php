@@ -934,8 +934,6 @@ $wgScribuntoGatherFunctionStats = true;
  *
  * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki
  */
-// Required to enable SMW
-enableSemantics( SCT_DOMAIN );
 // Set default property type to Text
 // Because we use SMW property for displaying data through templates mainly
 $smwgPDefaultType = '_txt';
