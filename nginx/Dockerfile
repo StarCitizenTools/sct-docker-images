@@ -9,10 +9,10 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-# Copy skins, extensions, and resources from the mediawiki build
-COPY --from=mediawiki /var/www/mediawiki/skins /var/www/mediawiki/skins
-COPY --from=mediawiki /var/www/mediawiki/extensions /var/www/mediawiki/extensions
-COPY --from=mediawiki /var/www/mediawiki/resources /var/www/mediawiki/resources
+# Copy the full MediaWiki installation from the mediawiki build
+# Nginx needs core files (index.php, load.php, thumb.php, etc.) for routing,
+# plus skins/extensions/resources for serving static assets
+COPY --from=mediawiki /var/www/mediawiki /var/www/mediawiki
 
 COPY ./config/robots.txt /var/www/mediawiki/robots.txt
 
