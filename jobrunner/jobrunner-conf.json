@@ -1,0 +1,41 @@
+{
+    "groups": {
+      "basic": {
+        "runners": 3,
+        "include": [
+          "*"
+        ],
+        "low-priority": [
+          "cirrusSearchLinksUpdate",
+          "htmlCacheUpdate",
+          "refreshLinks"
+        ]
+      }
+    },
+  
+    "limits": {
+      "attempts": {
+        "*": 3
+      },
+      "claimTTL": {
+        "*": 3600
+      },
+      "real": {
+        "*": 300
+      },
+      "memory": {
+        "*": "300M"
+      }
+    },
+  
+    "redis": {
+      "aggregators": [
+        "redis-service.default.svc.cluster.local"
+      ],
+      "queues": [
+        "redis-service.default.svc.cluster.local"
+      ]
+    },
+  
+    "dispatcher": "php /var/www/mediawiki/maintenance/runJobs.php --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
+  }

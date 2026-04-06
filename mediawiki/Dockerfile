@@ -190,7 +190,6 @@ RUN ln -s /opt/venv/bin/pygmentize /usr/local/bin/pygmentize
 # Copy final configs
 COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
 COPY ./resources /var/www/mediawiki/resources
-COPY ./config/robots.txt /var/www/mediawiki/robots.txt
 
 # Set final ownership
 RUN chown -R www-data:www-data /var/www/mediawiki

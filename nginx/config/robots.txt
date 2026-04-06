@@ -182,7 +182,7 @@ Disallow: /
 
 # Added rules from SCW
 User-agent: *
-Allow: /rest.php/wikiseo/v1/socialmediaimage/
+Allow: /rest.php/wikiseo/v1/socialmediaimage
 Disallow: /api.php
 Disallow: /rest.php
 Disallow: /ProjMGMT:

@@ -1,10 +1,9 @@
-name: 🐳 Build & Push Docker Image
-run-name: 🌻➡️🐳 Build & Push MediaWiki Docker Image
+name: 🐳 Build & Push Docker Images
 
 on:
   push:
     branches:
-      - 'smw'
+      - 'main'
   workflow_dispatch:
     inputs:
       update_composer_dependencies:
@@ -32,12 +31,15 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
+        name: 📥 Checkout
+        uses: actions/checkout@v4
+      -
         name: 🔒 Set Calver Version
-        uses: Nelyx/action-calver@v1.0.0
+        uses: Nelyx/action-calver@v1.1.0
         id: setcalver
         with:
-          default_branch: 'refs/heads/smw'
+          default_branch: 'refs/heads/main'
           format: 'YY.MM.DD'
       -
         name: 🏗️ Set up Docker Buildx
@@ -59,15 +61,17 @@ jobs:
             echo "hash=$LATEST_HASH" >> $GITHUB_OUTPUT
           fi
       -
-        name: 🏗️ Build and push
-        uses: docker/build-push-action@v6
+        name: 🏗️ Build and push all images
+        uses: docker/bake-action@v6
         with:
           push: true
-          tags: starcitizentools/mediawiki:smw-latest,starcitizentools/mediawiki:smw-${{ steps.setcalver.outputs.package_version }}
-          build-args: |
-            UPDATE_COMPOSER_DEPENDENCIES=${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
-            UPDATE_SYSTEM_DEPENDENCIES=${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
-            UPDATE_PHP_EXTENSIONS=${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
-            MEDIAWIKI_COMMIT_HASH=${{ steps.mw_hash.outputs.hash }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          files: docker-bake.hcl
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
+        env:
+          TAG: ${{ steps.setcalver.outputs.package_version }}
+          UPDATE_COMPOSER_DEPENDENCIES: ${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
+          UPDATE_SYSTEM_DEPENDENCIES: ${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
+          UPDATE_PHP_EXTENSIONS: ${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
+          MEDIAWIKI_COMMIT_HASH: ${{ steps.mw_hash.outputs.hash }}
