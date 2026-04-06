@@ -2,6 +2,8 @@ FROM mediawiki
 
 USER root
 
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 RUN docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install pcntl
 
