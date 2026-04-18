@@ -574,7 +574,7 @@ wfLoadExtensions([
     "Disambiguator",
     "DiscussionTools",
     "DismissableSiteNotice",
-    "DynamicPageList3",
+    "DynamicPageList4",
     "Echo",
     "Elastica",
     "EmbedVideo",
@@ -816,12 +816,12 @@ $wgDiscussionTools_visualenhancements_reply = "available";
 $wgDismissableSiteNoticeForAnons = true;
 
 /**
- * Extension:DynamicPageList3
+ * Extension:DynamicPageList4
  *
- * @see https://github.com/Universal-Omega/DynamicPageList3
+ * @see https://github.com/Universal-Omega/DynamicPageList4
  */
-$wgDplSettings["recursiveTagParse"] = true;
-$wgDplSettings["allowUnlimitedResults"] = true;
+$wgDPLRecursiveTagParse = true;
+$wgDPLAllowUnlimitedResults = true;
 
 /**
  * Extension:Echo
