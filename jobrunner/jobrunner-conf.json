@@ -30,10 +30,10 @@
   
     "redis": {
       "aggregators": [
-        "redis-service.default.svc.cluster.local"
+        "valkey-service.default.svc.cluster.local"
       ],
       "queues": [
-        "redis-service.default.svc.cluster.local"
+        "valkey-service.default.svc.cluster.local"
       ]
     },
   
