@@ -32,7 +32,7 @@
                 "mediawiki/webauthn": "1.43.0",
                 "octfx/wiki-seo": "dev-master",
                 "starcitizenwiki/embedvideo": "dev-master",
-                "universal-omega/dynamic-page-list4": "4.0.5",
+                "universal-omega/dynamic-page-list4": "4.0.0",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
                 "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
