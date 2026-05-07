@@ -13,7 +13,8 @@ USER www-data
 
 RUN git clone --depth 1 https://github.com/miraheze/jobrunner-service.git mediawiki-services-jobrunner
 
-RUN set -eux; \
+RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
+   set -eux; \
    cd mediawiki-services-jobrunner; \
    /usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
    /usr/bin/composer install --no-dev \
