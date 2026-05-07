@@ -41,8 +41,8 @@ target "mediawiki" {
     UPDATE_PHP_EXTENSIONS        = UPDATE_PHP_EXTENSIONS
     MEDIAWIKI_COMMIT_HASH        = MEDIAWIKI_COMMIT_HASH
   }
-  cache-from = ["type=gha,scope=mediawiki"]
-  cache-to   = ["type=gha,mode=max,scope=mediawiki"]
+  cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki"]
+  cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki,mode=max"]
 }
 
 target "jobrunner" {
@@ -55,8 +55,8 @@ target "jobrunner" {
     "${REGISTRY}/starcitizentools/mediawiki:smw-jobrunner-latest",
     "${REGISTRY}/starcitizentools/mediawiki:smw-jobrunner-${TAG}",
   ]
-  cache-from = ["type=gha,scope=jobrunner"]
-  cache-to   = ["type=gha,mode=max,scope=jobrunner"]
+  cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:jobrunner"]
+  cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:jobrunner,mode=max"]
 }
 
 target "nginx" {
@@ -69,6 +69,6 @@ target "nginx" {
     "${REGISTRY}/starcitizentools/nginx:latest",
     "${REGISTRY}/starcitizentools/nginx:${TAG}",
   ]
-  cache-from = ["type=gha,scope=nginx"]
-  cache-to   = ["type=gha,mode=max,scope=nginx"]
+  cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:nginx"]
+  cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:nginx,mode=max"]
 }
