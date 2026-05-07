@@ -27,6 +27,10 @@ on:
         type: string
         default: ''
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -51,14 +55,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: 🔑 Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
         name: 🏗️ Build and push all images
         uses: docker/bake-action@v6
         with:
           push: true
           files: docker-bake.hcl
-          set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
         env:
           TAG: ${{ steps.setcalver.outputs.package_version }}
           UPDATE_COMPOSER_DEPENDENCIES: ${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
