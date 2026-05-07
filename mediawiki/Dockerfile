@@ -77,7 +77,7 @@ RUN set -eux; \
 		git fetch --depth 1 origin ${MEDIAWIKI_COMMIT_HASH}; \
 		git checkout ${MEDIAWIKI_COMMIT_HASH}; \
 	fi; \
-	git submodule update --init --recursive
+	git submodule update --init --recursive --depth 1
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
