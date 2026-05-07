@@ -51,16 +51,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: 🔎 Resolve MediaWiki Commit Hash
-        id: mw_hash
-        run: |
-          if [ -n "${{ github.event.inputs.mediawiki_commit_hash }}" ]; then
-            echo "hash=${{ github.event.inputs.mediawiki_commit_hash }}" >> $GITHUB_OUTPUT
-          else
-            LATEST_HASH=$(git ls-remote https://github.com/wikimedia/mediawiki.git refs/heads/REL1_43 | awk '{print $1}')
-            echo "hash=$LATEST_HASH" >> $GITHUB_OUTPUT
-          fi
-      -
         name: 🏗️ Build and push all images
         uses: docker/bake-action@v6
         with:
@@ -74,4 +64,4 @@ jobs:
           UPDATE_COMPOSER_DEPENDENCIES: ${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_SYSTEM_DEPENDENCIES: ${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_PHP_EXTENSIONS: ${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
-          MEDIAWIKI_COMMIT_HASH: ${{ steps.mw_hash.outputs.hash }}
+          MEDIAWIKI_COMMIT_HASH: ${{ github.event.inputs.mediawiki_commit_hash }}
