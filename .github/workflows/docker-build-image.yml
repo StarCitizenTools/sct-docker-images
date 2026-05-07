@@ -62,6 +62,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       -
+        # Only set MEDIAWIKI_COMMIT_HASH when the dispatch input is non-empty.
+        # If we always passed it through env, an empty-string value on push
+        # events would override the bake variable's pinned default.
+        name: 🔎 Override MediaWiki commit hash (dispatch only)
+        if: github.event.inputs.mediawiki_commit_hash != ''
+        run: echo "MEDIAWIKI_COMMIT_HASH=${{ github.event.inputs.mediawiki_commit_hash }}" >> $GITHUB_ENV
+      -
         name: 🏗️ Build and push all images
         uses: docker/bake-action@v6
         with:
@@ -72,4 +79,3 @@ jobs:
           UPDATE_COMPOSER_DEPENDENCIES: ${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_SYSTEM_DEPENDENCIES: ${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_PHP_EXTENSIONS: ${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
-          MEDIAWIKI_COMMIT_HASH: ${{ github.event.inputs.mediawiki_commit_hash }}
