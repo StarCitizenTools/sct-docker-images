@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 
 USER www-data
 
-RUN git clone https://github.com/miraheze/jobrunner-service.git mediawiki-services-jobrunner
+RUN git clone --depth 1 https://github.com/miraheze/jobrunner-service.git mediawiki-services-jobrunner
 
 RUN set -eux; \
    cd mediawiki-services-jobrunner; \
