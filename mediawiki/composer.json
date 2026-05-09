@@ -34,7 +34,7 @@
                 "starcitizenwiki/embedvideo": "dev-master",
                 "universal-omega/dynamic-page-list4": "4.0.0",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
-                "mediawiki/semantic-media-wiki": "dev-master#8ef677518e771c1b9b01affc53e1975921da4d0b",
+                "mediawiki/semantic-media-wiki": "dev-sct-prod-fixes",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
@@ -44,25 +44,14 @@
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
                 "starcitizentools/thumbro": "dev-main",
-                "weirdgloop/searchdigest": "1.43.0",
-                "cweagans/composer-patches": "^2.0"
+                "weirdgloop/searchdigest": "1.43.0"
         },
         "config": {
                 "preferred-install": {
                         "*": "source"
-                },
-                "allow-plugins": {
-                        "cweagans/composer-patches": true
                 }
         },
         "extra": {
-                "composer-exit-on-patch-failure": true,
-                "patches": {
-                        "mediawiki/semantic-media-wiki": {
-                                "PR #6782 - Fix JsonCodec round-trip in SemanticData::newFromJsonArray (parser cache thrash fix)": "https://github.com/SemanticMediaWiki/SemanticMediaWiki/pull/6782.diff",
-                                "PR #6781 - Fix Property namespace disabled error": "https://github.com/SemanticMediaWiki/SemanticMediaWiki/pull/6781.diff"
-                        }
-                },
                 "merge-plugin": {
                         "include": [
                                 "extensions/CheckUser/composer.json",
@@ -77,6 +66,10 @@
                 }
         },
         "repositories": [
+                {
+                        "type": "vcs",
+                        "url": "https://github.com/alistair3149/SemanticMediaWiki.git"
+                },
                 {
                         "type": "package",
                         "package": {
