@@ -34,7 +34,7 @@
                 "starcitizenwiki/embedvideo": "dev-master",
                 "universal-omega/dynamic-page-list4": "4.0.0",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
-                "mediawiki/semantic-media-wiki": "dev-master",
+                "mediawiki/semantic-media-wiki": "dev-master#d3a269988ed0e92cf83b7d28bc7f5a4378f677cf",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
