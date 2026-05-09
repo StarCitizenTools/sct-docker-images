@@ -34,7 +34,7 @@
                 "starcitizenwiki/embedvideo": "dev-master",
                 "universal-omega/dynamic-page-list4": "4.0.0",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
-                "mediawiki/semantic-media-wiki": "dev-sct-prod-fixes",
+                "mediawiki/semantic-media-wiki": "dev-master",
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
@@ -66,11 +66,6 @@
                 }
         },
         "repositories": [
-                {
-                        "type": "vcs",
-                        "url": "https://github.com/alistair3149/SemanticMediaWiki.git",
-                        "no-api": true
-                },
                 {
                         "type": "package",
                         "package": {
