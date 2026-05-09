@@ -104,6 +104,11 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	fi; \
 	\
 	/usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
+	# composer-merge-plugin does not merge the config section, so allow-plugins
+	# entries declared in composer.local.json are ignored. Allow the patches
+	# plugin here on the base composer.json so it can run during install/update.
+	/usr/bin/composer config --no-plugins allow-plugins.cweagans/composer-patches true; \
+	/usr/bin/composer config --no-plugins allow-plugins.cweagans/composer-configurable-plugin true; \
 	\
 	# Ignore security advisories
 	/usr/bin/composer config --json audit.ignore '{"PKSA-y2cr-5h3j-g3ys": "ignored"}'; \
