@@ -68,7 +68,8 @@
         "repositories": [
                 {
                         "type": "vcs",
-                        "url": "https://github.com/alistair3149/SemanticMediaWiki.git"
+                        "url": "https://github.com/alistair3149/SemanticMediaWiki.git",
+                        "no-api": true
                 },
                 {
                         "type": "package",
