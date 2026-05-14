@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 
 USER www-data
 
-RUN git clone --depth 1 https://github.com/miraheze/jobrunner-service.git mediawiki-services-jobrunner
+RUN git clone --depth 1 --branch weirdgloop/master https://github.com/weirdgloop/mediawiki-services-jobrunner.git mediawiki-services-jobrunner
 
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
    set -eux; \
