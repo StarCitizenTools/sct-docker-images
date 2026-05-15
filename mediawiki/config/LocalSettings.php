@@ -591,7 +591,7 @@ wfLoadExtensions([
     "MultiPurge",
     "Nuke",
     "OATHAuth",
-    "OAuth",
+    // "OAuth",
     "PageImages",
     "ParserFunctions",
     "ParserMigration",
@@ -875,6 +875,7 @@ $wgMultiPurgeRunInQueue = true;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-OAuth
  */
+/*
 $wgOAuth2PrivateKey = getenv("OAUTH_PRIVATE_KEY");
 $wgOAuth2PublicKey = getenv("OAUTH_PUBLIC_KEY");
 $wgGroupPermissions["sysop"]["mwoauthproposeconsumer"] = true;
@@ -883,6 +884,7 @@ $wgGroupPermissions["sysop"]["mwoauthmanageconsumer"] = true;
 $wgGroupPermissions["sysop"]["mwoauthsuppress"] = true;
 $wgGroupPermissions["sysop"]["mwoauthviewsuppressed"] = true;
 $wgGroupPermissions["user"]["mwoauthmanagemygrants"] = true;
+*/
 
 /**
  * Extension:PageImages
