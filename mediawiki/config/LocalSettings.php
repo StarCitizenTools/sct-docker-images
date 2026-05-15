@@ -591,6 +591,7 @@ wfLoadExtensions([
     "MultiPurge",
     "Nuke",
     "OATHAuth",
+    "OAuth",
     "PageImages",
     "ParserFunctions",
     "ParserMigration",
@@ -874,16 +875,14 @@ $wgMultiPurgeRunInQueue = true;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-OAuth
  */
-/* TODO: Enable OAuth
-$wgOAuth2PrivateKey = getenv( 'OAUTH_PRIVATE_KEY' );
-$wgOAuth2PublicKey = getenv( 'OAUTH_PUBLIC_KEY' );
-$wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
-$wgGroupPermissions['sysop']['mwoauthupdateownconsumer'] = true;
-$wgGroupPermissions['sysop']['mwoauthmanageconsumer'] = true;
-$wgGroupPermissions['sysop']['mwoauthsuppress'] = true;
-$wgGroupPermissions['sysop']['mwoauthviewsuppressed'] = true;
-$wgGroupPermissions['user']['mwoauthmanagemygrants'] = true;
-*/
+$wgOAuth2PrivateKey = getenv("OAUTH_PRIVATE_KEY");
+$wgOAuth2PublicKey = getenv("OAUTH_PUBLIC_KEY");
+$wgGroupPermissions["sysop"]["mwoauthproposeconsumer"] = true;
+$wgGroupPermissions["sysop"]["mwoauthupdateownconsumer"] = true;
+$wgGroupPermissions["sysop"]["mwoauthmanageconsumer"] = true;
+$wgGroupPermissions["sysop"]["mwoauthsuppress"] = true;
+$wgGroupPermissions["sysop"]["mwoauthviewsuppressed"] = true;
+$wgGroupPermissions["user"]["mwoauthmanagemygrants"] = true;
 
 /**
  * Extension:PageImages
@@ -992,8 +991,11 @@ $smwgQMaxSize = 100;
 $smwgEnableExportRDFLink = false;
 // Do not let SMW invalidate parser cache
 $smwgSetParserCacheTimestamp = false;
-// Prevent cache fragmentation caused by userlang and dateformat
-$smwgSetParserCacheKeys = [];
+// Route userlang/dateformat through ParserOutput::recordOption (dedup-safe)
+// instead of ParserOptions::addExtraKey (string-append, no dedup, causes the
+// !userlang!dateformat!userlang!dateformat... cache key growth on pages with
+// many SMW queries or annotations).
+$smwgSetParserCacheKeys = ['userlang', 'dateformat'];
 // Disable entity issue panel for all users by default since it is useless to most users
 // This generates an uncached call to api.php which is not needed
 $wgDefaultUserOptions[
