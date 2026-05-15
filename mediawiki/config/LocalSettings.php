@@ -993,11 +993,8 @@ $smwgQMaxSize = 100;
 $smwgEnableExportRDFLink = false;
 // Do not let SMW invalidate parser cache
 $smwgSetParserCacheTimestamp = false;
-// Route userlang/dateformat through ParserOutput::recordOption (dedup-safe)
-// instead of ParserOptions::addExtraKey (string-append, no dedup, causes the
-// !userlang!dateformat!userlang!dateformat... cache key growth on pages with
-// many SMW queries or annotations).
-$smwgSetParserCacheKeys = ['userlang', 'dateformat'];
+// Drop cache keys to avoid cache fragmentation
+$smwgSetParserCacheKeys = [];
 // Disable entity issue panel for all users by default since it is useless to most users
 // This generates an uncached call to api.php which is not needed
 $wgDefaultUserOptions[
