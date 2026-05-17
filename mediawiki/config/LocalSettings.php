@@ -319,6 +319,50 @@ $wgJobBackoffThrottling["htmlCacheUpdate"] = 50;
 // $wgEnableAsyncUploads = true;
 
 /**
+ * PoolCounter
+ *
+ * Serializes concurrent renders of the same uncached page via Valkey so
+ * that a heavy template/module/SMW edit (which invalidates parser cache
+ * across hundreds or thousands of pages) doesn't cause every FPM worker
+ * to re-parse the same page in parallel.
+ *
+ * With ArticleView ACQ4ANY semantics, one worker performs the parse and
+ * waiters share the cached result instead of each running their own.
+ * On timeout or queue overflow, fastStale serves the previous (now
+ * invalidated) parser-cache copy rather than 503-ing.
+ *
+ * @see https://www.mediawiki.org/wiki/PoolCounter
+ * @see https://www.mediawiki.org/wiki/Manual:$wgPoolCounterConf
+ */
+$wgPoolCounterConf = [
+    "ArticleView" => [
+        "class" => "PoolCounterRedis",
+        "timeout" => 20,
+        "workers" => 1,
+        "maxqueue" => 8,
+        "fastStale" => true,
+        "servers" => [
+            "valkey" => "valkey-service.default.svc.cluster.local:6379",
+        ],
+        "redisConfig" => [
+            "persistent" => true,
+        ],
+    ],
+    "CirrusSearch-Search" => [
+        "class" => "PoolCounterRedis",
+        "timeout" => 8,
+        "workers" => 2,
+        "maxqueue" => 4,
+        "servers" => [
+            "valkey" => "valkey-service.default.svc.cluster.local:6379",
+        ],
+        "redisConfig" => [
+            "persistent" => true,
+        ],
+    ],
+];
+
+/**
  * Output settings
  */
 // Use HTML5 encoding with minimal escaping
