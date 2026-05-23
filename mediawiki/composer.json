@@ -38,7 +38,7 @@
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
-                "alistair3149/apiunto": "1.43.0",
+                "starcitizentools/apiunto": "dev-main",
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",
@@ -509,23 +509,6 @@
                                 },
                                 "extra": {
                                     "installer-name": "WebAuthn"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "alistair3149/apiunto",
-                                "type": "mediawiki-extension",
-                                "version": "1.43.0",
-                                "dist": {
-                                        "url": "https://github.com/alistair3149/Apiunto/archive/feat-v3.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/alistair3149/Apiunto.git",
-                                        "reference": "feat-v3"
                                 }
                         }
                 },
