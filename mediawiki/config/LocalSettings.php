@@ -1345,10 +1345,12 @@ $wgAccountCreationThrottle = [
 ];
 
 // Anon
+// Enable temp account
+$wgAutoCreateTempUser['enabled'] = true;
 // Disable all anon edits as anti-spam measure
-$wgGroupPermissions["*"]["edit"] = false;
-$wgGroupPermissions["*"]["createpage"] = false;
-$wgGroupPermissions["*"]["createtalk"] = false;
+// $wgGroupPermissions["*"]["edit"] = false;
+// $wgGroupPermissions["*"]["createpage"] = false;
+// $wgGroupPermissions["*"]["createtalk"] = false;
 // Restrict Special:ThumbroTest to editors or above
 $wgGroupPermissions["*"]["thumbro-test"] = false;
 
