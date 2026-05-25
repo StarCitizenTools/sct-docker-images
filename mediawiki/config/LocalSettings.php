@@ -694,6 +694,12 @@ $wgApiuntoSources = [
         "token" => "",
         "timeout" => 30,
     ],
+    "UEX" => [
+        "baseUrl" => "https://api.uexcorp.uk/2.0/",
+        "token" => getenv("UEX_APITOKEN"),
+        "timeout" => 30,
+        "cacheDuration" => 86400,
+    ],
 ];
 
 /**
