@@ -69,6 +69,23 @@
                 {
                         "type": "package",
                         "package": {
+                                "name": "mediawiki/semantic-result-formats",
+                                "type": "mediawiki-extension",
+                                "version": "dev-master",
+                                "dist": {
+                                        "url": "https://github.com/Knowledge-Wiki/SemanticResultFormats/archive/44f1d12f73b17198bd261f9d5567bebc152c8734.zip",
+                                        "type": "zip"
+                                },
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/Knowledge-Wiki/SemanticResultFormats.git",
+                                        "reference": "44f1d12f73b17198bd261f9d5567bebc152c8734"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
                                 "name": "mediawiki/checkuser",
                                 "type": "mediawiki-extension",
                                 "version": "1.43.0",
