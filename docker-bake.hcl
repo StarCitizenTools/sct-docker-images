@@ -1,5 +1,5 @@
 variable "REGISTRY" {
-  default = "docker.io"
+  default = "ghcr.io"
 }
 
 variable "TAG" {
