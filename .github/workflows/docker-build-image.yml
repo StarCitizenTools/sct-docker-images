@@ -1,4 +1,4 @@
-name: 🐳 Build & Push Docker Images
+name: 🐳 Build & Push Images to GHCR
 
 on:
   push:
@@ -49,13 +49,17 @@ jobs:
         name: 🏗️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       -
-        name: 🔑 Login to Docker Hub
+        # Images are published to GHCR, but the Dockerfiles still pull their
+        # base images (nginx, php, composer, php-extension-installer) from
+        # Docker Hub. Authenticating here lifts those base-image pulls above
+        # Docker Hub's anonymous per-IP rate limit. Do not remove.
+        name: 🔑 Login to Docker Hub (base image pulls)
         uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: 🔑 Login to GHCR
+        name: 🔑 Login to GHCR (push registry)
         uses: docker/login-action@v4
         with:
           registry: ghcr.io
@@ -74,7 +78,7 @@ jobs:
           INPUT_HASH: ${{ github.event.inputs.mediawiki_commit_hash }}
         run: echo "MEDIAWIKI_COMMIT_HASH=${INPUT_HASH}" >> $GITHUB_ENV
       -
-        name: 🏗️ Build and push all images
+        name: 🏗️ Build and push all images to GHCR
         uses: docker/bake-action@v7
         with:
           push: true
