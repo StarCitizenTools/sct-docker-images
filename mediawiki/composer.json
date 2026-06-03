@@ -38,6 +38,7 @@
                 "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-result-formats": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
+                "starcitizentools/ag-grid": "dev-main",
                 "starcitizentools/apiunto": "dev-main",
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",

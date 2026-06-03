@@ -600,6 +600,7 @@ $wgSitemapNamespaces = array_merge($wgContentNamespaces, [
  */
 wfLoadExtensions([
     "AdvancedSearch",
+    "AGGrid",
     "Apiunto",
     "AWS",
     "Babel",
