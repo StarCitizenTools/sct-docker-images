@@ -380,7 +380,7 @@ $wgEnableCanonicalServerLink = true;
 // Enable native lazyloading
 $wgNativeImageLazyLoading = true;
 // Link to GitHub on Special:Version
-$wgGitRepositoryViewers["https://github.com/(.*?)(.git)?"] =
+$wgGitRepositoryViewers["https://github.com/(.*?)(\.git)?"] =
     'https://github.com/$1/commit/%H';
 
 /**
