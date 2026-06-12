@@ -1393,12 +1393,14 @@ $wgGroupPermissions["autoconfirmed"]["createtalk"] = true;
 
 // Verified users
 // Users that are verified manually (e.g. Discord)
+$wgRestrictionLevels[] = 'verified-edit'; 
 $wgGroupPermissions["Verified"] = $wgGroupPermissions["autoconfirmed"];
 $wgGroupPermissions["Verified"]["skipcaptcha"] = true;
 $wgGroupPermissions["Verified"]["purge"] = true;
 $wgGroupPermissions["Verified"]["reupload"] = true;
 $wgGroupPermissions["Verified"]["reupload-own"] = true;
 $wgGroupPermissions["Verified"]["minoredit"] = true;
+$wgGroupPermissions["Verified"]["verified-edit"] = true;
 
 // Trusted users
 $wgAutopromoteOnce["onEdit"]["Trusted"] = [
