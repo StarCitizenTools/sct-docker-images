@@ -503,29 +503,26 @@ define("NS_UUID", 69420);
 // Default to $wgSitename but we need to escape it with underscores
 $wgMetaNamespace = "Star_Citizen_Wiki";
 // Add permission to edit templates
-$wgNamespaceProtection[NS_TEMPLATE] = ["template-edit"];
+$wgNamespaceProtection[NS_TEMPLATE] = ["verified-edit"];
+$wgNamespaceProtection[NS_MODULE] = ["verified-edit"];
 
 $wgExtraNamespaces[NS_COMMLINK] = "Comm-Link";
 $wgExtraNamespaces[NS_COMMLINK_TALK] = "Comm-Link_talk";
 $wgNamespacesWithSubpages[NS_COMMLINK] = true;
 $wgNamespacesToBeSearchedDefault[NS_COMMLINK] = true;
-$wgNamespaceProtection[NS_COMMLINK] = ["commlink-edit"];
 
 $wgExtraNamespaces[NS_PROJMGMT] = "ProjMGMT";
 $wgExtraNamespaces[NS_PROJMGMT_TALK] = "ProjMGMT_talk";
 $wgNamespacesWithSubpages[NS_PROJMGMT] = true;
-$wgNamespaceProtection[NS_PROJMGMT] = ["projmgmt-edit"];
 
 $wgExtraNamespaces[NS_ISSUE] = "Issue";
 $wgExtraNamespaces[NS_ISSUE_TALK] = "Issue_talk";
 $wgNamespacesWithSubpages[NS_ISSUE] = true;
-$wgNamespaceProtection[NS_ISSUE] = ["issue-edit"];
 
 $wgExtraNamespaces[NS_GUIDE] = "Guide";
 $wgExtraNamespaces[NS_GUIDE_TALK] = "Guide_talk";
 $wgNamespacesWithSubpages[NS_GUIDE] = true;
 $wgNamespacesToBeSearchedDefault[NS_GUIDE] = true;
-$wgNamespaceProtection[NS_GUIDE] = ["guide-edit"];
 
 $wgExtraNamespaces[NS_ORG] = "ORG";
 $wgExtraNamespaces[NS_ORG_TALK] = "ORG_talk";
@@ -1393,7 +1390,7 @@ $wgGroupPermissions["autoconfirmed"]["createtalk"] = true;
 
 // Verified users
 // Users that are verified manually (e.g. Discord)
-$wgRestrictionLevels[] = 'verified-edit'; 
+$wgRestrictionLevels[] = "verified-edit";
 $wgGroupPermissions["Verified"] = $wgGroupPermissions["autoconfirmed"];
 $wgGroupPermissions["Verified"]["skipcaptcha"] = true;
 $wgGroupPermissions["Verified"]["purge"] = true;
@@ -1411,17 +1408,14 @@ $wgAutopromoteOnce["onEdit"]["Trusted"] = [
     ["!", [APCOND_INGROUPS, "sysop"]],
     ["!", [APCOND_INGROUPS, "bot"]],
 ];
+$wgRestrictionLevels[] = 'trusted-edit';
 $wgGroupPermissions["Trusted"] = $wgGroupPermissions["Verified"];
 $wgGroupPermissions["Trusted"]["patrol"] = true;
 $wgGroupPermissions["Trusted"]["move"] = true;
 $wgGroupPermissions["Trusted"]["movefile"] = true;
 $wgGroupPermissions["Trusted"]["move-categorypages"] = true;
 $wgGroupPermissions["Trusted"]["sendemail"] = true;
-$wgGroupPermissions["Trusted"]["commlink-edit"] = true;
-$wgGroupPermissions["Trusted"]["issue-edit"] = true;
-$wgGroupPermissions["Trusted"]["projmgmt-edit"] = true;
 $wgGroupPermissions["Trusted"]["move-subpages"] = true;
-$wgGroupPermissions["Trusted"]["template-edit"] = true;
 
 // Editors
 // A hybrid of bureaucrat and sysops, some kind of moderators without site permissions
@@ -1454,13 +1448,12 @@ $wgGroupPermissions["sysop"]["siteadmin"] = true;
 $wgGroupPermissions["sysop"]["checkuser"] = true;
 $wgGroupPermissions["sysop"]["checkuser-log"] = true;
 $wgGroupPermissions["sysop"]["renameuser"] = true;
-// Merge SMW admin permissions into sysop
-$wgGroupPermissions["sysop"]["smw-admin"] = true;
-$wgGroupPermissions["sysop"]["smw-pageedit"] = true;
-$wgGroupPermissions["sysop"]["smw-patternedit"] = true;
-$wgGroupPermissions["sysop"]["smw-schemaedit"] = true;
 // To grant sysops permissions to edit interwiki data
 $wgGroupPermissions["sysop"]["interwiki"] = true;
+
+// Make these permissions grantable for Bot Passwords and OAuth
+$wgGrantPermissions["page-interaction"]["verified-edit"] = true;
+$wgGrantPermissions["page-interaction"]["org-edit"] = true;
 
 /**
  * MediaWiki hooks
