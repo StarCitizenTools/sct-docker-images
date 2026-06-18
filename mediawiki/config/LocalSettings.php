@@ -1452,8 +1452,8 @@ $wgGroupPermissions["sysop"]["renameuser"] = true;
 $wgGroupPermissions["sysop"]["interwiki"] = true;
 
 // Make these permissions grantable for Bot Passwords and OAuth
-$wgGrantPermissions["page-interaction"]["verified-edit"] = true;
-$wgGrantPermissions["page-interaction"]["org-edit"] = true;
+$wgGrantPermissions["editpage"]["verified-edit"] = true;
+$wgGrantPermissions["editpage"]["org-edit"] = true;
 
 /**
  * MediaWiki hooks
