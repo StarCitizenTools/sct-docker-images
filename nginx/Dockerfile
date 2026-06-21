@@ -1,4 +1,4 @@
-FROM nginx:1.31.1
+FROM nginx:1.31.2
 
 # System dependencies
 RUN set -eux; \
