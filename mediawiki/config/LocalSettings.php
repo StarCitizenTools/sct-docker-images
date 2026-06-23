@@ -593,6 +593,7 @@ $wgSitemapNamespaces = array_merge($wgContentNamespaces, [
  * Extensions and skins settings
  */
 wfLoadExtensions([
+    "AbuseFilter",
     "AdvancedSearch",
     "AGGrid",
     "Apiunto",
