@@ -644,7 +644,6 @@ wfLoadExtensions([
     "SearchDigest",
     "SemanticExtraSpecialProperties",
     "SemanticMediaWiki",
-    "SemanticResultFormats",
     "SemanticScribunto",
     "ShortDescription",
     "SyntaxHighlight_GeSHi",
