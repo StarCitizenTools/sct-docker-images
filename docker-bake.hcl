@@ -21,7 +21,7 @@ variable "UPDATE_PHP_EXTENSIONS" {
 variable "MEDIAWIKI_COMMIT_HASH" {
   # Pinned MediaWiki REL1_43 commit. Bump deliberately by editing this line.
   # The workflow_dispatch input `mediawiki_commit_hash` overrides this for ad-hoc builds.
-  default = "96c9853682c573e5964bd9e47e48061dc35ed459"
+  default = "b9e0374db4c9f3f30223e4f02f0af17d8e0c979e"
 }
 
 group "default" {
