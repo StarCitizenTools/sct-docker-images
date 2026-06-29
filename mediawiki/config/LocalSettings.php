@@ -1586,7 +1586,3 @@ $wgHooks["ContentSecurityPolicyDirectives"][] = function (
     $directives[] = "form-action 'self'";
     $directives[] = "frame-ancestors 'none'";
 };
-
-// Temp RCE mitigation until MW 1.43.9 (T422244)
-$wgRevokePermissions['*']['importupload'] = true;
-$wgRevokePermissions['*']['import'] = true;
