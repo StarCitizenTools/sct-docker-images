@@ -1296,6 +1296,8 @@ $wgWikiSeoTryCleanAutoDescription = true;
  *
  * @see https://github.com/StarCitizenTools/mediawiki-skins-Citizen
  */
+// Use preview channel
+$wgCitizenPreview = 4;
 // Default to dark theme
 $wgCitizenThemeDefault = "dark";
 $wgCitizenThemeColor = "#0d1012";
@@ -1325,7 +1327,6 @@ $wgCitizenManifestOptions = [
         ],
     ],
 ];
-$wgCitizenUseNewToken = true;
 
 /**
  * Enable WikiDiff2
