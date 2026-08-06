@@ -720,6 +720,8 @@ $wgFileBackends["s3"]["endpoint"] = "https://eu-central-1.linodeobjects.com";
 $wgImagePreconnect = true;
 // Enable 404 handler
 // $wgLocalFileRepo['transformVia404'] = true;
+// Append a content-version token to file URLs for CDN/browser cache busting
+require_once __DIR__ . "/settings/VersionedFileUrls.php";
 
 /**
  * Extension:CheckUser
