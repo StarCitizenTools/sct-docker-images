@@ -16,6 +16,12 @@ RUN git clone --depth 1 --branch weirdgloop/master https://github.com/weirdgloop
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
    set -eux; \
    cd mediawiki-services-jobrunner; \
+   # Upstream ships no composer.lock, so install resolves require-dev even
+   # with --no-dev, and Composer refuses to resolve packages with security
+   # advisories — dev-only linters can then break the image build. Drop
+   # require-dev so only the runtime dependencies are resolved; advisory
+   # blocking stays active for those.
+   /usr/bin/composer config --no-plugins --unset require-dev; \
    /usr/bin/composer config --no-plugins allow-plugins.composer/installers true; \
    /usr/bin/composer install --no-dev \
      --ignore-platform-reqs \
