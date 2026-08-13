@@ -688,6 +688,7 @@ $wgApiuntoSources = [
         "baseUrl" => "https://api.star-citizen.wiki/api/",
         "token" => "",
         "timeout" => 30,
+        'followRedirects' => true,
     ],
     "UEX" => [
         "baseUrl" => "https://api.uexcorp.uk/2.0/",
