@@ -1109,6 +1109,14 @@ $wgTemplateStylesNamespaces = [
 ];
 
 /**
+ * Extension:TemplateStylesExtender
+ *
+ * @see https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender
+ */
+// We have CSP and this allows us to set image URL as CSS variables in Lua modules
+$wgTemplateStylesExtenderAllowExternalResourcesInCustomProperties = true;
+
+/**
  * Extension:TextExtracts
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-TextExtracts
