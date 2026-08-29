@@ -2,7 +2,6 @@
         "require": {
                 "mediawiki/advanced-search": "1.46.0",
                 "mediawiki/babel": "2026.02",
-                "mediawiki/checkuser": "1.46.0",
                 "mediawiki/cirrus-search": "1.46.0",
                 "mediawiki/cldr": "2026.02",
                 "mediawiki/code-mirror": "1.46.0",
@@ -23,7 +22,6 @@
                 "mediawiki/revisionslider": "1.46.0",
                 "mediawiki/sandbox-link": "1.46.0",
                 "mediawiki/template-sandbox": "1.46.0",
-                "mediawiki/template-styles": "1.46.0",
                 "octfx/template-styles-extender": "dev-master",
                 "mediawiki/twocolconflict": "1.46.0",
                 "mediawiki/upload-wizard": "1.46.0",
@@ -67,26 +65,6 @@
                 }
         },
         "repositories": [
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/checkuser",
-                                "type": "mediawiki-extension",
-                                "version": "1.46.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-CheckUser/archive/REL1_46.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-CheckUser.git",
-                                        "reference": "REL1_46"
-                                },
-                                "extra": {
-                                    "installer-name": "CheckUser"
-                                }
-                        }
-                },
                 {
                         "type": "package",
                         "package": {
@@ -225,23 +203,6 @@
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox.git",
-                                        "reference": "REL1_46"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "mediawiki/template-styles",
-                                "type": "mediawiki-extension",
-                                "version": "1.46.0",
-                                "dist": {
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-TemplateStyles/archive/REL1_46.zip",
-                                        "type": "zip"
-                                },
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git",
                                         "reference": "REL1_46"
                                 }
                         }
