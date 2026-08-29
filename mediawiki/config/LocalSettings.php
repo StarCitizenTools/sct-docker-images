@@ -621,7 +621,6 @@ wfLoadExtensions([
     "FloatingUI",
     "Gadgets",
     "InputBox",
-    "Interwiki",
     "JsonConfig",
     "Linter",
     "LoginNotify",
