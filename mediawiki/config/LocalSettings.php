@@ -37,7 +37,7 @@ const SCT_DOMAIN = "starcitizen.tools";
  * These cache would need to be invalidated manually if needed.
  */
 // Get the timestamp from https://www.mediawiki.org/wiki/Manual:$wgCacheEpoch and ADD SINGLE QUOTES
-$wgCacheEpoch = "20260506221529"; // Page cache - Invalidate when there are HTML changes
+$wgCacheEpoch = "20260829053509"; // Page cache - Invalidate when there are HTML changes
 // $wgThumbnailEpoch = '20241210023315'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
 // $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
 $sespgLabelCacheVersion = "2025.04"; // Semantic Extra Special Properties cache
@@ -716,7 +716,7 @@ $wgAWSRegion = "eu-central-1";
 // because Extension:AWS is the only consumer
 // Set up S3 bucket as backend
 $wgFileBackends['s3'] = [
-    'name' => 's3', 
+    'name' => 's3',
     'class' => 'AmazonS3FileBackend',
     'endpoint' => 'https://eu-central-1.linodeobjects.com',
 ];
@@ -977,11 +977,10 @@ $wgVirtualRestConfig['modules']['parsoid'] = [
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-ParserMigration
  */
-$wgParserMigrationEnableQueryString = true;
-// $wgParserMigrationEnableParsoidDiscussionTools = true;
-// $wgParserMigrationEnableParsoidArticlePages = true;
-// $wgParserMigrationUserNoticeDays = 365;
-$wgParserMigrationCompactIndicator = true;
+// Temporary disable until we fixed TabberNeue display in Module:Entity
+$wgParserMigrationEnableParsoidArticlePages = false;
+$wgParserMigrationEnableReportVisualBug = false;
+$wgParserMigrationEnableReportVisualBugOnlyLoggedIn = false;
 
 /**
  * Extension:RelatedArticles
