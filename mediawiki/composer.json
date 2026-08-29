@@ -44,7 +44,7 @@
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
                 "starcitizentools/thumbro": "dev-main",
-                "weirdgloop/searchdigest": "1.46.0"
+                "weirdgloop/searchdigest": "1.43.0"
         },
         "config": {
                 "preferred-install": {
