@@ -1,7 +1,7 @@
 {
         "require": {
                 "mediawiki/advanced-search": "1.46.0",
-                "mediawiki/babel": "202.02",
+                "mediawiki/babel": "2026.02",
                 "mediawiki/checkuser": "1.46.0",
                 "mediawiki/cirrus-search": "1.46.0",
                 "mediawiki/cldr": "2026.02",
