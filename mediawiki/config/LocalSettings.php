@@ -754,14 +754,6 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-CodeMirror
  */
-$wgCodeMirrorV6 = true;
-/*
-NOTE: CodeMirrorV6 is completely broken in 2017 Wikitext Editor without line numbering
-$wgCodeMirrorLineNumberingNamespaces = [
-	NS_TEMPLATE,
-	NS_MODULE
-];
-*/
 // Enable syntax highlight in editor by default
 $wgDefaultUserOptions["usecodemirror"] = 1;
 
@@ -845,15 +837,7 @@ $wgDisambiguatorNotifications = true;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-DiscussionTools
  */
-$wgDiscussionTools_replytool = "available";
-$wgDiscussionTools_newtopictool = "available";
-$wgDiscussionTools_sourcemodetoolbar = "available";
-$wgDiscussionTools_topicsubscription = "available";
-$wgDiscussionTools_autotopicsub = "available";
 $wgDiscussionTools_visualenhancements = "available";
-$wgDiscussionTools_visualenhancements_namespaces = true;
-$wgDiscussionTools_visualenhancements_pageframe = "available";
-$wgDiscussionTools_visualenhancements_reply = "available";
 
 /**
  * Extension:DismissableSiteNotice
@@ -892,12 +876,15 @@ $wgEmbedVideoUseEmbedStyleForLocalVideos = false;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
  */
-$wgMediaViewerEnableByDefault = true;
 $wgMediaViewerThumbnailBucketSizes = [
     SCT_THUMB_SIZES[2][0],
     SCT_THUMB_SIZES[3][0],
     SCT_THUMB_SIZES[4][0],
     SCT_THUMB_SIZES[5][0],
+];
+// Redefine instead of appending because none of the default selectors are needed
+$wgMediaViewerExcludedImageSelectors = [
+    "a.mw-file-description[href$=\":Placeholderv2.png\"]", // Placeholder image that is used all over the place
 ];
 
 /**
@@ -999,8 +986,11 @@ $wgRelatedArticlesCardLimit = 6;
  * @see https://github.com/wikimedia/mediawiki-extensions-Scribunto
  */
 $wgScribuntoDefaultEngine = "luasandbox";
+// Use a shared global environment for module invocations for performance (T368143)
+$wgScribuntoEngineConf["luasandbox"]["shareInvocationEnv"] = true;
 $wgScribuntoEngineConf["luasandbox"]["memoryLimit"] = 50 * 1024 * 1024; // 50 MB
 $wgScribuntoEngineConf["luasandbox"]["cpuLimit"] = 10; // Seconds
+$wgScribuntoUseCodeMirror = true;
 $wgScribuntoGatherFunctionStats = true;
 
 /**
@@ -1105,6 +1095,7 @@ $wgTemplateStylesNamespaces = [
     NS_TEMPLATE => true,
     NS_MODULE => true,
 ];
+$wgTemplateStylesUseCodeMirror = true;
 
 /**
  * Extension:TemplateStylesExtender
@@ -1136,21 +1127,6 @@ $wgExtractsRemoveClasses[] = ".metadata";
  * @see https://github.com/wikimedia/mediawiki-extensions-TwoColConflict
  */
 $wgTwoColConflictBetaFeature = false;
-
-/**
- * Extension:UniversalLanguageSelector
- *
- * @see https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
- */
-// Disable language detection as some message fallback are broken
-// Copyright notice and footer does not appear
-// $wgULSLanguageDetection = false;
-// Disable IME as it is not needed nowadays
-// $wgULSIMEEnabled = false;
-// Disable web fonts as it is not needed nowadays
-// $wgULSWebfontsEnabled = false;
-// Disable due to caching
-// $wgULSAnonCanChangeLanguage = false;
 
 /**
  * Extension:UploadWizard
@@ -1273,7 +1249,6 @@ $wgVisualEditorEditCheck = true;
 // @see https://www.mediawiki.org/wiki/2017_wikitext_editor
 $wgVisualEditorEnableWikitext = true;
 $wgVisualEditorUseSingleEditTab = true;
-$wgVisualEditorEnableVisualSectionEditing = true;
 $wgDefaultUserOptions["visualeditor-enable"] = 1;
 // Default to new source editor
 $wgDefaultUserOptions["visualeditor-newwikitext"] = 1;
