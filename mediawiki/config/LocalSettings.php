@@ -716,7 +716,12 @@ $wgAWSRegion = "eu-central-1";
 // These MW core settings are grouped under Extension:AWS
 // because Extension:AWS is the only consumer
 // Set up S3 bucket as backend
-$wgFileBackends["s3"]["endpoint"] = "https://eu-central-1.linodeobjects.com";
+$wgFileBackends['s3'] = [
+    'name' => 's3', 
+    'class' => 'AmazonS3FileBackend',
+    'endpoint' => 'https://eu-central-1.linodeobjects.com',
+];
+
 // Preconnect to media.starcitizen.tools
 $wgImagePreconnect = true;
 // Enable 404 handler
