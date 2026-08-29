@@ -977,7 +977,7 @@ $wgVirtualRestConfig['modules']['parsoid'] = [
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-ParserMigration
  */
-// Temporary disable until we fixed TabberNeue display in Module:Entity
+// Temporary disable until we fixed TabberNeue display in Module:Entity (T432547)
 $wgParserMigrationEnableParsoidArticlePages = false;
 $wgParserMigrationEnableReportVisualBug = false;
 $wgParserMigrationEnableReportVisualBugOnlyLoggedIn = false;
