@@ -31,7 +31,7 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 FROM base AS builder
 
 # Version
-ARG MEDIAWIKI_BRANCH='REL1_43'
+ARG MEDIAWIKI_BRANCH='REL1_46'
 ARG MEDIAWIKI_COMMIT_HASH=''
 
 # Build arguments

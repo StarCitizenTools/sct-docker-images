@@ -9,7 +9,7 @@
  *
  * MediaWiki configuration setting for Star Citizen Wiki
  *
- * MediaWiki branch: REL1_43
+ * MediaWiki branch: REL1_46
  * When updating major MediaWiki version, please update the branch text above
  * in this document, it will update the documentation links to the right version.
  *
@@ -64,7 +64,7 @@ $sespgLabelCacheVersion = "2025.04"; // Semantic Extra Special Properties cache
 /**
  * MediaWiki core main config
  *
- * @see https://github.com/wikimedia/mediawiki/blob/REL1_43/includes/MainConfigSchema.php Definitions
+ * @see https://github.com/wikimedia/mediawiki/blob/REL1_46/includes/MainConfigSchema.php Definitions
  * @see https://www.mediawiki.org/wiki/Manual:Configuration_settings Documentation
  */
 
