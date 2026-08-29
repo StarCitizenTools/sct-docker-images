@@ -39,7 +39,7 @@ target "mediawiki" {
     UPDATE_COMPOSER_DEPENDENCIES = UPDATE_COMPOSER_DEPENDENCIES
     UPDATE_SYSTEM_DEPENDENCIES   = UPDATE_SYSTEM_DEPENDENCIES
     UPDATE_PHP_EXTENSIONS        = UPDATE_PHP_EXTENSIONS
-    MEDIAWIKI_COMMIT_HASH        = MEDIAWIKI_COMMIT_HASH
+   # MEDIAWIKI_COMMIT_HASH        = MEDIAWIKI_COMMIT_HASH
   }
   cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki"]
   cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki,mode=max"]
