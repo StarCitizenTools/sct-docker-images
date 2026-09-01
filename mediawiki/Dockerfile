@@ -167,13 +167,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Copy PHP configs
 COPY ./config/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
 COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY ./config/zzz-fpm-pool.conf /usr/local/etc/php-fpm.d/zzz-fpm-pool.conf
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini; \
-	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini; \
-	echo 'pm.max_children = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-	echo 'pm.max_requests = 200' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-	echo 'pm.start_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-	echo 'pm.min_spare_servers = 10' >> /usr/local/etc/php-fpm.d/zz-docker.conf; \
-	echo 'pm.max_spare_servers = 30' >> /usr/local/etc/php-fpm.d/zz-docker.conf;
+	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini;
 
 # Create required directories
 RUN mkdir -p /var/www/mediawiki /usr/local/smw; \
