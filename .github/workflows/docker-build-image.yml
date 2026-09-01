@@ -21,11 +21,6 @@ on:
         required: true
         type: boolean
         default: false
-      mediawiki_commit_hash:
-        description: 'Specific MediaWiki commit hash to build (optional)'
-        required: false
-        type: string
-        default: ''
 
 permissions:
   contents: read
@@ -65,18 +60,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      -
-        # Only set MEDIAWIKI_COMMIT_HASH when the dispatch input is non-empty.
-        # If we always passed it through env, an empty-string value on push
-        # events would override the bake variable's pinned default.
-        # Input is routed through env: rather than interpolated into the
-        # shell command directly to avoid shell-execution of $(...) or
-        # backticks in a hostile dispatch value.
-        name: 🔎 Override MediaWiki commit hash (dispatch only)
-        if: github.event.inputs.mediawiki_commit_hash != ''
-        env:
-          INPUT_HASH: ${{ github.event.inputs.mediawiki_commit_hash }}
-        run: echo "MEDIAWIKI_COMMIT_HASH=${INPUT_HASH}" >> $GITHUB_ENV
       -
         name: 🏗️ Build and push all images to GHCR
         uses: docker/bake-action@v7
