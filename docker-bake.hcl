@@ -18,12 +18,6 @@ variable "UPDATE_PHP_EXTENSIONS" {
   default = "false"
 }
 
-variable "MEDIAWIKI_COMMIT_HASH" {
-  # Pinned MediaWiki REL1_43 commit. Bump deliberately by editing this line.
-  # The workflow_dispatch input `mediawiki_commit_hash` overrides this for ad-hoc builds.
-  default = "08d15c5d0706c2d6622d22866f8768c7dd2f59ca"
-}
-
 group "default" {
   targets = ["mediawiki", "jobrunner", "nginx"]
 }
@@ -39,7 +33,6 @@ target "mediawiki" {
     UPDATE_COMPOSER_DEPENDENCIES = UPDATE_COMPOSER_DEPENDENCIES
     UPDATE_SYSTEM_DEPENDENCIES   = UPDATE_SYSTEM_DEPENDENCIES
     UPDATE_PHP_EXTENSIONS        = UPDATE_PHP_EXTENSIONS
-   # MEDIAWIKI_COMMIT_HASH        = MEDIAWIKI_COMMIT_HASH
   }
   cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki"]
   cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:mediawiki,mode=max"]
