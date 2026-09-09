@@ -11,7 +11,18 @@ WORKDIR /var/www/html
 
 USER www-data
 
-RUN git clone --depth 1 --branch weirdgloop/master https://github.com/weirdgloop/mediawiki-services-jobrunner.git mediawiki-services-jobrunner
+# Pin the runner to an exact commit so a push to weirdgloop/master cannot
+# change what the next image build ships. Bump deliberately: check
+# https://github.com/weirdgloop/mediawiki-services-jobrunner/commits/weirdgloop/master
+# and update the hash here.
+ARG JOBRUNNER_REPO='https://github.com/weirdgloop/mediawiki-services-jobrunner.git'
+ARG JOBRUNNER_COMMIT_HASH='6c10e770bd47f452aec22edba6fc8e7bd9d7a8ea'
+
+RUN set -eux; \
+   git init -q mediawiki-services-jobrunner; \
+   cd mediawiki-services-jobrunner; \
+   git fetch --depth 1 "${JOBRUNNER_REPO}" "${JOBRUNNER_COMMIT_HASH}"; \
+   git checkout -q FETCH_HEAD
 
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
    set -eux; \
