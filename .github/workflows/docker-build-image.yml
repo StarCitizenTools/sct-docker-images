@@ -73,3 +73,21 @@ jobs:
           UPDATE_COMPOSER_DEPENDENCIES: ${{ github.event.inputs.update_composer_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_SYSTEM_DEPENDENCIES: ${{ github.event.inputs.update_system_dependencies == 'true' && github.run_id || 'false' }}
           UPDATE_PHP_EXTENSIONS: ${{ github.event.inputs.update_php_extensions == 'true' && github.run_id || 'false' }}
+      -
+        # Ask sct-k8-config to open its "Bump Docker images" PR for this stamp.
+        # Needs a fine-grained PAT with Contents: read/write on sct-k8-config
+        # (repository_dispatch requires it) stored as K8_CONFIG_DISPATCH_TOKEN.
+        # Without the secret the build still succeeds; bump by hand instead.
+        name: 🚀 Notify sct-k8-config
+        env:
+          GH_TOKEN: ${{ secrets.K8_CONFIG_DISPATCH_TOKEN }}
+          STAMP: ${{ steps.setcalver.outputs.package_version }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::K8_CONFIG_DISPATCH_TOKEN not set; not opening a bump PR in sct-k8-config."
+            exit 0
+          fi
+          gh api "repos/${{ github.repository_owner }}/sct-k8-config/dispatches" \
+            -f event_type=app-images-built \
+            -f "client_payload[stamp]=${STAMP}"
+          echo "Dispatched app-images-built for ${STAMP}."

@@ -31,6 +31,15 @@ it, and `.github/dependabot.yml` opens weekly grouped PRs to bump them:
 - MediaWiki core deliberately tracks the head of `MEDIAWIKI_BRANCH` at build
   time (`mediawiki/Dockerfile`); set `MEDIAWIKI_COMMIT_HASH` to freeze it.
 
+## Releasing
+
+A push to `main` builds and publishes all three images under one calver stamp,
+then dispatches `app-images-built` to sct-k8-config, whose `bump-app-images`
+workflow opens a "Bump Docker images to <stamp>" PR. Merging that PR deploys.
+The dispatch needs the `K8_CONFIG_DISPATCH_TOKEN` secret (fine-grained PAT,
+Contents read/write on sct-k8-config); without it the build still succeeds and
+the bump is done by hand from sct-k8-config's Actions tab.
+
 ## Building
 
 All images are built together using [Docker Bake](https://docs.docker.com/build/bake/):
