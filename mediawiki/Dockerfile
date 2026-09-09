@@ -1,11 +1,15 @@
 # Base stage
-FROM php:8.4-fpm AS base
+# Named stages rather than inline COPY --from images: Dependabot only reads FROM.
+FROM composer:2.10.3@sha256:d8f6343d3fae98107426bc49163ccad46ef85aabd4a27d80a74401fab4aba332 AS composer
+FROM mlocati/php-extension-installer:2.11.12@sha256:b6d3fa381b9ba5cf051117c1c601d6a523b590e534bf3d56eb4fbe352949c138 AS php-extension-installer
+
+FROM php:8.4.25-fpm@sha256:59fa733c9af643a122f8a9976119460e35ce76dd0a3f2b9c8f75af8e361a54e2 AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
-COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \

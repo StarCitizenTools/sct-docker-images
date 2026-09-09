@@ -1,0 +1,56 @@
+version: 2
+
+# Dependabot alerts do not cover Docker base images, so the scheduled docker
+# bumps below are the only path for patches in the php/nginx bases. If that
+# ever needs to be faster, shorten the cooldown rather than the interval: the
+# cooldown, not the check frequency, is what delays a release.
+
+updates:
+  # ---------------------------------------------------------------- actions --
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+    open-pull-requests-limit: 3
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # ----------------------------------------------------------------- images --
+  # Dependabot only parses FROM lines, which is why the Dockerfiles declare
+  # COPY --from sources as named stages.
+  - package-ecosystem: docker
+    directories:
+      - "/mediawiki"
+      - "/jobrunner"
+      - "/nginx"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    ignore:
+      # PHP minor/major bumps are done by hand; only patch releases flow through here.
+      - dependency-name: "php"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+    groups:
+      base-images:
+        patterns:
+          - "*"
+
+  # -------------------------------------------------------------- jobrunner --
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps
+    # `cooldown` is unsupported for gitsubmodule.
+    open-pull-requests-limit: 1

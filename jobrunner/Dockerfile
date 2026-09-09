@@ -1,3 +1,6 @@
+# Named stage rather than an inline COPY --from image: Dependabot only reads FROM.
+FROM composer:2.10.3@sha256:d8f6343d3fae98107426bc49163ccad46ef85aabd4a27d80a74401fab4aba332 AS composer
+
 FROM mediawiki
 
 USER root
@@ -11,7 +14,7 @@ WORKDIR /var/www/html
 
 USER www-data
 
-RUN git clone --depth 1 --branch weirdgloop/master https://github.com/weirdgloop/mediawiki-services-jobrunner.git mediawiki-services-jobrunner
+COPY --chown=www-data:www-data ./mediawiki-services-jobrunner /var/www/html/mediawiki-services-jobrunner
 
 RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
    set -eux; \
