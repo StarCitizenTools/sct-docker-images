@@ -11,14 +11,15 @@ WORKDIR /var/www/html
 
 USER www-data
 
-# Pin the runner to an exact commit so a push to weirdgloop/master cannot
-# change what the next image build ships. Bump deliberately: check
-# https://github.com/weirdgloop/mediawiki-services-jobrunner/commits/weirdgloop/master
-# and update the hash here.
-ARG JOBRUNNER_REPO='https://github.com/weirdgloop/mediawiki-services-jobrunner.git'
-ARG JOBRUNNER_COMMIT_HASH='6c10e770bd47f452aec22edba6fc8e7bd9d7a8ea'
+# Exact commit of the runner to ship. Both values are pinned in
+# docker-bake.hcl (the single version manifest); there is deliberately no
+# default here so the pin cannot drift into two places.
+ARG JOBRUNNER_REPO
+ARG JOBRUNNER_COMMIT_HASH
 
 RUN set -eux; \
+   : "${JOBRUNNER_REPO:?set in docker-bake.hcl}"; \
+   : "${JOBRUNNER_COMMIT_HASH:?set in docker-bake.hcl}"; \
    git init -q mediawiki-services-jobrunner; \
    cd mediawiki-services-jobrunner; \
    git fetch --depth 1 "${JOBRUNNER_REPO}" "${JOBRUNNER_COMMIT_HASH}"; \

@@ -16,6 +16,14 @@ The Docker configuration powering https://starcitizen.tools
 | Jobrunner | `jobrunner/` | `starcitizentools/mediawiki:smw-jobrunner-latest` |
 | Nginx | `nginx/` | `starcitizentools/nginx:latest` |
 
+## Pinned versions
+
+`docker-bake.hcl` is the single manifest of what the images are built from:
+the MediaWiki branch (and optional exact commit) and the exact commit of the
+jobrunner. The Dockerfiles take these as build args and refuse to build
+without them, so a pin lives in one place. Bump a pin by editing the
+`variable` block in a commit.
+
 ## Building
 
 All images are built together using [Docker Bake](https://docs.docker.com/build/bake/):

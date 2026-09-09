@@ -31,8 +31,9 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 FROM base AS builder
 
 # Version
-ARG MEDIAWIKI_BRANCH='REL1_46'
-ARG MEDIAWIKI_COMMIT_HASH=''
+# Pinned in docker-bake.hcl (the single version manifest); no defaults here.
+ARG MEDIAWIKI_BRANCH
+ARG MEDIAWIKI_COMMIT_HASH
 
 # Build arguments
 ARG UPDATE_SYSTEM_DEPENDENCIES=false
@@ -70,6 +71,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # MediaWiki
 RUN set -eux; \
+	: "${MEDIAWIKI_BRANCH:?set in docker-bake.hcl}"; \
 	git clone --single-branch --branch ${MEDIAWIKI_BRANCH} --depth 1 https://github.com/wikimedia/mediawiki.git /var/www/mediawiki; \
 	cd /var/www/mediawiki; \
 	if [ -n "${MEDIAWIKI_COMMIT_HASH}" ]; then \
