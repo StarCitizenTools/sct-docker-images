@@ -16,6 +16,21 @@ The Docker configuration powering https://starcitizen.tools
 | Jobrunner | `jobrunner/` | `starcitizentools/mediawiki:smw-jobrunner-latest` |
 | Nginx | `nginx/` | `starcitizentools/nginx:latest` |
 
+## Dependency updates
+
+Every external input is pinned to an exact version where Dependabot can see
+it, and `.github/dependabot.yml` opens weekly grouped PRs to bump them:
+
+- Base images (`php`, `nginx`, `composer`, `php-extension-installer`) are
+  `tag@sha256:digest` on `FROM` lines, so the build cache only changes when a
+  commit changes it, even if a tag were ever re-pushed. Images only
+  used via `COPY --from` are declared as named stages for that reason.
+- The jobrunner (`jobrunner/mediawiki-services-jobrunner`) is a git submodule
+  tracking `weirdgloop/master`, so the image ships an exact commit and a PR
+  appears when Weird Gloop pushes. Clone with `--recurse-submodules`.
+- MediaWiki core deliberately tracks the head of `MEDIAWIKI_BRANCH` at build
+  time (`mediawiki/Dockerfile`); set `MEDIAWIKI_COMMIT_HASH` to freeze it.
+
 ## Building
 
 All images are built together using [Docker Bake](https://docs.docker.com/build/bake/):

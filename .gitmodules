@@ -1,0 +1,4 @@
+[submodule "jobrunner/mediawiki-services-jobrunner"]
+	path = jobrunner/mediawiki-services-jobrunner
+	url = https://github.com/weirdgloop/mediawiki-services-jobrunner.git
+	branch = weirdgloop/master

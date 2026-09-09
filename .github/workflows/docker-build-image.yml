@@ -33,6 +33,8 @@ jobs:
       -
         name: 📥 Checkout
         uses: actions/checkout@v6
+        with:
+          submodules: true
       -
         name: 🔒 Set Calver Version
         uses: Nelyx/action-calver@v1.1.0
