@@ -2,6 +2,7 @@ FROM mediawiki
 
 USER root
 
+# `composer` is a named context pinned in docker-bake.hcl.
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN docker-php-ext-configure pcntl --enable-pcntl \

@@ -33,6 +33,25 @@ variable "JOBRUNNER_COMMIT_HASH" {
   default = "6c10e770bd47f452aec22edba6fc8e7bd9d7a8ea"
 }
 
+# Base images. Exact tags, so a patch release only reaches an image build
+# when bumped here. These are the tags `php:8.4-fpm`, `composer` and
+# `mlocati/php-extension-installer:latest` resolved to on 2026-09-09.
+variable "PHP_IMAGE" {
+  default = "php:8.4.25-fpm"
+}
+
+variable "NGINX_IMAGE" {
+  default = "nginx:1.31.5"
+}
+
+variable "COMPOSER_IMAGE" {
+  default = "composer:2.10.3"
+}
+
+variable "PHP_EXTENSION_INSTALLER_IMAGE" {
+  default = "mlocati/php-extension-installer:2.11.12"
+}
+
 # ---------------------------------------------------------------------------
 # Per-build knobs, set by CI from workflow_dispatch inputs.
 # ---------------------------------------------------------------------------
@@ -56,11 +75,17 @@ group "default" {
 target "mediawiki" {
   context    = "mediawiki"
   dockerfile = "Dockerfile"
+  # Named contexts resolve the `COPY --from=<name>` references in the Dockerfile.
+  contexts = {
+    composer                = "docker-image://${COMPOSER_IMAGE}"
+    php-extension-installer = "docker-image://${PHP_EXTENSION_INSTALLER_IMAGE}"
+  }
   tags = [
     "${REGISTRY}/starcitizentools/mediawiki:smw-latest",
     "${REGISTRY}/starcitizentools/mediawiki:smw-${TAG}",
   ]
   args = {
+    PHP_IMAGE                    = PHP_IMAGE
     MEDIAWIKI_BRANCH             = MEDIAWIKI_BRANCH
     MEDIAWIKI_COMMIT_HASH        = MEDIAWIKI_COMMIT_HASH
     UPDATE_COMPOSER_DEPENDENCIES = UPDATE_COMPOSER_DEPENDENCIES
@@ -76,6 +101,7 @@ target "jobrunner" {
   dockerfile = "Dockerfile"
   contexts = {
     mediawiki = "target:mediawiki"
+    composer  = "docker-image://${COMPOSER_IMAGE}"
   }
   tags = [
     "${REGISTRY}/starcitizentools/mediawiki:smw-jobrunner-latest",
@@ -99,6 +125,9 @@ target "nginx" {
     "${REGISTRY}/starcitizentools/nginx:latest",
     "${REGISTRY}/starcitizentools/nginx:${TAG}",
   ]
+  args = {
+    NGINX_IMAGE = NGINX_IMAGE
+  }
   cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:nginx"]
   cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:nginx,mode=max"]
 }

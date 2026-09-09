@@ -1,4 +1,6 @@
-FROM nginx:1.31.5
+# Pinned in docker-bake.hcl (the single version manifest).
+ARG NGINX_IMAGE
+FROM ${NGINX_IMAGE}
 
 # System dependencies
 RUN set -eux; \

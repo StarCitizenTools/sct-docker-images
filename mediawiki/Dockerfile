@@ -1,11 +1,14 @@
 # Base stage
-FROM php:8.4-fpm AS base
+# Base image and COPY --from sources are pinned in docker-bake.hcl (the single
+# version manifest); an empty PHP_IMAGE fails the FROM line by design.
+ARG PHP_IMAGE
+FROM ${PHP_IMAGE} AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 
 # PHP extensions
 # install-php-extensions is used for simplicity since it also supports pecl and it can install wikidiff2 correctly
-COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN --mount=type=cache,target=/tmp/phpexts-cache \
 	set -eux; \
 	echo "Updating PHP extensions: ${UPDATE_PHP_EXTENSIONS}"; \
