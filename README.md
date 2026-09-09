@@ -2,7 +2,7 @@
 
 # Star Citizen Wiki Docker
 
-[Docker Hub](https://hub.docker.com/r/starcitizentools/mediawiki) | [Kubernetes config](https://github.com/StarCitizenTools/sct-k8-config)
+[Kubernetes config](https://github.com/StarCitizenTools/sct-k8-config)
 
 </div>
 
