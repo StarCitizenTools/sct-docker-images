@@ -10,11 +10,11 @@ The Docker configuration powering https://starcitizen.tools
 
 ## Images
 
-| Image | Directory | Docker Hub Tag |
+| Image | Directory | Tag |
 |-------|-----------|----------------|
-| MediaWiki | `mediawiki/` | `starcitizentools/mediawiki:smw-latest` |
-| Jobrunner | `jobrunner/` | `starcitizentools/mediawiki:smw-jobrunner-latest` |
-| Nginx | `nginx/` | `starcitizentools/nginx:latest` |
+| MediaWiki | `mediawiki/` | `ghcr.io/starcitizentools/mediawiki:smw` |
+| Jobrunner | `jobrunner/` | `ghcr.io/starcitizentools/mediawiki:smw-jobrunner` |
+| Nginx | `nginx/` | `ghcr.io/starcitizentools/nginx` |
 
 ## Dependency updates
 
