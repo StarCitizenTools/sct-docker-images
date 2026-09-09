@@ -126,6 +126,20 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 		--no-interaction \
 		--no-scripts;
 
+# Patch CirrusSearch REL1_46 to accept OpenSearch 2.x. Its version gate allows
+# only 1.3.x, which has been EOL since May 2025; support for 2.x is already
+# upstream in 03f64ca0, just not backported to the release branch. WMF is on
+# 2.19.5 as a step toward 3.x. Drop this at MW 1.47, where the gate accepts 2.x.
+#   https://phabricator.wikimedia.org/T421757  (1.x -> 2.x, 1.x unmaintained)
+#   https://phabricator.wikimedia.org/T420407  (2.19.5 on the path to 3.x)
+# The grep fails the build if the sed ever stops matching.
+RUN set -eux; \
+	f=/var/www/mediawiki/extensions/CirrusSearch/includes/Maintenance/ConfigUtils.php; \
+	test -f "$f"; \
+	sed -i "s/\$required = \$distribution === 'opensearch' ? '1.3' : '7.10';/\$required = \$distribution === 'opensearch' ? '2.' : '7.10';/" "$f"; \
+	grep -q "'opensearch' ? '2\.' :" "$f"; \
+	php -l "$f"
+
 # Final image
 FROM base AS final
 
