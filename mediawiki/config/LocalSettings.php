@@ -632,6 +632,7 @@ wfLoadExtensions([
     "Linter",
     "LoginNotify",
     "Loops",
+    "Math",
     "MediaSearch",
     "MultimediaViewer",
     "MultiPurge",
