@@ -752,13 +752,7 @@ $wgCirrusSearchIndexBaseName = "scw_prod";
 $wgSearchType = "CirrusSearch";
 $wgCirrusSearchUseCompletionSuggester = "yes";
 $wgCirrusSearchClusters = [
-    "default" => ["elasticsearch-es-elasticsearch.default.svc.cluster.local"],
-    // TEMPORARY, for the OpenSearch migration pre-flight. Not the default:
-    // live search stays on Elasticsearch until the maintenance window. This
-    // exists so index creation can be proven against OpenSearch with
-    // `--cluster opensearch` while ES is still serving. Replaced by a single
-    // "default" pointing at OpenSearch at cutover.
-    "opensearch" => ["opensearch.default.svc.cluster.local"],
+    "default" => ["opensearch.default.svc.cluster.local"],
 ];
 $wgCirrusSearchCompletionSuggesterSubphrases = [
     "build" => true,
