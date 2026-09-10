@@ -1547,7 +1547,6 @@ $wgHooks["ThumbnailBeforeProduceHTML"][] = function (
                 false && $attribs["width"] === 400;
         if ($isLCPImage) {
             unset($attribs["loading"]);
-            $attribs["fetchpriority"] = "high";
             $sctHasSetImageEager = true;
         }
     }
