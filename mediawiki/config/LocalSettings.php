@@ -61,17 +61,8 @@ $sespgLabelCacheVersion = "2025.04"; // Semantic Extra Special Properties cache
 // $wgDebugDumpSql = true;
 // $wgDebugComments = true;
 
-/**
- * Production error routing. Without a destination MediaWiki discards these
- * channels entirely, so a 500 left no trace. Covers the web pods only.
- *
- * Keep the array form: a bare string destination logs at debug level.
- */
-$wgDebugLogGroups['exception'] = [
-    'destination' => 'php://stderr',
-    'level' => 'error',
-];
-$wgDBerrorLog = 'php://stderr';
+// Route every error channel to stderr as JSON, tagged with the request id
+require_once __DIR__ . "/settings/Logging.php";
 
 /**
  * MediaWiki core main config
