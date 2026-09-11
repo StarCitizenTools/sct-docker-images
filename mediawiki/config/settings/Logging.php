@@ -27,6 +27,13 @@ $wgMWLoggerDefaultSpi = [
                 'processors' => [ 'wiki', 'psr' ],
                 'handlers' => [ 'stderr' ],
             ],
+            // TEMPORARY, for the runJobs.php SIGSEGV hunt: JobRunner logs
+            // "<job> STARTING" at debug before executing, which names the page.
+            // Drop this logger once that page is known.
+            'runJobs' => [
+                'processors' => [ 'wiki', 'psr' ],
+                'handlers' => [ 'stderr-debug' ],
+            ],
         ],
         'processors' => [
             'wiki' => [ 'class' => WikiProcessor::class ],
@@ -36,6 +43,11 @@ $wgMWLoggerDefaultSpi = [
             'stderr' => [
                 'class' => StreamHandler::class,
                 'args' => [ 'php://stderr', Logger::ERROR ],
+                'formatter' => 'json',
+            ],
+            'stderr-debug' => [
+                'class' => StreamHandler::class,
+                'args' => [ 'php://stderr', Logger::DEBUG ],
                 'formatter' => 'json',
             ],
         ],
