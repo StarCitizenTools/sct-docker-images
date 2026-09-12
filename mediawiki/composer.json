@@ -37,6 +37,7 @@
                 "mediawiki/semantic-scribunto": "dev-master",
                 "starcitizentools/ag-grid": "dev-main",
                 "starcitizentools/apiunto": "dev-main",
+                "starcitizentools/bucket": "1.46.0",
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",
                 "starcitizentools/short-description": "dev-main",
@@ -491,6 +492,22 @@
                                 },
                                 "extra": {
                                     "installer-name": "SearchDigest"
+                                }
+                        }
+                },
+                {
+                        "type": "package",
+                        "package": {
+                                "name": "starcitizentools/bucket",
+                                "type": "mediawiki-extension",
+                                "version": "1.46.0",
+                                "source": {
+                                        "type": "git",
+                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-Bucket.git",
+                                        "reference": "production"
+                                },
+                                "extra": {
+                                        "installer-name": "Bucket"
                                 }
                         }
                 }

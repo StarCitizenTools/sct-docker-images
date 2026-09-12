@@ -597,6 +597,7 @@ wfLoadExtensions([
     "Apiunto",
     "AWS",
     "Babel",
+    "Bucket",
     "CategoryTree",
     "CheckUser",
     "CirrusSearch",
@@ -726,6 +727,38 @@ $wgImagePreconnect = true;
 // $wgLocalFileRepo['transformVia404'] = true;
 // Append a content-version token to file URLs for CDN/browser cache busting
 require_once __DIR__ . "/settings/VersionedFileUrls.php";
+
+/**
+ * Extension:Bucket
+ *
+ * @see https://github.com/StarCitizenTools/mediawiki-extensions-Bucket
+ */
+// Bucket opens a second database connection of its own rather than reusing
+// MediaWiki's. Both are required: BucketDatabase::getDB() throws
+// ConfigException when either is null, and it is reached from every page
+// deletion in every namespace, so these must never be absent while the
+// extension is loaded.
+$wgBucketDBuser = "bucket";
+$wgBucketDBpassword = getenv("BUCKET_DB_PASSWORD");
+// Confine writes to User space to begin with. This gates both the per-save
+// second connection (onLinksUpdateComplete) and the action=bucket link the
+// extension adds to the sidebar of every page in an enabled namespace.
+// The extension enables NS_MAIN, NS_USER, NS_PROJECT, NS_FILE, NS_HELP and
+// NS_CATEGORY by default; everything else is already off.
+$wgBucketWriteEnabledNamespaces = [
+    NS_MAIN => false,
+    NS_USER => true,
+    NS_PROJECT => false,
+    NS_FILE => false,
+    NS_HELP => false,
+    NS_CATEGORY => false,
+];
+// BucketApi calls pingLimiter("bucketapi"), which does nothing until a limit
+// exists. action=bucket runs Lua and is reachable by an anonymous GET.
+$wgRateLimits["bucketapi"] = [
+    "anon" => [5, 60],
+    "user" => [30, 60],
+];
 
 /**
  * Extension:CheckUser
