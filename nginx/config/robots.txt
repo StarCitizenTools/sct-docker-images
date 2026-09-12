@@ -184,6 +184,8 @@ Disallow: /
 User-agent: *
 Allow: /rest.php/wikiseo/v1/socialmediaimage
 Disallow: /api.php
+Disallow: /*?action=bucket
+Disallow: /*?*&action=bucket
 Disallow: /rest.php
 Disallow: /ProjMGMT:
 Disallow: /Mediawiki:
