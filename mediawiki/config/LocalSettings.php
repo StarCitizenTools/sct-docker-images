@@ -98,6 +98,7 @@ $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
 // Logos and icons
 $wgLogos = [
+	"icon" => "$wgResourceBasePath/resources/assets/sitelogo.svg",
     "svg" => "$wgResourceBasePath/resources/assets/sitelogo.svg",
 ];
 $wgFavicon = "/favicon.svg";
