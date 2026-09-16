@@ -1,9 +1,9 @@
 # Base stage
 # Named stages rather than inline COPY --from images: Dependabot only reads FROM.
-FROM composer:2.10.3@sha256:d8f6343d3fae98107426bc49163ccad46ef85aabd4a27d80a74401fab4aba332 AS composer
+FROM composer:2.10.3@sha256:aaeab4b6b031e0a88efb907f0f26b563532a644fc2f4ea0d000ecf8658f7a2b8 AS composer
 FROM mlocati/php-extension-installer:2.11.12@sha256:b6d3fa381b9ba5cf051117c1c601d6a523b590e534bf3d56eb4fbe352949c138 AS php-extension-installer
 
-FROM php:8.4.25-fpm@sha256:59fa733c9af643a122f8a9976119460e35ce76dd0a3f2b9c8f75af8e361a54e2 AS base
+FROM php:8.4.25-fpm@sha256:c27f0d1c15968d17f40cd6f2755fbaca234474899583611afab46ae869da0c0e AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 
