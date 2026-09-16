@@ -1,5 +1,5 @@
 # Named stage rather than an inline COPY --from image: Dependabot only reads FROM.
-FROM composer:2.10.3@sha256:d8f6343d3fae98107426bc49163ccad46ef85aabd4a27d80a74401fab4aba332 AS composer
+FROM composer:2.10.3@sha256:aaeab4b6b031e0a88efb907f0f26b563532a644fc2f4ea0d000ecf8658f7a2b8 AS composer
 
 FROM mediawiki
 
