@@ -1070,13 +1070,8 @@ $wgDefaultUserOptions[
 
 $sespgUseFixedTables = true;
 $sespgEnabledPropertyList = [
-    "_USERREG",
-    "_USEREDITCNT",
     "_PAGEIMG",
-    //'_LINKSTO', // Attempt to remove our old local definition for _LINKSTO
 ];
-// Required by Module:DependencyList
-$sespgLinksToEnabledNamespaces = [NS_TEMPLATE, NS_MODULE];
 
 /**
  * Extension:SyntaxHighlight
