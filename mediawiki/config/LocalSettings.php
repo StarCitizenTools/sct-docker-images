@@ -40,7 +40,6 @@ const SCT_DOMAIN = "starcitizen.tools";
 $wgCacheEpoch = "20260829053509"; // Page cache - Invalidate when there are HTML changes
 // $wgThumbnailEpoch = '20241210023315'; // Thumbnail cache - Invalidate when there are thumbanil/image config changes
 // $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" ); // Extension cache
-$sespgLabelCacheVersion = "2025.04"; // Semantic Extra Special Properties cache
 
 /**
  * Maintenance config
@@ -642,7 +641,6 @@ wfLoadExtensions([
     "SandboxLink",
     "Scribunto",
     "SearchDigest",
-    "SemanticExtraSpecialProperties",
     "SemanticMediaWiki",
     "SemanticScribunto",
     "ShortDescription",
@@ -1061,17 +1059,6 @@ $smwgSetParserCacheKeys = [];
 $wgDefaultUserOptions[
     "smw-prefs-general-options-show-entity-issue-panel"
 ] = false;
-
-/**
- * Extension:SemanticExtraSpecialProperties
- *
- * @see https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties
- */
-
-$sespgUseFixedTables = true;
-$sespgEnabledPropertyList = [
-    "_PAGEIMG",
-];
 
 /**
  * Extension:SyntaxHighlight
