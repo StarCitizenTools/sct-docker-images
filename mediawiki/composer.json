@@ -33,7 +33,6 @@
                 "universal-omega/dynamic-page-list4": "4.0.6",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
                 "mediawiki/semantic-media-wiki": "dev-master",
-                "mediawiki/semantic-extra-special-properties": "dev-master",
                 "mediawiki/semantic-scribunto": "dev-master",
                 "starcitizentools/ag-grid": "dev-main",
                 "starcitizentools/apiunto": "dev-main",
