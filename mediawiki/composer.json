@@ -32,8 +32,6 @@
                 "starcitizenwiki/embedvideo": "dev-master",
                 "universal-omega/dynamic-page-list4": "4.0.6",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
-                "mediawiki/semantic-media-wiki": "dev-master",
-                "mediawiki/semantic-scribunto": "dev-master",
                 "starcitizentools/ag-grid": "dev-main",
                 "starcitizentools/apiunto": "dev-main",
                 "starcitizentools/bucket": "1.46.0",

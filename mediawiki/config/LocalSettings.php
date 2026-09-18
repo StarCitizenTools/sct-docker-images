@@ -111,16 +111,6 @@ $wgFooterIcons = [
             "width" => "127",
         ],
     ],
-    "poweredbysmw" => [
-        "semanticmediawiki" => [
-            "src" => "$wgResourceBasePath/resources/assets/badge-semanticmediawiki.svg",
-            "url" =>
-                "https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki",
-            "alt" => "Powered by Semantic MediaWiki",
-            "height" => "42",
-            "width" => "131",
-        ],
-    ],
     "copyright" => [
         "copyright" => [
             "src" => "$wgResourceBasePath/resources/assets/badge-ccbysa.svg",
@@ -325,7 +315,7 @@ $wgJobBackoffThrottling["htmlCacheUpdate"] = 50;
  * PoolCounter
  *
  * Serializes concurrent renders of the same uncached page via Valkey so
- * that a heavy template/module/SMW edit (which invalidates parser cache
+ * that a heavy template/module edit (which invalidates parser cache
  * across hundreds or thousands of pages) doesn't cause every FPM worker
  * to re-parse the same page in parallel.
  *
@@ -641,8 +631,6 @@ wfLoadExtensions([
     "SandboxLink",
     "Scribunto",
     "SearchDigest",
-    "SemanticMediaWiki",
-    "SemanticScribunto",
     "ShortDescription",
     "SyntaxHighlight_GeSHi",
     "TabberNeue",
@@ -1015,50 +1003,6 @@ $wgScribuntoEngineConf["luasandbox"]["memoryLimit"] = 50 * 1024 * 1024; // 50 MB
 $wgScribuntoEngineConf["luasandbox"]["cpuLimit"] = 10; // Seconds
 $wgScribuntoUseCodeMirror = true;
 $wgScribuntoGatherFunctionStats = true;
-
-/**
- * Extension:SemanticMediaWiki
- *
- * @see https://github.com/SemanticMediaWiki/SemanticMediaWiki
- */
-// Set default property type to Text
-// Because we use SMW property for displaying data through templates mainly
-$smwgPDefaultType = "_txt";
-// Use Valkey to cache SMW query result
-$smwgMainCacheType = "valkey";
-$smwgQueryResultCacheType = "valkey";
-// Enable tracking and storing of dependencies of embedded queries
-// NOTE: Disabled due to performance issues.
-// Upon enabling, it can potentially trigger a lot of parser cache invalidation,
-// which throws the wiki into a deadlock.
-// $smwgEnabledQueryDependencyLinksStore = true;
-// Duplicate query conditions should be removed from computing query results
-$smwgQFilterDuplicates = true;
-$smwgConfigFileDir = "/usr/local/smw";
-// Enable SMW in the following namespaces
-$smwgNamespacesWithSemanticLinks[NS_USER] = true;
-$smwgNamespacesWithSemanticLinks[NS_TEMPLATE] = true;
-$smwgNamespacesWithSemanticLinks[NS_MODULE] = true;
-foreach ($wgContentNamespaces as $contentNS) {
-    $smwgNamespacesWithSemanticLinks[$contentNS] = true;
-}
-// Raise the default limit since we have a lot of templates and modules
-// that needs to access the data (e.g. Navplates, DataTables, etc.)
-$smwgQDefaultLimit = 2000;
-$smwgQMaxInlineLimit = $smwgQDefaultLimit;
-// Increase query max size so that we can use query with more OR conditions (e.g. UUID lookup)
-$smwgQMaxSize = 100;
-// Disable RDF link in <head> to mitigate bot scrapers
-$smwgEnableExportRDFLink = false;
-// Do not let SMW invalidate parser cache
-$smwgSetParserCacheTimestamp = false;
-// Drop cache keys to avoid cache fragmentation
-$smwgSetParserCacheKeys = [];
-// Disable entity issue panel for all users by default since it is useless to most users
-// This generates an uncached call to api.php which is not needed
-$wgDefaultUserOptions[
-    "smw-prefs-general-options-show-entity-issue-panel"
-] = false;
 
 /**
  * Extension:SyntaxHighlight

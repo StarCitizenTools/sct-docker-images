@@ -92,9 +92,8 @@ WORKDIR /var/www/mediawiki
 COPY ./composer.json /var/www/mediawiki/composer.local.json
 
 RUN set -eux; \
-	mkdir /usr/local/smw; \
 	mkdir -p /var/www/.composer; \
-	chown -R www-data:www-data /var/www/mediawiki /usr/local/smw /var/www/.composer
+	chown -R www-data:www-data /var/www/mediawiki /var/www/.composer
 
 USER www-data
 
@@ -190,8 +189,7 @@ RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.
 	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini;
 
 # Create required directories
-RUN mkdir -p /var/www/mediawiki /usr/local/smw; \
-	chown www-data:www-data /usr/local/smw
+RUN mkdir -p /var/www/mediawiki
 
 WORKDIR /var/www/mediawiki
 
