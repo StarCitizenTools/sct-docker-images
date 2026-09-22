@@ -594,7 +594,6 @@ wfLoadExtensions([
     "Cite",
     "CiteThisPage",
     "Cldr",
-    "CodeEditor",
     "CodeMirror",
     "CommonsMetadata",
     "ConfirmEdit",
@@ -767,6 +766,13 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
  */
 // Enable syntax highlight in editor by default
 $wgDefaultUserOptions["usecodemirror"] = 1;
+// CodeMirror only opts into wikitext out of the box, so enable the content
+// models that Extension:CodeEditor used to handle
+$wgCodeMirrorEnabledModes["javascript"] = true;
+$wgCodeMirrorEnabledModes["json"] = true;
+$wgCodeMirrorEnabledModes["css"] = true;
+$wgCodeMirrorEnabledModes["lua"] = true;
+$wgCodeMirrorEnabledModes["vue"] = true;
 
 /**
  * Extension:CommonsMetadata
