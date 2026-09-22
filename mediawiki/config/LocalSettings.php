@@ -655,6 +655,15 @@ wfLoadSkin("Citizen");
 $wgDefaultSkin = "citizen";
 
 /**
+ * Extension:AbuseFilter
+ *
+ * @see https://github.com/wikimedia/mediawiki-extensions-AbuseFilter
+ */
+// Syntax highlight the filter editor on Special:AbuseFilter. Without this the
+// editor falls back to a plain textarea now that CodeEditor is gone
+$wgAbuseFilterUseCodeMirror = true;
+
+/**
  * Extension:AdvancedSearch
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
