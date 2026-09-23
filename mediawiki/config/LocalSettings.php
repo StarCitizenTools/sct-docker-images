@@ -1393,7 +1393,7 @@ $wgGroupPermissions["Editor"]["noratelimit"] = true;
 $wgGroupPermissions["Editor"]["move-rootuserpages"] = true;
 $wgGroupPermissions["Editor"]["org-edit"] = true;
 $wgGroupPermissions["Editor"]["thumbro-test"] = true;
-$wgGroupPermissions["Editor"]["edit"] = true;
+$wgGroupPermissions["Editor"]["editbucket"] = true;
 
 // Sysop
 // It's Over 9000!
