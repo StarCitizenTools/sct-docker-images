@@ -735,6 +735,9 @@ require_once __DIR__ . "/settings/VersionedFileUrls.php";
 // extension is loaded.
 $wgBucketDBuser = "bucket";
 $wgBucketDBpassword = getenv("BUCKET_DB_PASSWORD");
+// Enable Bucket in Template and Module namespace, mainly for dependency tracking
+$wgBucketWriteEnabledNamespaces[NS_TEMPLATE] = true;
+$wgBucketWriteEnabledNamespaces[NS_MODULE] = true;
 // BucketApi calls pingLimiter("bucketapi"), which does nothing until a limit
 // exists. action=bucket runs Lua and is reachable by an anonymous GET.
 $wgRateLimits["bucketapi"] = [
@@ -1390,7 +1393,7 @@ $wgGroupPermissions["Editor"]["noratelimit"] = true;
 $wgGroupPermissions["Editor"]["move-rootuserpages"] = true;
 $wgGroupPermissions["Editor"]["org-edit"] = true;
 $wgGroupPermissions["Editor"]["thumbro-test"] = true;
-$wgGroupPermissions["Editor"]["editbucket"] = true;
+$wgGroupPermissions["Editor"]["edit"] = true;
 
 // Sysop
 // It's Over 9000!
