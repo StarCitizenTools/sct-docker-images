@@ -73,7 +73,13 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 	/opt/venv/bin/pip install Pygments
 
 # MediaWiki
+# Core's submodules (bundled extensions, skins, vendor) point at Gerrit, which
+# rate-limits CI runners with HTTP 429 partway through the ~40 fetches. Fetch
+# them from Wikimedia's GitHub mirrors instead, which carry the same commits.
 RUN set -eux; \
+	git config --global url.https://github.com/wikimedia/mediawiki-extensions-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/extensions/; \
+	git config --global url.https://github.com/wikimedia/mediawiki-skins-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/skins/; \
+	git config --global url.https://github.com/wikimedia/mediawiki-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/; \
 	git clone --single-branch --branch ${MEDIAWIKI_BRANCH} --depth 1 https://github.com/wikimedia/mediawiki.git /var/www/mediawiki; \
 	cd /var/www/mediawiki; \
 	if [ -n "${MEDIAWIKI_COMMIT_HASH}" ]; then \
