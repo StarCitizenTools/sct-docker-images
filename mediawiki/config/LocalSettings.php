@@ -919,7 +919,7 @@ $wgMediaViewerExcludedImageSelectors = [
 /**
  * Extension:MultiPurge
  *
- * @see https://github.com/octfx/mediawiki-extensions-MultiPurge
+ * @see https://github.com/StarCitizenTools/mediawiki-extensions-MultiPurge
  */
 $wgMultiPurgeEnabledServices = ["Cloudflare"];
 $wgMultiPurgeServiceOrder = $wgMultiPurgeEnabledServices;
@@ -932,6 +932,9 @@ $wgMultiPurgeStaticPurges = [
         "load.php?lang=en&modules=site.styles&only=styles&skin=citizen",
 ];
 $wgMultiPurgeRunInQueue = true;
+// Keep the render refreshLinks makes after a template or module edit instead
+// of letting core discard it, so those pages are not parsed a second time
+$wgMultiPurgeWarmParserCacheOnRefreshLinks = true;
 
 /**
  * Extension:OAuth
