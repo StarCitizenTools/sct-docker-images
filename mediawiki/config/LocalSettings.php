@@ -602,7 +602,6 @@ wfLoadExtensions([
     "Disambiguator",
     "DiscussionTools",
     "DismissableSiteNotice",
-    "DynamicPageList4",
     "Echo",
     "Elastica",
     "EmbedVideo",
@@ -877,14 +876,6 @@ $wgDiscussionTools_visualenhancements = "available";
  */
 // Allow anon to dismiss site notice
 $wgDismissableSiteNoticeForAnons = true;
-
-/**
- * Extension:DynamicPageList4
- *
- * @see https://github.com/Universal-Omega/DynamicPageList4
- */
-$wgDPLRecursiveTagParse = true;
-$wgDPLAllowUnlimitedResults = true;
 
 /**
  * Extension:Echo
