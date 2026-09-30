@@ -1366,6 +1366,7 @@ $wgGroupPermissions["Trusted"]["movefile"] = true;
 $wgGroupPermissions["Trusted"]["move-categorypages"] = true;
 $wgGroupPermissions["Trusted"]["sendemail"] = true;
 $wgGroupPermissions["Trusted"]["move-subpages"] = true;
+$wgGroupPermissions["Trusted"]["trusted-edit"] = true;
 
 // Editors
 // A hybrid of bureaucrat and sysops, some kind of moderators without site permissions
@@ -1404,6 +1405,7 @@ $wgGroupPermissions["sysop"]["interwiki"] = true;
 
 // Make these permissions grantable for Bot Passwords and OAuth
 $wgGrantPermissions["editpage"]["verified-edit"] = true;
+$wgGrantPermissions["editpage"]["trusted-edit"] = true;
 $wgGrantPermissions["editpage"]["org-edit"] = true;
 
 /**
