@@ -1039,6 +1039,8 @@ $wgTemplateSandboxEditNamespaces[] = NS_MODULE;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-TemplateStyles
  */
+// The first matching regex wins. The (?<filename>) patterns must come before the
+// catch-all media patterns so files used in TemplateStyles are recorded as file usage.
 $wgTemplateStylesAllowedUrls = [
     "audio" => [
         "<^https://starcitizen\\.tools/>",
@@ -1046,10 +1048,12 @@ $wgTemplateStylesAllowedUrls = [
     ],
     "image" => [
         "<^https://starcitizen\\.tools/>",
+        "<^https://media\\.starcitizen\\.tools/(?:thumb/)?[0-9a-f]/[0-9a-f]{2}/(?<filename>[^/?#]+)>",
         "<^https://media\\.starcitizen\\.tools/>",
     ],
     "svg" => [
         '<^https://starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>',
+        '<^https://media\\.starcitizen\\.tools/[0-9a-f]/[0-9a-f]{2}/(?<filename>[^/?#]+\\.svg)(?:[?#]|$)>',
         '<^https://media\\.starcitizen\\.tools/[^?#]*\\.svg(?:[?#]|$)>',
     ],
     "font" => ["<^https://starcitizen\\.tools/>"],
