@@ -76,7 +76,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Core's submodules (bundled extensions, skins, vendor) point at Gerrit, which
 # rate-limits CI runners with HTTP 429 partway through the ~40 fetches. Fetch
 # them from Wikimedia's GitHub mirrors instead, which carry the same commits.
+# VisualEditor's nested lib/ve submodule lives outside /r/mediawiki/, so it
+# needs its own rewrite.
 RUN set -eux; \
+	git config --global url.https://github.com/wikimedia/VisualEditor.git.insteadOf https://gerrit.wikimedia.org/r/VisualEditor/VisualEditor.git; \
 	git config --global url.https://github.com/wikimedia/mediawiki-extensions-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/extensions/; \
 	git config --global url.https://github.com/wikimedia/mediawiki-skins-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/skins/; \
 	git config --global url.https://github.com/wikimedia/mediawiki-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/; \
