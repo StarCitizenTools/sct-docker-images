@@ -31,12 +31,36 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 		wikidiff2 \
 	;
 
-# Builder stage
-FROM base AS builder
+# MediaWiki source
+# Cloned in its own stage so it runs in parallel with the PHP extension build
+# in the base stage; it only needs git, which the composer image already ships.
+FROM composer AS source
 
 # Version
 ARG MEDIAWIKI_BRANCH='REL1_46'
 ARG MEDIAWIKI_COMMIT_HASH=''
+
+# Core's submodules (bundled extensions, skins, vendor) point at Gerrit, which
+# rate-limits CI runners with HTTP 429 partway through the ~40 fetches. Fetch
+# them from Wikimedia's GitHub mirrors instead, which carry the same commits.
+# VisualEditor's nested lib/ve submodule lives outside /r/mediawiki/, so it
+# needs its own rewrite.
+RUN set -eux; \
+	git config --global url.https://github.com/wikimedia/VisualEditor.git.insteadOf https://gerrit.wikimedia.org/r/VisualEditor/VisualEditor.git; \
+	git config --global url.https://github.com/wikimedia/mediawiki-extensions-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/extensions/; \
+	git config --global url.https://github.com/wikimedia/mediawiki-skins-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/skins/; \
+	git config --global url.https://github.com/wikimedia/mediawiki-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/; \
+	git clone --single-branch --branch ${MEDIAWIKI_BRANCH} --depth 1 https://github.com/wikimedia/mediawiki.git /var/www/mediawiki; \
+	cd /var/www/mediawiki; \
+	if [ -n "${MEDIAWIKI_COMMIT_HASH}" ]; then \
+		echo "Checking out commit: ${MEDIAWIKI_COMMIT_HASH}"; \
+		git fetch --depth 1 origin ${MEDIAWIKI_COMMIT_HASH}; \
+		git checkout ${MEDIAWIKI_COMMIT_HASH}; \
+	fi; \
+	git submodule update --init --recursive --depth 1 --jobs 8
+
+# Builder stage
+FROM base AS builder
 
 # Build arguments
 ARG UPDATE_SYSTEM_DEPENDENCIES=false
@@ -73,24 +97,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 	/opt/venv/bin/pip install Pygments
 
 # MediaWiki
-# Core's submodules (bundled extensions, skins, vendor) point at Gerrit, which
-# rate-limits CI runners with HTTP 429 partway through the ~40 fetches. Fetch
-# them from Wikimedia's GitHub mirrors instead, which carry the same commits.
-# VisualEditor's nested lib/ve submodule lives outside /r/mediawiki/, so it
-# needs its own rewrite.
-RUN set -eux; \
-	git config --global url.https://github.com/wikimedia/VisualEditor.git.insteadOf https://gerrit.wikimedia.org/r/VisualEditor/VisualEditor.git; \
-	git config --global url.https://github.com/wikimedia/mediawiki-extensions-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/extensions/; \
-	git config --global url.https://github.com/wikimedia/mediawiki-skins-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/skins/; \
-	git config --global url.https://github.com/wikimedia/mediawiki-.insteadOf https://gerrit.wikimedia.org/r/mediawiki/; \
-	git clone --single-branch --branch ${MEDIAWIKI_BRANCH} --depth 1 https://github.com/wikimedia/mediawiki.git /var/www/mediawiki; \
-	cd /var/www/mediawiki; \
-	if [ -n "${MEDIAWIKI_COMMIT_HASH}" ]; then \
-		echo "Checking out commit: ${MEDIAWIKI_COMMIT_HASH}"; \
-		git fetch --depth 1 origin ${MEDIAWIKI_COMMIT_HASH}; \
-		git checkout ${MEDIAWIKI_COMMIT_HASH}; \
-	fi; \
-	git submodule update --init --recursive --depth 1
+# Ownership is set on copy rather than by a separate chown -R pass, which
+# has to walk all ~77k files and adds up to a minute per stage.
+RUN install -d -o www-data -g www-data /var/www/mediawiki /var/www/.composer
+COPY --from=source --chown=www-data:www-data /var/www/mediawiki /var/www/mediawiki
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
@@ -98,11 +108,7 @@ WORKDIR /var/www/mediawiki
 
 # Skins and extensions
 # Defined in composer.local.json
-COPY ./composer.json /var/www/mediawiki/composer.local.json
-
-RUN set -eux; \
-	mkdir -p /var/www/.composer; \
-	chown -R www-data:www-data /var/www/mediawiki /var/www/.composer
+COPY --chown=www-data:www-data ./composer.json /var/www/mediawiki/composer.local.json
 
 USER www-data
 
@@ -120,9 +126,14 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	# Ignore security advisories
 	/usr/bin/composer config --json audit.ignore '{"PKSA-y2cr-5h3j-g3ys": "ignored"}'; \
 	\
+	# Install from source (git clones) so Special:Version can show commit info,
+	# except aws-sdk-php: nothing reads its git metadata and its full history is
+	# over 600 MB, more than all the extensions and skins combined.
+	/usr/bin/composer config --no-plugins preferred-install.aws/aws-sdk-php dist; \
+	/usr/bin/composer config --no-plugins "preferred-install.*" source; \
+	\
 	# Install the skins and extensions
 	/usr/bin/composer install --no-dev \
-		--prefer-source \
 		--ignore-platform-reqs \
 		--no-ansi \
 		--no-interaction \
@@ -133,7 +144,6 @@ RUN --mount=type=cache,target=/var/www/.composer/cache,uid=33,gid=33 \
 	\
 	# Needed so that composer would install the depedencies of the skins and extensions that we just installed
 	/usr/bin/composer update --no-dev \
-		--prefer-source \
 		--no-ansi \
 		--no-interaction \
 		--no-scripts;
@@ -198,24 +208,23 @@ RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.
 	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini;
 
 # Create required directories
-RUN mkdir -p /var/www/mediawiki
+RUN install -d -o www-data -g www-data /var/www/mediawiki
 
 WORKDIR /var/www/mediawiki
 
 # Copy built application files and python packages from the builder stage
-COPY --from=builder /var/www/mediawiki /var/www/mediawiki
+# Ownership is set on copy rather than by a separate chown -R pass, which
+# has to walk all ~77k files and adds up to a minute per stage.
+COPY --from=builder --chown=www-data:www-data /var/www/mediawiki /var/www/mediawiki
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 # Create a symlink to ensure MediaWiki finds pygmentize
 RUN ln -s /opt/venv/bin/pygmentize /usr/local/bin/pygmentize
 
 # Copy final configs
-COPY ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
-COPY ./config/settings /var/www/mediawiki/settings
-COPY ./resources /var/www/mediawiki/resources
-
-# Set final ownership
-RUN chown -R www-data:www-data /var/www/mediawiki
+COPY --chown=www-data:www-data ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
+COPY --chown=www-data:www-data ./config/settings /var/www/mediawiki/settings
+COPY --chown=www-data:www-data ./resources /var/www/mediawiki/resources
 
 USER www-data
 

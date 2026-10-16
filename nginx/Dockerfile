@@ -12,9 +12,10 @@ RUN set -eux; \
 # Copy the full MediaWiki installation from the mediawiki build
 # Nginx needs core files (index.php, load.php, thumb.php, etc.) for routing,
 # plus skins/extensions/resources for serving static assets
-COPY --from=mediawiki /var/www/mediawiki /var/www/mediawiki
+# Ownership is set on copy rather than by a separate chown -R pass, which
+# has to walk all ~77k files and adds up to a minute per stage.
+COPY --from=mediawiki --chown=www-data:www-data /var/www/mediawiki /var/www/mediawiki
 
-COPY ./config/robots.txt /var/www/mediawiki/robots.txt
+COPY --chown=www-data:www-data ./config/robots.txt /var/www/mediawiki/robots.txt
 
-RUN set -eux; \
-	chown -R www-data:www-data /var/www
+RUN chown www-data:www-data /var/www /var/www/mediawiki
