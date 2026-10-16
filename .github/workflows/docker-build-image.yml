@@ -45,6 +45,10 @@ jobs:
       -
         name: 🏗️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
+        with:
+          # The runner is discarded after the job, so removing the builder
+          # only adds time (about a minute once it holds a full build).
+          cleanup: false
       -
         # Images are published to GHCR, but the Dockerfiles still pull their
         # base images (nginx, php, composer, php-extension-installer) from
