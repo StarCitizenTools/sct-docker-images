@@ -3,7 +3,10 @@
 FROM composer:2.10.3@sha256:af98f42dfff7c68ba8d53c2164fd9fde1087b7d449514baa38c418b1f6bc4bac AS composer
 FROM mlocati/php-extension-installer:2.12.0@sha256:1afade3e29cfc97362cf5885e5ac333bf2faab1146cb28ebbb59b17e68f87e88 AS php-extension-installer
 
-FROM php:8.4.26-fpm@sha256:1071b5609d16d60674f78eea8cf9bd7e9e79169ecb566d015c931c5ee789bb13 AS base
+# Supplied by the "php" target in docker-bake.hcl, which builds PHP from
+# docker-library's Dockerfile. Go back to the official image (php:8.4.x-fpm,
+# digest-pinned) once Docker Hub has the release that target builds.
+FROM php-base AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 

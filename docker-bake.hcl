@@ -22,9 +22,24 @@ group "default" {
   targets = ["mediawiki", "jobrunner", "nginx"]
 }
 
+# The official php:8.4-fpm image, built from the same Dockerfile docker-library
+# publishes it from, for when a PHP security release is out but Docker Hub
+# hasn't rebuilt yet. Pinned to the docker-library commit that moved 8.4 to
+# 8.4.27; that Dockerfile checks the tarball's SHA256 and its release
+# manager's GPG signature. Delete this target once mediawiki/Dockerfile is back
+# on the official image.
+target "php" {
+  context    = "https://github.com/docker-library/php.git#e3eaff845f7a9f7259c31da54dce0320b47a3bbd:8.4/trixie/fpm"
+  cache-from = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:php"]
+  cache-to   = ["type=registry,ref=ghcr.io/starcitizentools/sct-docker-images-cache:php,mode=max"]
+}
+
 target "mediawiki" {
   context    = "mediawiki"
   dockerfile = "Dockerfile"
+  contexts = {
+    php-base = "target:php"
+  }
   tags = [
     "${REGISTRY}/starcitizentools/mediawiki:smw-latest",
     "${REGISTRY}/starcitizentools/mediawiki:smw-${TAG}",
