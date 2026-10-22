@@ -3,7 +3,11 @@ version: 2
 # Dependabot alerts do not cover Docker base images, so the scheduled docker
 # bumps below are the only path for patches in the php/nginx bases. The
 # cooldown, not the check frequency, is what delays a release; see the docker
-# entry for why php skips it.
+# entry for which images skip it.
+#
+# Nothing is bundled: there are few enough dependencies that one PR each is
+# cheap, and each PR then carries that dependency's release notes and lands as
+# its own commit.
 
 updates:
   # ---------------------------------------------------------------- actions --
@@ -13,13 +17,9 @@ updates:
       interval: weekly
     commit-message:
       prefix: ci
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 5
     cooldown:
       default-days: 7
-    groups:
-      github-actions:
-        patterns:
-          - "*"
 
   # ----------------------------------------------------------------- images --
   # Dependabot only parses FROM lines, which is why the Dockerfiles declare
@@ -29,7 +29,7 @@ updates:
       - "/mediawiki"
       - "/jobrunner"
       - "/nginx"
-    # Daily so php's cooldown exemption below isn't spent waiting for the next
+    # Daily so the cooldown exemptions below aren't spent waiting for the next
     # weekly run.
     schedule:
       interval: daily
@@ -37,21 +37,28 @@ updates:
       prefix: deps
     open-pull-requests-limit: 5
     cooldown:
+      # Dependabot holds updates for 3 days even when no cooldown is set, so
+      # the exclude list is the only way to take one on release day.
       default-days: 7
-      # Only php patch releases reach this entry (see ignore), and those are
-      # where PHP security fixes ship, so take them as soon as Docker Hub has
-      # them. Merging here only builds images; nothing reaches production
-      # until the sct-k8-config bump PR is merged.
+      # Docker Official Images, built by Docker from a reviewed manifest. Their
+      # new versions and same-tag rebuilds are how php, nginx and Debian
+      # security fixes reach us, and the cooldown holds back both. Only
+      # mlocati/php-extension-installer, which is third-party, still waits.
+      # Merging here only builds images; nothing reaches production until the
+      # sct-k8-config bump PR is merged.
       exclude:
         - "php"
+        - "nginx"
+        - "composer"
     ignore:
       # PHP minor/major bumps are done by hand; only patch releases flow through here.
       - dependency-name: "php"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
     groups:
+      # Not a bundle: still one PR per dependency, but composer, pinned in both
+      # /mediawiki and /jobrunner, gets one PR rather than one per directory.
       base-images:
-        patterns:
-          - "*"
+        group-by: dependency-name
 
   # -------------------------------------------------------------- jobrunner --
   - package-ecosystem: gitsubmodule
