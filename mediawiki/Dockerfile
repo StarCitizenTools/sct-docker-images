@@ -162,6 +162,26 @@ RUN set -eux; \
 	grep -q "'opensearch' ? '2\.' :" "$f"; \
 	php -l "$f"
 
+# Special:Version and the siteinfo API get commit info from GitInfo, which
+# reads a gitinfo.json in each repo when $wgGitInfoCacheDirectory has none.
+# Write those, then drop every .git: they are over three quarters of the
+# compressed tree, and every node pulls the tree on each deploy. Tests go too.
+RUN set -eu; \
+	for d in . extensions/* skins/*; do \
+		[ -e "$d/.git" ] || continue; \
+		sha=$(git -C "$d" rev-parse HEAD); \
+		head=$(git -C "$d" symbolic-ref -q HEAD || echo "$sha"); \
+		url=$(git -C "$d" config --get remote.origin.url \
+			|| git -C "$d" config --get-regexp '^remote\..*\.url$' | head -n1 | cut -d' ' -f2 \
+			|| true); \
+		php -r '[, $head, $sha, $date, $url] = $argv; \
+			echo json_encode(["head" => $head, "headSHA1" => $sha, "headCommitDate" => (int)$date, \
+				"branch" => preg_replace("#^refs/heads/#", "", $head), "remoteURL" => $url === "" ? false : $url]);' \
+			-- "$head" "$sha" "$(git -C "$d" show -s --format=%ct HEAD)" "$url" > "$d/gitinfo.json"; \
+	done; \
+	find . -name .git -prune -exec rm -rf {} +; \
+	rm -rf tests extensions/*/tests skins/*/tests
+
 # Final image
 FROM base AS final
 
@@ -189,8 +209,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 		unzip \
 		# MediaWiki requirements
 		imagemagick \
-		# Required to show commit info in Special:Version
-		git \
 		# Extension:EmbedVideo
 		ffmpeg \
 		# Extension:SyntaxHighlight
@@ -199,13 +217,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 		libvips-tools \
 		webp \
 	;
-
-# Copy PHP configs
-COPY ./config/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
-COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY ./config/zzz-fpm-pool.conf /usr/local/etc/php-fpm.d/zzz-fpm-pool.conf
-RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini; \
-	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini;
 
 # Create required directories
 RUN install -d -o www-data -g www-data /var/www/mediawiki
@@ -220,6 +231,14 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 # Create a symlink to ensure MediaWiki finds pygmentize
 RUN ln -s /opt/venv/bin/pygmentize /usr/local/bin/pygmentize
+
+# Copy PHP configs. After the tree, so changing one doesn't rebuild the tree's
+# layer and make every node pull it again.
+COPY ./config/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
+COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY ./config/zzz-fpm-pool.conf /usr/local/etc/php-fpm.d/zzz-fpm-pool.conf
+RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini; \
+	echo 'max_execution_time = 60' >> /usr/local/etc/php/conf.d/docker-php-executiontime.ini;
 
 # Copy final configs
 COPY --chown=www-data:www-data ./config/LocalSettings.php /var/www/mediawiki/LocalSettings.php
