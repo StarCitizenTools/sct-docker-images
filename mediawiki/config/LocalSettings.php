@@ -912,7 +912,7 @@ $wgMediaViewerExcludedImageSelectors = [
 /**
  * Extension:MultiPurge
  *
- * @see https://github.com/StarCitizenTools/mediawiki-extensions-MultiPurge
+ * @see https://github.com/octfx/mediawiki-extensions-MultiPurge
  */
 $wgMultiPurgeEnabledServices = ["Cloudflare"];
 $wgMultiPurgeServiceOrder = $wgMultiPurgeEnabledServices;

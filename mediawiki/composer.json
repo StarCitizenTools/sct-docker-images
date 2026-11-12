@@ -28,6 +28,7 @@
                 "mediawiki/variables": "1.46.0",
                 "mediawiki/webauthn": "1.46.0",
                 "octfx/wiki-seo": "dev-master",
+                "octfx/multipurge": "dev-master",
                 "starcitizenwiki/embedvideo": "dev-master",
                 "edwardspec/mediawiki-aws-s3": "dev-master",
                 "starcitizentools/ag-grid": "dev-main",
@@ -35,7 +36,6 @@
                 "starcitizentools/bucket": "1.46.0",
                 "starcitizentools/citizen-skin": "dev-main",
                 "starcitizentools/floating-ui": "dev-main",
-                "starcitizentools/multipurge": "1.46.0",
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
                 "starcitizentools/thumbro": "dev-main",
@@ -504,22 +504,6 @@
                                 },
                                 "extra": {
                                         "installer-name": "Bucket"
-                                }
-                        }
-                },
-                {
-                        "type": "package",
-                        "package": {
-                                "name": "starcitizentools/multipurge",
-                                "type": "mediawiki-extension",
-                                "version": "1.46.0",
-                                "source": {
-                                        "type": "git",
-                                        "url": "https://github.com/StarCitizenTools/mediawiki-extensions-MultiPurge.git",
-                                        "reference": "production"
-                                },
-                                "extra": {
-                                        "installer-name": "MultiPurge"
                                 }
                         }
                 }
