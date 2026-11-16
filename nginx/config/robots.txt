@@ -195,13 +195,6 @@ Disallow: /*?title=Mediawiki:
 Disallow: /*?title=Mediawiki%3A
 Disallow: /*?*&title=Mediawiki:
 Disallow: /*?*&title=Mediawiki%3A
-Disallow: /Property:
-Disallow: /Property%3A
-Disallow: /property:
-Disallow: /*?title=Property:
-Disallow: /*?title=Property%3A
-Disallow: /*?*&title=Property:
-Disallow: /*?*&title=Property%3A
 Disallow: /Special:
 Disallow: /Special%3A
 Disallow: /special:
