@@ -101,6 +101,9 @@ $wgLogos = [
     "svg" => "$wgResourceBasePath/resources/assets/sitelogo.svg",
 ];
 $wgFavicon = "/favicon.svg";
+// Declare the touch icon so iOS uses it instead of probing root-level guesses
+// (apple-touch-icon-precomposed.png, -120x120.png, ...) that 404.
+$wgAppleTouchIcon = "/apple-touch-icon.png";
 $wgFooterIcons = [
     "poweredby" => [
         "mediawiki" => [
