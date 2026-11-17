@@ -398,46 +398,26 @@ $wgThumbnailSteps = [40, 60, 80, 120, 160, 240, 320, 480, 640, 960, 1280, 1920, 
 // Share of files (by name hash) that use the steps; MW 1.47 removes this setting
 $wgThumbnailStepsRatio = 0.25;
 
-/** @var array Thumb and image size options (Multiples of 80) */
-const SCT_THUMB_SIZES = [
-    [160, 120],
-    [240, 180],
-    [320, 240],
-    [640, 480],
-    [1280, 1024],
-    [2560, 2048],
-];
-
 // Everyone gets the default thumb and file page image size
 $wgHiddenPrefs[] = "thumbsize";
 $wgHiddenPrefs[] = "imagesize";
 
-$wgThumbLimits = [
-    SCT_THUMB_SIZES[0][0], // thumb size 0
-    SCT_THUMB_SIZES[1][0], // thumb size 1
-    SCT_THUMB_SIZES[2][0], // thumb size 2
-];
-// Set to 320px thumb by default
+// 320px default thumb; Special:Search picks the smallest one that fits
+$wgThumbLimits = [160, 240, 320];
 $wgDefaultUserOptions["thumbsize"] = 2;
-$wgImageLimits = [
-    [SCT_THUMB_SIZES[2][0], SCT_THUMB_SIZES[2][1]], // image size 0
-    [SCT_THUMB_SIZES[3][0], SCT_THUMB_SIZES[3][1]], // image size 1
-    [SCT_THUMB_SIZES[4][0], SCT_THUMB_SIZES[4][1]], // image size 2
-    [SCT_THUMB_SIZES[5][0], SCT_THUMB_SIZES[5][1]], // image size 3
-];
-// Set to 1280px image by default
-$wgDefaultUserOptions["imagesize"] = 2; // image size 2
+// File page image box
+$wgImageLimits = [[1280, 1024]];
+$wgDefaultUserOptions["imagesize"] = 0;
 
 // Use intermediary thumbnails to speed up thumbnail rendering
 // This will result in several chained lossy transformations
 // but we need it because the wiki uses a lot of high quality images
-$wgThumbnailBuckets = [SCT_THUMB_SIZES[4][0]];
+$wgThumbnailBuckets = [1280];
 $wgThumbnailMinimumBucketDistance = 100;
 
 // Gallery settings
-// Sync with default image size 0
-$wgGalleryOptions["imageWidth"] = $wgImageLimits[0][0];
-$wgGalleryOptions["imageHeight"] = $wgImageLimits[0][1];
+$wgGalleryOptions["imageWidth"] = 320;
+$wgGalleryOptions["imageHeight"] = 240;
 // packed-overlay seems to ignore the thumbnail restrictions above
 // $wgGalleryOptions['mode'] = 'packed-overlay';
 
