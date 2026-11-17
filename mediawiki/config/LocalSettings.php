@@ -391,22 +391,14 @@ $wgAllowTitlesInSVG = true;
 
 /**
  * Standardize thumbnail sizes
- * MediaWiki thumbnailing is all over the place (T360589)
- *
- * TODO: Wait on https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1084920
- *
- * List of image widths on the wiki
- * 120px - File history on file page (ImageHistoryList.php)
- * 160px - Thumb size 0
- * 320px - Thumb size 1 / Image size 0
- * 480px - Responsive image
- * 640px - Image size 1
- * 1280px - Image size 2
- * 1920px - Responsive image
- * 2560px - Image size 3
+ * Requested widths are rounded up to the next step (T360589).
+ * The steps interleave 40*2^n and 60*2^n, so the 2x srcset of a step is also a step.
  */
+$wgThumbnailSteps = [40, 60, 80, 120, 160, 240, 320, 480, 640, 960, 1280, 1920, 2560];
+// Share of files (by name hash) that use the steps; MW 1.47 removes this setting
+$wgThumbnailStepsRatio = 0.25;
 
-/** @var array Standardized thumb sizes (Multiples of 80) */
+/** @var array Thumb and image size options (Multiples of 80) */
 const SCT_THUMB_SIZES = [
     [160, 120],
     [240, 180],
@@ -416,15 +408,17 @@ const SCT_THUMB_SIZES = [
     [2560, 2048],
 ];
 
-// Reduce the number of thumb sizes served
+// Everyone gets the default thumb and file page image size
+$wgHiddenPrefs[] = "thumbsize";
+$wgHiddenPrefs[] = "imagesize";
+
 $wgThumbLimits = [
     SCT_THUMB_SIZES[0][0], // thumb size 0
     SCT_THUMB_SIZES[1][0], // thumb size 1
     SCT_THUMB_SIZES[2][0], // thumb size 2
 ];
-// Set to 300px thumb by default
+// Set to 320px thumb by default
 $wgDefaultUserOptions["thumbsize"] = 2;
-// Reduce the number of image sizes served in description page
 $wgImageLimits = [
     [SCT_THUMB_SIZES[2][0], SCT_THUMB_SIZES[2][1]], // image size 0
     [SCT_THUMB_SIZES[3][0], SCT_THUMB_SIZES[3][1]], // image size 1
@@ -901,12 +895,6 @@ $wgEmbedVideoUseEmbedStyleForLocalVideos = false;
  *
  * @see https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
  */
-$wgMediaViewerThumbnailBucketSizes = [
-    SCT_THUMB_SIZES[2][0],
-    SCT_THUMB_SIZES[3][0],
-    SCT_THUMB_SIZES[4][0],
-    SCT_THUMB_SIZES[5][0],
-];
 // Redefine instead of appending because none of the default selectors are needed
 $wgMediaViewerExcludedImageSelectors = [
     "a.mw-file-description[href$=\":Placeholderv2.png\"]", // Placeholder image that is used all over the place
