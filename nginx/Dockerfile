@@ -21,7 +21,7 @@ RUN set -eu; \
 	mkdir /tmp/static; \
 	tar -xf /tmp/static.tar -C /tmp/static
 
-FROM nginx:1.31.8@sha256:165ddde8751e75a1c907d24ef10d9f6deb08b57e0fe56caf67512486aff76d82
+FROM nginx:1.31.9@sha256:08f354a3b44c422021a5c0f5efb3e27f8f90236b5447d3bac4053f5f50ab6760
 
 # System dependencies
 RUN set -eux; \
