@@ -14,7 +14,7 @@ With a unique ID, every waiter is answered as soon as the holder releases,
 and requests beyond maxqueue get QUEUE_FULL at once. It also stops PHP 8.5's
 "Using null as an array offset is deprecated" at PoolCounterRedis.php:281.
 
-Upstream: not reported yet.
+Upstream: https://phabricator.wikimedia.org/T445568
 Drop:     once upstream assigns $session.
 
 --- a/includes/PoolCounter/PoolCounterRedis.php
