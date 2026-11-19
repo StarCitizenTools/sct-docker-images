@@ -31,6 +31,27 @@ it, and `.github/dependabot.yml` opens weekly grouped PRs to bump them:
 - MediaWiki core deliberately tracks the head of `MEDIAWIKI_BRANCH` at build
   time (`mediawiki/Dockerfile`); set `MEDIAWIKI_COMMIT_HASH` to freeze it.
 
+## Local patches
+
+Our changes to MediaWiki core and extensions live in `mediawiki/patches/`,
+one change per `.patch` file. Some are fixes waiting on an upstream release;
+others are local modifications that upstream doesn't want or that only make
+sense for this wiki. Each file starts with a short header:
+
+- what it changes and why;
+- `Upstream:` the task or change it tracks, or why it stays local;
+- `Drop:` when it can go, if it is meant to be temporary.
+
+A unified diff follows, with paths relative to the MediaWiki root
+(`a/includes/...`, `a/extensions/<Name>/...`). To make one, put the original
+file under `a/` and your edited copy under `b/`, then run
+`diff -u a/<path> b/<path>` and add the header.
+
+The build applies them in name order after Composer, with
+`patch --fuzz=0 --forward`, and lints every file they touch. A patch that no
+longer applies exactly, because the code around it changed or upstream now
+has the same change, fails the build; update or delete it then.
+
 ## Building
 
 All images are built together using [Docker Bake](https://docs.docker.com/build/bake/):
