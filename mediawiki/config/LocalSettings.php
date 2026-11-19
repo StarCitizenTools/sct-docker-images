@@ -395,8 +395,8 @@ $wgAllowTitlesInSVG = true;
  * The steps interleave 40*2^n and 60*2^n, so the 2x srcset of a step is also a step.
  */
 $wgThumbnailSteps = [40, 60, 80, 120, 160, 240, 320, 480, 640, 960, 1280, 1920, 2560];
-// Share of files (by name hash) that use the steps; MW 1.47 removes this setting
-$wgThumbnailStepsRatio = 0.25;
+// Apply the steps to every file; MW 1.47 removes this setting
+$wgThumbnailStepsRatio = 1;
 
 // Everyone gets the default thumb and file page image size
 $wgHiddenPrefs[] = "thumbsize";
