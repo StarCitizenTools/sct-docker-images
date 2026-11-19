@@ -39,7 +39,7 @@
                 "starcitizentools/short-description": "dev-main",
                 "starcitizentools/tabber-neue": "dev-main",
                 "starcitizentools/thumbro": "dev-main",
-                "weirdgloop/searchdigest": "1.43.0"
+                "weirdgloop/searchdigest": "1.46.0"
         },
         "config": {
                 "preferred-install": {
@@ -476,15 +476,15 @@
                         "package": {
                                 "name": "weirdgloop/searchdigest",
                                 "type": "mediawiki-extension",
-                                "version": "1.43.0",
+                                "version": "1.46.0",
                                 "dist": {
-                                        "url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest/archive/REL1_43.zip",
+                                        "url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest/archive/main.zip",
                                         "type": "zip"
                                 },
                                 "source": {
                                         "type": "git",
                                         "url": "https://github.com/weirdgloop/mediawiki-extensions-SearchDigest.git",
-                                        "reference": "REL1_43"
+                                        "reference": "main"
                                 },
                                 "extra": {
                                     "installer-name": "SearchDigest"
