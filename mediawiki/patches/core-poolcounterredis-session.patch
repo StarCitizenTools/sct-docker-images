@@ -1,0 +1,31 @@
+PoolCounterRedis: give each client a session ID
+
+$session has been declared but never assigned since the class was added in
+1.23. It is the client's member in the pool's Redis wait set, so every
+waiter shares a single member. Reproduced with our ArticleView settings
+(1 worker, maxqueue 8, timeout 20):
+
+- When the holder releases, one waiter is woken and one takes the freed
+  slot. The rest wait out the full 20s timeout, then get stale output or
+  an error.
+- The wait set never counts more than one, so maxqueue never applies.
+
+With a unique ID, every waiter is answered as soon as the holder releases,
+and requests beyond maxqueue get QUEUE_FULL at once. It also stops PHP 8.5's
+"Using null as an array offset is deprecated" at PoolCounterRedis.php:281.
+
+Upstream: not reported yet.
+Drop:     once upstream assigns $session.
+
+--- a/includes/PoolCounter/PoolCounterRedis.php
++++ b/includes/PoolCounter/PoolCounterRedis.php
+@@ -85,6 +85,9 @@
+ 		$this->pool = RedisConnectionPool::singleton( $conf['redisConfig'] );
+ 
+ 		$this->keySha1 = sha1( $this->key );
++		// Local patch: identifies this client in the pool's wait set. Upstream never
++		// assigns it, so every waiter would share one member.
++		$this->session = bin2hex( random_bytes( 16 ) );
+ 		$met = ini_get( 'max_execution_time' ); // usually 0 in CLI mode
+ 		$this->lockTTL = $met ? 2 * (int)$met : 3600;
+ 
