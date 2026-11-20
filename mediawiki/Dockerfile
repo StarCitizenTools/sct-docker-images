@@ -1,3 +1,8 @@
+# MediaWiki version
+# Core tracks the head of MEDIAWIKI_BRANCH; set MEDIAWIKI_COMMIT_HASH to freeze it.
+ARG MEDIAWIKI_BRANCH='REL1_46'
+ARG MEDIAWIKI_COMMIT_HASH=''
+
 # Base stage
 # Named stages rather than inline COPY --from images: Dependabot only reads FROM.
 FROM composer:2.11.2@sha256:5bcb28b8d0edc4091125f8218f9d088f998bdfc843f8fbb9a4beb4dcd8625684 AS composer
@@ -31,14 +36,33 @@ RUN --mount=type=cache,target=/tmp/phpexts-cache \
 		wikidiff2 \
 	;
 
+# MediaWiki commit
+# The clone below is cached like any other step, so on its own it keeps its
+# first checkout until something else changes the layer. This stage runs on
+# every build (bake passes a new MEDIAWIKI_HEAD_CHECK each time) and writes
+# the commit to build. The source stage copies that file in before cloning,
+# and COPY is cached by content, so the clone reruns only when it changes.
+FROM composer AS mediawiki-head
+ARG MEDIAWIKI_BRANCH
+ARG MEDIAWIKI_COMMIT_HASH
+ARG MEDIAWIKI_HEAD_CHECK
+RUN set -eu; \
+	commit="${MEDIAWIKI_COMMIT_HASH}"; \
+	if [ -z "$commit" ]; then \
+		commit=$(git ls-remote --exit-code https://github.com/wikimedia/mediawiki.git "refs/heads/${MEDIAWIKI_BRANCH}" | cut -f1); \
+	fi; \
+	[ -n "$commit" ]; \
+	echo "MediaWiki ${MEDIAWIKI_BRANCH}: ${commit}"; \
+	echo "$commit" > /mediawiki-commit
+
 # MediaWiki source
 # Cloned in its own stage so it runs in parallel with the PHP extension build
 # in the base stage; it only needs git, which the composer image already ships.
 FROM composer AS source
 
-# Version
-ARG MEDIAWIKI_BRANCH='REL1_46'
-ARG MEDIAWIKI_COMMIT_HASH=''
+ARG MEDIAWIKI_BRANCH
+ARG MEDIAWIKI_COMMIT_HASH
+COPY --from=mediawiki-head /mediawiki-commit /tmp/mediawiki-commit
 
 # Core's submodules (bundled extensions, skins, vendor) point at Gerrit, which
 # rate-limits CI runners with HTTP 429 partway through the ~40 fetches. Fetch

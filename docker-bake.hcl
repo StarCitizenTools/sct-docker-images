@@ -30,6 +30,8 @@ target "mediawiki" {
     "${REGISTRY}/starcitizentools/mediawiki:smw-${TAG}",
   ]
   args = {
+    # New each run, so every build checks the MediaWiki branch head
+    MEDIAWIKI_HEAD_CHECK         = timestamp()
     UPDATE_COMPOSER_DEPENDENCIES = UPDATE_COMPOSER_DEPENDENCIES
     UPDATE_SYSTEM_DEPENDENCIES   = UPDATE_SYSTEM_DEPENDENCIES
     UPDATE_PHP_EXTENSIONS        = UPDATE_PHP_EXTENSIONS

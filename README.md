@@ -28,8 +28,10 @@ it, and `.github/dependabot.yml` opens weekly grouped PRs to bump them:
 - The jobrunner (`jobrunner/mediawiki-services-jobrunner`) is a git submodule
   tracking `weirdgloop/master`, so the image ships an exact commit and a PR
   appears when Weird Gloop pushes. Clone with `--recurse-submodules`.
-- MediaWiki core deliberately tracks the head of `MEDIAWIKI_BRANCH` at build
-  time (`mediawiki/Dockerfile`); set `MEDIAWIKI_COMMIT_HASH` to freeze it.
+- MediaWiki core deliberately tracks the head of `MEDIAWIKI_BRANCH`
+  (`mediawiki/Dockerfile`). Every build looks up the branch's head commit,
+  prints it in the build log (`MediaWiki REL1_46: <sha>`) and clones again
+  only if it has moved. Set `MEDIAWIKI_COMMIT_HASH` to freeze it.
 
 ## Local patches
 
