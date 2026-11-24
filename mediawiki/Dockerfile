@@ -8,7 +8,7 @@ ARG MEDIAWIKI_COMMIT_HASH=''
 FROM composer:2.11.2@sha256:5bcb28b8d0edc4091125f8218f9d088f998bdfc843f8fbb9a4beb4dcd8625684 AS composer
 FROM mlocati/php-extension-installer:2.13.2@sha256:4fd45396c16685266d32bf147a24ecd5e81029d3820295895bf4a90131190ac9 AS php-extension-installer
 
-FROM php:8.5.13-fpm@sha256:7fd2766bd3bb6efcfb49591e4bf014e123c18f01149093bd508525c6bdf0cf9f AS base
+FROM php:8.5.13-fpm@sha256:048781ef8a0fc83b294d5285c8ca0d12aea64816a1ed60999e1567db12567da6 AS base
 
 ARG UPDATE_PHP_EXTENSIONS=false
 
