@@ -5,7 +5,7 @@ ARG MEDIAWIKI_COMMIT_HASH=''
 
 # Base stage
 # Named stages rather than inline COPY --from images: Dependabot only reads FROM.
-FROM composer:2.11.2@sha256:5bcb28b8d0edc4091125f8218f9d088f998bdfc843f8fbb9a4beb4dcd8625684 AS composer
+FROM composer:2.11.3@sha256:4e5f671c4a5784b422c20fcb993a38da96529438889dbce40be27c452d18dd6d AS composer
 FROM mlocati/php-extension-installer:2.13.2@sha256:4fd45396c16685266d32bf147a24ecd5e81029d3820295895bf4a90131190ac9 AS php-extension-installer
 
 FROM php:8.5.13-fpm@sha256:048781ef8a0fc83b294d5285c8ca0d12aea64816a1ed60999e1567db12567da6 AS base
